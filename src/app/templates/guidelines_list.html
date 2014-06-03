@@ -1,0 +1,6 @@
+<h4>Guidelines</h4>
+<div class="list-group">
+{% for gl in guidelines %}
+    <a href="#" class="list-group-item" uri='{{gl.gl.value }}'>{{ gl.gl_label.value }}</a>
+{% endfor %}
+</div>

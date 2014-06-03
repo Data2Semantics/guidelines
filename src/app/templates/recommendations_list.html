@@ -1,0 +1,20 @@
+<h4>Recommendations</h4>
+<div class="list-group">
+{% for grouper, list in recommendations|groupby('rec_label') %}
+    {% for e in list %}
+        {% if loop.first %}
+            <a href="#" class="list-group-item"  uri='{{e.rec.value }}'>
+                <h5 class="list-group-item-heading" uri='{{e.rec.value }}'>{{ grouper.value }}</h5>
+                
+        {% endif %}
+        {% if 'crec_label' in e %}
+                <span class="badge" target="{{ e.crec.value }}">{{ e.crec_label.value }}</span>
+        {% endif %}
+        {% if loop.last %}
+                <div class="list-group-item-content" transitions_for='{{e.rec.value}}'>
+                </div>
+            </a>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+</div>
