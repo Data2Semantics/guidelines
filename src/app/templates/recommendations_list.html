@@ -3,8 +3,8 @@
 {% for grouper, list in recommendations|groupby('rec_label') %}
     {% for e in list %}
         {% if loop.first %}
-            <a href="#" class="list-group-item"  uri='{{e.rec.value }}'>
-                <h5 class="list-group-item-heading" uri='{{e.rec.value }}'>{{ grouper.value }}</h5>
+            <a href="#" class="list-group-item" uri='{{e.rec.value }}'>
+                <span class="list-group-item-heading">{{ grouper.value }}</span>
                 
         {% endif %}
         {% if 'crec_label' in e %}

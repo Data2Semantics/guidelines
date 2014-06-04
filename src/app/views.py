@@ -38,6 +38,28 @@ def recommendations():
     recommendations = sparql(query, strip=True)
     return render_template('recommendations_list.html', recommendations = recommendations)
 
+@app.route('/transitions', methods=['GET'])
+def transitions():
+    uri = request.args.get('uri', '')
+    query = PREFIXES + """
+    SELECT DISTINCT * WHERE {
+      {
+        <""" + uri + """> gl:recommends ?pos_transition .
+        ?pos_transition gl:hasTransformableSituation ?transformable_situation .
+      	?pos_transition gl:hasExpectedPostSituation ?post_situation .
+      } UNION {
+        <""" + uri + """> gl:nonRecommends ?neg_transition .
+        ?neg_transition gl:hasTransformableSituation ?transformable_situation .
+      	?neg_transition gl:hasExpectedPostSituation ?post_situation .
+      }
+    }
+    """
+    
+    transitions = sparql(query, strip=True)
+    
+    print transitions
+    return render_template('transitions_list.html', transitions = transitions)
+
 def sparql(query, strip=False, strip_prefix = 'http://guidelines.data2semantics.org/vocab/'):
     result = requests.get(ENDPOINT_URL,params={'query': query}, headers=QUERY_HEADERS)
     result_dict = json.loads(result.content)
