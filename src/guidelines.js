@@ -46,7 +46,6 @@ if (Meteor.isClient) {
                     console.log("Response: ", response);
                     //window.alert(respJson.length + ' tweets received.');
                     Session.set("recommendations", response);
-                    Session.set("current_recommendation", 'none');
                 }
             });
         }
@@ -60,8 +59,11 @@ if (Meteor.isClient) {
         Session.set("current_recommendation", this.rec.value);
     }
     
-    Template.recommendation.unchanged = function() {
+    Template.recommendations.isunchanged = function() {
+        console.log("Checking whether recommendation is unchanged");
+        Session.setDefault("current_recommendation", "none")
         var current = Session.get("current_recommendation");
+        console.log(current + this.rec.value);
         return (current == this.rec.value);
     }
 

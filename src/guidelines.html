@@ -51,7 +51,7 @@
 <template name="recommendations">
     <h3>Recommendations</h3>
     {{#each results}}
-        {{#unless unchanged }}
+        {{#unless isunchanged }}
             {{ register_recommendation }}
             <div><a class='alert alert-info recommendation' id='{{ shortform_str rec.value}}'>
                 {{ shortform_str rec.value }}
