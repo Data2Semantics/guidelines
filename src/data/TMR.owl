@@ -1,0 +1,1378 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
+    <!ENTITY swrlb "http://www.w3.org/2003/11/swrlb#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY tmr "http://guidelines.data2semantics.org/vocab/" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/veruskacz/ontologies/2014/8/untitled-ontology-55#"
+     xml:base="http://www.semanticweb.org/veruskacz/ontologies/2014/8/untitled-ontology-55"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:tmr="http://guidelines.data2semantics.org/vocab/">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/veruskacz/ontologies/2014/8/TMR"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#derivesFrom -->
+
+    <owl:ObjectProperty rdf:about="&tmr;derivesFrom"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#hasExpectedPostSituation -->
+
+    <owl:ObjectProperty rdf:about="&tmr;hasExpectedPostSituation">
+        <rdfs:range rdf:resource="&tmr;SituationType"/>
+        <rdfs:domain rdf:resource="&tmr;Transition"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#hasFilterCondition -->
+
+    <owl:ObjectProperty rdf:about="&tmr;hasFilterCondition">
+        <rdfs:subPropertyOf rdf:resource="&tmr;hasPreSituation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#hasPreSituation -->
+
+    <owl:ObjectProperty rdf:about="&tmr;hasPreSituation">
+        <rdfs:range rdf:resource="&tmr;SituationType"/>
+        <rdfs:domain rdf:resource="&tmr;Transition"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#hasTransformableSituation -->
+
+    <owl:ObjectProperty rdf:about="&tmr;hasTransformableSituation">
+        <rdfs:subPropertyOf rdf:resource="&tmr;hasPreSituation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#inverseToTransition -->
+
+    <owl:ObjectProperty rdf:about="&tmr;inverseToTransition">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdfs:subPropertyOf rdf:resource="&tmr;relatedToTranstion"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#partOf -->
+
+    <owl:ObjectProperty rdf:about="&tmr;partOf">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="&tmr;Guideline"/>
+        <rdfs:domain rdf:resource="&tmr;Recommendation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#promotedBy -->
+
+    <owl:ObjectProperty rdf:about="&tmr;promotedBy">
+        <rdfs:range rdf:resource="&tmr;CareActionType"/>
+        <rdfs:domain rdf:resource="&tmr;Transition"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#recommends -->
+
+    <owl:ObjectProperty rdf:about="&tmr;recommends">
+        <rdfs:domain rdf:resource="&tmr;Recommendation"/>
+        <rdfs:range rdf:resource="&tmr;Transition"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#recommendsToAvoid -->
+
+    <owl:ObjectProperty rdf:about="&tmr;recommendsToAvoid">
+        <rdfs:subPropertyOf rdf:resource="&tmr;recommends"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#recommendsToPursue -->
+
+    <owl:ObjectProperty rdf:about="&tmr;recommendsToPursue">
+        <rdfs:subPropertyOf rdf:resource="&tmr;recommends"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#relatedToTranstion -->
+
+    <owl:ObjectProperty rdf:about="&tmr;relatedToTranstion">
+        <rdfs:domain rdf:resource="&tmr;Transition"/>
+        <rdfs:range rdf:resource="&tmr;Transition"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#similarToTransition -->
+
+    <owl:ObjectProperty rdf:about="&tmr;similarToTransition">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdfs:subPropertyOf rdf:resource="&tmr;relatedToTranstion"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#CareActionType -->
+
+    <owl:Class rdf:about="&tmr;CareActionType"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#ComposedGuideline -->
+
+    <owl:Class rdf:about="&tmr;ComposedGuideline">
+        <rdfs:subClassOf rdf:resource="&tmr;Guideline"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Guideline -->
+
+    <owl:Class rdf:about="&tmr;Guideline"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Recommendation -->
+
+    <owl:Class rdf:about="&tmr;Recommendation"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#SingleDiseaseGuideline -->
+
+    <owl:Class rdf:about="&tmr;SingleDiseaseGuideline">
+        <rdfs:subClassOf rdf:resource="&tmr;Guideline"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#SituationType -->
+
+    <owl:Class rdf:about="&tmr;SituationType"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Transition -->
+
+    <owl:Class rdf:about="&tmr;Transition"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#ActAdministerAspirin -->
+
+    <owl:NamedIndividual rdf:about="&tmr;ActAdministerAspirin"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#ActAdministerClopidogrel -->
+
+    <owl:NamedIndividual rdf:about="&tmr;ActAdministerClopidogrel"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#ActAdministerDipyridamole -->
+
+    <owl:NamedIndividual rdf:about="&tmr;ActAdministerDipyridamole"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#ActAdministerThiazide -->
+
+    <owl:NamedIndividual rdf:about="&tmr;ActAdministerThiazide"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#ActAdministerTramadol -->
+
+    <owl:NamedIndividual rdf:about="&tmr;ActAdministerTramadol"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#ActAdminsterPPI -->
+
+    <owl:NamedIndividual rdf:about="&tmr;ActAdminsterPPI"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#ActAdmnisterIbuprofen -->
+
+    <owl:NamedIndividual rdf:about="&tmr;ActAdmnisterIbuprofen"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#ActEradicationTherapy -->
+
+    <owl:NamedIndividual rdf:about="&tmr;ActEradicationTherapy"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#CIG-DM -->
+
+    <owl:NamedIndividual rdf:about="&tmr;CIG-DM"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#CIG-DU -->
+
+    <owl:NamedIndividual rdf:about="&tmr;CIG-DU"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#CIG-DU-TIA -->
+
+    <owl:NamedIndividual rdf:about="&tmr;CIG-DU-TIA">
+        <tmr:derivesFrom rdf:resource="&tmr;CIG-DU"/>
+        <tmr:derivesFrom rdf:resource="&tmr;CIG-TIA"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#CIG-HT -->
+
+    <owl:NamedIndividual rdf:about="&tmr;CIG-HT"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#CIG-OA -->
+
+    <owl:NamedIndividual rdf:about="&tmr;CIG-OA"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#CIG-OA-HT-DM -->
+
+    <owl:NamedIndividual rdf:about="&tmr;CIG-OA-HT-DM"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#CIG-TIA -->
+
+    <owl:NamedIndividual rdf:about="&tmr;CIG-TIA"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecDM-AntiThrombotic -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecDM-AntiThrombotic">
+        <tmr:partOf rdf:resource="&tmr;CIG-DM"/>
+        <tmr:recommendsToPursue rdf:resource="&tmr;T4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecDM-AvoidHighLBS -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecDM-AvoidHighLBS">
+        <tmr:partOf rdf:resource="&tmr;CIG-DM"/>
+        <tmr:recommendsToAvoid rdf:resource="&tmr;T11"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecDU-AvoidGIB -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecDU-AvoidGIB">
+        <tmr:partOf rdf:resource="&tmr;CIG-DU"/>
+        <tmr:recommendsToAvoid rdf:resource="&tmr;T1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecDU-HealingDU1 -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecDU-HealingDU1">
+        <tmr:partOf rdf:resource="&tmr;CIG-DU"/>
+        <tmr:recommendsToPursue rdf:resource="&tmr;T2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecDU-HealingDU2 -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecDU-HealingDU2">
+        <tmr:partOf rdf:resource="&tmr;CIG-DU"/>
+        <tmr:recommendsToPursue rdf:resource="&tmr;T3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecDUTIA-AvoidBleeding -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecDUTIA-AvoidBleeding">
+        <tmr:partOf rdf:resource="&tmr;CIG-DU-TIA"/>
+        <tmr:recommendsToAvoid rdf:resource="&tmr;T1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecDUTIA-HealingDU1 -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecDUTIA-HealingDU1">
+        <tmr:partOf rdf:resource="&tmr;CIG-DU-TIA"/>
+        <tmr:recommendsToPursue rdf:resource="&tmr;T2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecDUTIA-HealingDU2 -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecDUTIA-HealingDU2">
+        <tmr:partOf rdf:resource="&tmr;CIG-DU-TIA"/>
+        <tmr:recommendsToPursue rdf:resource="&tmr;T3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecDUTIA-RedHighRiskVE -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecDUTIA-RedHighRiskVE">
+        <tmr:partOf rdf:resource="&tmr;CIG-DU-TIA"/>
+        <tmr:recommendsToPursue rdf:resource="&tmr;T5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecDUTIA-RedMediumRiskVE -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecDUTIA-RedMediumRiskVE">
+        <tmr:partOf rdf:resource="&tmr;CIG-DU-TIA"/>
+        <tmr:recommendsToPursue rdf:resource="&tmr;T4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecDUTIASol-ProtectingDuodenum -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecDUTIASol-ProtectingDuodenum">
+        <tmr:partOf rdf:resource="&tmr;CIG-DU-TIA"/>
+        <tmr:recommendsToPursue rdf:resource="&tmr;T6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecDUTIASol-RedMediumRiskVE -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecDUTIASol-RedMediumRiskVE">
+        <tmr:partOf rdf:resource="&tmr;CIG-DU-TIA"/>
+        <tmr:recommendsToPursue rdf:resource="&tmr;T7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecHT-AvoidHighBP -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecHT-AvoidHighBP">
+        <tmr:partOf rdf:resource="&tmr;CIG-HT"/>
+        <tmr:recommendsToAvoid rdf:resource="&tmr;T9"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecHT-Diuretic -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecHT-Diuretic">
+        <tmr:partOf rdf:resource="&tmr;CIG-HT"/>
+        <tmr:recommendsToPursue rdf:resource="&tmr;T10"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecOA-AvoidGIB -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecOA-AvoidGIB">
+        <tmr:partOf rdf:resource="&tmr;CIG-OA"/>
+        <tmr:recommendsToAvoid rdf:resource="&tmr;T1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecOA-HT-DM-AntiThrombotic -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecOA-HT-DM-AntiThrombotic">
+        <tmr:partOf rdf:resource="&tmr;CIG-OA-HT-DM"/>
+        <tmr:recommendsToPursue rdf:resource="&tmr;T4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecOA-HT-DM-AvoidGIB -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecOA-HT-DM-AvoidGIB">
+        <tmr:partOf rdf:resource="&tmr;CIG-OA-HT-DM"/>
+        <tmr:recommendsToAvoid rdf:resource="&tmr;T1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecOA-HT-DM-AvoidHighBP -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecOA-HT-DM-AvoidHighBP">
+        <tmr:partOf rdf:resource="&tmr;CIG-OA-HT-DM"/>
+        <tmr:recommendsToAvoid rdf:resource="&tmr;T9"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecOA-HT-DM-AvoidHighLBS -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecOA-HT-DM-AvoidHighLBS">
+        <tmr:partOf rdf:resource="&tmr;CIG-OA-HT-DM"/>
+        <tmr:recommendsToAvoid rdf:resource="&tmr;T11"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecOA-HT-DM-Diuretic -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecOA-HT-DM-Diuretic">
+        <tmr:partOf rdf:resource="&tmr;CIG-OA-HT-DM"/>
+        <tmr:recommendsToPursue rdf:resource="&tmr;T10"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecOA-HT-DM-Extra-AntiThrombotic -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecOA-HT-DM-Extra-AntiThrombotic">
+        <tmr:partOf rdf:resource="&tmr;CIG-OA-HT-DM"/>
+        <tmr:recommendsToPursue rdf:resource="&tmr;T7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecOA-HT-DM-Painkiller -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecOA-HT-DM-Painkiller">
+        <tmr:partOf rdf:resource="&tmr;CIG-OA-HT-DM"/>
+        <tmr:recommendsToPursue rdf:resource="&tmr;T8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecOA-HT-DM-Sol-AntiThrombotic -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecOA-HT-DM-Sol-AntiThrombotic">
+        <tmr:partOf rdf:resource="&tmr;CIG-OA-HT-DM"/>
+        <tmr:recommendsToPursue rdf:resource="&tmr;T13"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecOA-HT-DM-Sol-Painkiller -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecOA-HT-DM-Sol-Painkiller">
+        <tmr:partOf rdf:resource="&tmr;CIG-OA-HT-DM"/>
+        <tmr:recommendsToPursue rdf:resource="&tmr;T12"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecOA-Painkiller -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecOA-Painkiller">
+        <tmr:partOf rdf:resource="&tmr;CIG-OA"/>
+        <tmr:recommendsToPursue rdf:resource="&tmr;T8"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecTIA-RedHighRiskVE -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecTIA-RedHighRiskVE">
+        <tmr:partOf rdf:resource="&tmr;CIG-TIA"/>
+        <tmr:recommendsToPursue rdf:resource="&tmr;T5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RecTIA-RedMediumRiskVE -->
+
+    <owl:NamedIndividual rdf:about="&tmr;RecTIA-RedMediumRiskVE">
+        <tmr:partOf rdf:resource="&tmr;CIG-TIA"/>
+        <tmr:recommendsToPursue rdf:resource="&tmr;T4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#SitDUHealed -->
+
+    <owl:NamedIndividual rdf:about="&tmr;SitDUHealed"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#SitDUUnhealed -->
+
+    <owl:NamedIndividual rdf:about="&tmr;SitDUUnhealed"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#SitHPyloriNegative -->
+
+    <owl:NamedIndividual rdf:about="&tmr;SitHPyloriNegative"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#SitHPyloriPositive -->
+
+    <owl:NamedIndividual rdf:about="&tmr;SitHPyloriPositive"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#SitHighBP -->
+
+    <owl:NamedIndividual rdf:about="&tmr;SitHighBP"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#SitHighLBS -->
+
+    <owl:NamedIndividual rdf:about="&tmr;SitHighLBS"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#SitHighRiskGIB -->
+
+    <owl:NamedIndividual rdf:about="&tmr;SitHighRiskGIB"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#SitHighRiskThrombus -->
+
+    <owl:NamedIndividual rdf:about="&tmr;SitHighRiskThrombus"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#SitLowRiskGIB -->
+
+    <owl:NamedIndividual rdf:about="&tmr;SitLowRiskGIB"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#SitLowRiskThrombus -->
+
+    <owl:NamedIndividual rdf:about="&tmr;SitLowRiskThrombus"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#SitMediumRiskThrombus -->
+
+    <owl:NamedIndividual rdf:about="&tmr;SitMediumRiskThrombus"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#SitNormalBP -->
+
+    <owl:NamedIndividual rdf:about="&tmr;SitNormalBP"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#SitNormalLBS -->
+
+    <owl:NamedIndividual rdf:about="&tmr;SitNormalLBS"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#SitPatientHasNoPain -->
+
+    <owl:NamedIndividual rdf:about="&tmr;SitPatientHasNoPain"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#SitPatientHasPain -->
+
+    <owl:NamedIndividual rdf:about="&tmr;SitPatientHasPain"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#T1 -->
+
+    <owl:NamedIndividual rdf:about="&tmr;T1">
+        <tmr:promotedBy rdf:resource="&tmr;ActAdministerAspirin"/>
+        <tmr:hasExpectedPostSituation rdf:resource="&tmr;SitHighRiskGIB"/>
+        <tmr:hasTransformableSituation rdf:resource="&tmr;SitLowRiskGIB"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#T10 -->
+
+    <owl:NamedIndividual rdf:about="&tmr;T10">
+        <tmr:promotedBy rdf:resource="&tmr;ActAdministerThiazide"/>
+        <tmr:hasTransformableSituation rdf:resource="&tmr;SitHighBP"/>
+        <tmr:hasExpectedPostSituation rdf:resource="&tmr;SitNormalBP"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#T11 -->
+
+    <owl:NamedIndividual rdf:about="&tmr;T11">
+        <tmr:promotedBy rdf:resource="&tmr;ActAdministerThiazide"/>
+        <tmr:hasExpectedPostSituation rdf:resource="&tmr;SitHighLBS"/>
+        <tmr:hasTransformableSituation rdf:resource="&tmr;SitNormalLBS"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#T12 -->
+
+    <owl:NamedIndividual rdf:about="&tmr;T12">
+        <tmr:promotedBy rdf:resource="&tmr;ActAdministerTramadol"/>
+        <tmr:hasExpectedPostSituation rdf:resource="&tmr;SitPatientHasNoPain"/>
+        <tmr:hasTransformableSituation rdf:resource="&tmr;SitPatientHasPain"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#T13 -->
+
+    <owl:NamedIndividual rdf:about="&tmr;T13">
+        <tmr:promotedBy rdf:resource="&tmr;ActAdministerTramadol"/>
+        <tmr:hasExpectedPostSituation rdf:resource="&tmr;SitLowRiskThrombus"/>
+        <tmr:hasTransformableSituation rdf:resource="&tmr;SitMediumRiskThrombus"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#T2 -->
+
+    <owl:NamedIndividual rdf:about="&tmr;T2">
+        <tmr:promotedBy rdf:resource="&tmr;ActEradicationTherapy"/>
+        <tmr:hasExpectedPostSituation rdf:resource="&tmr;SitDUHealed"/>
+        <tmr:hasTransformableSituation rdf:resource="&tmr;SitDUUnhealed"/>
+        <tmr:hasFilterCondition rdf:resource="&tmr;SitHPyloriPositive"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#T3 -->
+
+    <owl:NamedIndividual rdf:about="&tmr;T3">
+        <tmr:promotedBy rdf:resource="&tmr;ActAdminsterPPI"/>
+        <tmr:hasExpectedPostSituation rdf:resource="&tmr;SitDUHealed"/>
+        <tmr:hasTransformableSituation rdf:resource="&tmr;SitDUUnhealed"/>
+        <tmr:hasFilterCondition rdf:resource="&tmr;SitHPyloriNegative"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#T4 -->
+
+    <owl:NamedIndividual rdf:about="&tmr;T4">
+        <tmr:promotedBy rdf:resource="&tmr;ActAdministerAspirin"/>
+        <tmr:hasExpectedPostSituation rdf:resource="&tmr;SitLowRiskThrombus"/>
+        <tmr:hasTransformableSituation rdf:resource="&tmr;SitMediumRiskThrombus"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#T5 -->
+
+    <owl:NamedIndividual rdf:about="&tmr;T5">
+        <tmr:promotedBy rdf:resource="&tmr;ActAdministerDipyridamole"/>
+        <tmr:hasTransformableSituation rdf:resource="&tmr;SitHighRiskThrombus"/>
+        <tmr:hasExpectedPostSituation rdf:resource="&tmr;SitLowRiskThrombus"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#T6 -->
+
+    <owl:NamedIndividual rdf:about="&tmr;T6">
+        <tmr:promotedBy rdf:resource="&tmr;ActAdminsterPPI"/>
+        <tmr:hasTransformableSituation rdf:resource="&tmr;SitHighRiskGIB"/>
+        <tmr:hasExpectedPostSituation rdf:resource="&tmr;SitLowRiskGIB"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#T7 -->
+
+    <owl:NamedIndividual rdf:about="&tmr;T7">
+        <tmr:promotedBy rdf:resource="&tmr;ActAdministerClopidogrel"/>
+        <tmr:hasExpectedPostSituation rdf:resource="&tmr;SitLowRiskThrombus"/>
+        <tmr:hasTransformableSituation rdf:resource="&tmr;SitMediumRiskThrombus"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#T8 -->
+
+    <owl:NamedIndividual rdf:about="&tmr;T8">
+        <tmr:promotedBy rdf:resource="&tmr;ActAdmnisterIbuprofen"/>
+        <tmr:hasExpectedPostSituation rdf:resource="&tmr;SitPatientHasNoPain"/>
+        <tmr:hasTransformableSituation rdf:resource="&tmr;SitPatientHasPain"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#T9 -->
+
+    <owl:NamedIndividual rdf:about="&tmr;T9">
+        <tmr:promotedBy rdf:resource="&tmr;ActAdmnisterIbuprofen"/>
+        <tmr:hasExpectedPostSituation rdf:resource="&tmr;SitHighBP"/>
+        <tmr:hasTransformableSituation rdf:resource="&tmr;SitNormalBP"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&tmr;T1"/>
+            <rdf:Description rdf:about="&tmr;T10"/>
+            <rdf:Description rdf:about="&tmr;T11"/>
+            <rdf:Description rdf:about="&tmr;T12"/>
+            <rdf:Description rdf:about="&tmr;T13"/>
+            <rdf:Description rdf:about="&tmr;T2"/>
+            <rdf:Description rdf:about="&tmr;T3"/>
+            <rdf:Description rdf:about="&tmr;T4"/>
+            <rdf:Description rdf:about="&tmr;T5"/>
+            <rdf:Description rdf:about="&tmr;T6"/>
+            <rdf:Description rdf:about="&tmr;T7"/>
+            <rdf:Description rdf:about="&tmr;T8"/>
+            <rdf:Description rdf:about="&tmr;T9"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&tmr;ActAdministerAspirin"/>
+            <rdf:Description rdf:about="&tmr;ActAdministerClopidogrel"/>
+            <rdf:Description rdf:about="&tmr;ActAdministerDipyridamole"/>
+            <rdf:Description rdf:about="&tmr;ActAdministerThiazide"/>
+            <rdf:Description rdf:about="&tmr;ActAdministerTramadol"/>
+            <rdf:Description rdf:about="&tmr;ActAdminsterPPI"/>
+            <rdf:Description rdf:about="&tmr;ActAdmnisterIbuprofen"/>
+            <rdf:Description rdf:about="&tmr;ActEradicationTherapy"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&tmr;CareActionType"/>
+            <rdf:Description rdf:about="&tmr;Guideline"/>
+            <rdf:Description rdf:about="&tmr;Recommendation"/>
+            <rdf:Description rdf:about="&tmr;SituationType"/>
+            <rdf:Description rdf:about="&tmr;Transition"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&tmr;RecDM-AntiThrombotic"/>
+            <rdf:Description rdf:about="&tmr;RecDM-AvoidHighLBS"/>
+            <rdf:Description rdf:about="&tmr;RecDU-AvoidGIB"/>
+            <rdf:Description rdf:about="&tmr;RecDU-HealingDU1"/>
+            <rdf:Description rdf:about="&tmr;RecDU-HealingDU2"/>
+            <rdf:Description rdf:about="&tmr;RecDUTIA-AvoidBleeding"/>
+            <rdf:Description rdf:about="&tmr;RecDUTIA-HealingDU1"/>
+            <rdf:Description rdf:about="&tmr;RecDUTIA-HealingDU2"/>
+            <rdf:Description rdf:about="&tmr;RecDUTIA-RedHighRiskVE"/>
+            <rdf:Description rdf:about="&tmr;RecDUTIA-RedMediumRiskVE"/>
+            <rdf:Description rdf:about="&tmr;RecDUTIASol-ProtectingDuodenum"/>
+            <rdf:Description rdf:about="&tmr;RecDUTIASol-RedMediumRiskVE"/>
+            <rdf:Description rdf:about="&tmr;RecHT-AvoidHighBP"/>
+            <rdf:Description rdf:about="&tmr;RecHT-Diuretic"/>
+            <rdf:Description rdf:about="&tmr;RecOA-AvoidGIB"/>
+            <rdf:Description rdf:about="&tmr;RecOA-HT-DM-AntiThrombotic"/>
+            <rdf:Description rdf:about="&tmr;RecOA-HT-DM-AvoidGIB"/>
+            <rdf:Description rdf:about="&tmr;RecOA-HT-DM-AvoidHighBP"/>
+            <rdf:Description rdf:about="&tmr;RecOA-HT-DM-AvoidHighLBS"/>
+            <rdf:Description rdf:about="&tmr;RecOA-HT-DM-Diuretic"/>
+            <rdf:Description rdf:about="&tmr;RecOA-HT-DM-Painkiller"/>
+            <rdf:Description rdf:about="&tmr;RecOA-HT-DM-Sol-AntiThrombotic"/>
+            <rdf:Description rdf:about="&tmr;RecOA-HT-DM-Sol-Painkiller"/>
+            <rdf:Description rdf:about="&tmr;RecOA-Painkiller"/>
+            <rdf:Description rdf:about="&tmr;RecTIA-RedHighRiskVE"/>
+            <rdf:Description rdf:about="&tmr;RecTIA-RedMediumRiskVE"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&tmr;CIG-DM"/>
+            <rdf:Description rdf:about="&tmr;CIG-DU"/>
+            <rdf:Description rdf:about="&tmr;CIG-DU-TIA"/>
+            <rdf:Description rdf:about="&tmr;CIG-HT"/>
+            <rdf:Description rdf:about="&tmr;CIG-OA"/>
+            <rdf:Description rdf:about="&tmr;CIG-OA-HT-DM"/>
+            <rdf:Description rdf:about="&tmr;CIG-TIA"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&tmr;SitDUHealed"/>
+            <rdf:Description rdf:about="&tmr;SitDUUnhealed"/>
+            <rdf:Description rdf:about="&tmr;SitHPyloriNegative"/>
+            <rdf:Description rdf:about="&tmr;SitHPyloriPositive"/>
+            <rdf:Description rdf:about="&tmr;SitHighBP"/>
+            <rdf:Description rdf:about="&tmr;SitHighLBS"/>
+            <rdf:Description rdf:about="&tmr;SitHighRiskGIB"/>
+            <rdf:Description rdf:about="&tmr;SitHighRiskThrombus"/>
+            <rdf:Description rdf:about="&tmr;SitLowRiskGIB"/>
+            <rdf:Description rdf:about="&tmr;SitLowRiskThrombus"/>
+            <rdf:Description rdf:about="&tmr;SitMediumRiskThrombus"/>
+            <rdf:Description rdf:about="&tmr;SitNormalBP"/>
+            <rdf:Description rdf:about="&tmr;SitNormalLBS"/>
+            <rdf:Description rdf:about="&tmr;SitPatientHasNoPain"/>
+            <rdf:Description rdf:about="&tmr;SitPatientHasPain"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="urn:swrl#sa">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#sb">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#t1">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#t2">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#ca">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#ca1">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#ca2">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="&tmr;similarToTransition"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#t2"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&tmr;CareActionType"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#ca1"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="&tmr;SituationType"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#sa"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                                <swrl:classPredicate rdf:resource="&tmr;Transition"/>
+                                                                <swrl:argument1 rdf:resource="urn:swrl#t2"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                        <rdf:first>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                <swrl:propertyPredicate rdf:resource="&tmr;hasExpectedPostSituation"/>
+                                                                                <swrl:argument2 rdf:resource="urn:swrl#sb"/>
+                                                                                <swrl:argument1 rdf:resource="urn:swrl#t2"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:first>
+                                                                        <rdf:rest>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                <rdf:rest>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                        <rdf:first>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                                <swrl:propertyPredicate rdf:resource="&tmr;hasTransformableSituation"/>
+                                                                                                <swrl:argument2 rdf:resource="urn:swrl#sa"/>
+                                                                                                <swrl:argument1 rdf:resource="urn:swrl#t2"/>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:first>
+                                                                                        <rdf:rest>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                                <rdf:first>
+                                                                                                    <rdf:Description>
+                                                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                                        <swrl:propertyPredicate rdf:resource="&tmr;promotedBy"/>
+                                                                                                        <swrl:argument2 rdf:resource="urn:swrl#ca1"/>
+                                                                                                        <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                                                                                                    </rdf:Description>
+                                                                                                </rdf:first>
+                                                                                                <rdf:rest>
+                                                                                                    <rdf:Description>
+                                                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                                        <rdf:first>
+                                                                                                            <rdf:Description>
+                                                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                                                <swrl:propertyPredicate rdf:resource="&tmr;promotedBy"/>
+                                                                                                                <swrl:argument2 rdf:resource="urn:swrl#ca2"/>
+                                                                                                                <swrl:argument1 rdf:resource="urn:swrl#t2"/>
+                                                                                                            </rdf:Description>
+                                                                                                        </rdf:first>
+                                                                                                        <rdf:rest>
+                                                                                                            <rdf:Description>
+                                                                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                                                <rdf:rest rdf:resource="&rdf;nil"/>
+                                                                                                                <rdf:first>
+                                                                                                                    <rdf:Description>
+                                                                                                                        <rdf:type rdf:resource="&swrl;DifferentIndividualsAtom"/>
+                                                                                                                        <swrl:argument1 rdf:resource="urn:swrl#ca1"/>
+                                                                                                                        <swrl:argument2 rdf:resource="urn:swrl#ca2"/>
+                                                                                                                    </rdf:Description>
+                                                                                                                </rdf:first>
+                                                                                                            </rdf:Description>
+                                                                                                        </rdf:rest>
+                                                                                                    </rdf:Description>
+                                                                                                </rdf:rest>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:rest>
+                                                                                    </rdf:Description>
+                                                                                </rdf:rest>
+                                                                                <rdf:first>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                        <swrl:propertyPredicate rdf:resource="&tmr;hasTransformableSituation"/>
+                                                                                        <swrl:argument2 rdf:resource="urn:swrl#sa"/>
+                                                                                        <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                                                                                    </rdf:Description>
+                                                                                </rdf:first>
+                                                                            </rdf:Description>
+                                                                        </rdf:rest>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                        <swrl:propertyPredicate rdf:resource="&tmr;hasExpectedPostSituation"/>
+                                                                        <swrl:argument2 rdf:resource="urn:swrl#sb"/>
+                                                                        <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                        <swrl:classPredicate rdf:resource="&tmr;Transition"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                <swrl:classPredicate rdf:resource="&tmr;SituationType"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#sb"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="&tmr;CareActionType"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#ca2"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="&tmr;inverseToTransition"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#t2"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="&tmr;Transition"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                <swrl:classPredicate rdf:resource="&tmr;Transition"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#t2"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                        <swrl:propertyPredicate rdf:resource="&tmr;hasTransformableSituation"/>
+                                                                        <swrl:argument2 rdf:resource="urn:swrl#sa"/>
+                                                                        <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                        <rdf:rest rdf:resource="&rdf;nil"/>
+                                                                        <rdf:first>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                <swrl:propertyPredicate rdf:resource="&tmr;hasTransformableSituation"/>
+                                                                                <swrl:argument2 rdf:resource="urn:swrl#sb"/>
+                                                                                <swrl:argument1 rdf:resource="urn:swrl#t2"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:first>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                <swrl:propertyPredicate rdf:resource="&tmr;hasExpectedPostSituation"/>
+                                                                <swrl:argument2 rdf:resource="urn:swrl#sa"/>
+                                                                <swrl:argument1 rdf:resource="urn:swrl#t2"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="&tmr;hasExpectedPostSituation"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#sb"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="&tmr;SituationType"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#sb"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&tmr;SituationType"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#sa"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;SameIndividualAtom"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#t2"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&tmr;CareActionType"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#ca"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                        <swrl:classPredicate rdf:resource="&tmr;Transition"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#t2"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                <swrl:propertyPredicate rdf:resource="&tmr;hasExpectedPostSituation"/>
+                                                                <swrl:argument2 rdf:resource="urn:swrl#sb"/>
+                                                                <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                        <rdf:rest>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                <rdf:first>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                        <swrl:propertyPredicate rdf:resource="&tmr;hasTransformableSituation"/>
+                                                                                        <swrl:argument2 rdf:resource="urn:swrl#sb"/>
+                                                                                        <swrl:argument1 rdf:resource="urn:swrl#t2"/>
+                                                                                    </rdf:Description>
+                                                                                </rdf:first>
+                                                                                <rdf:rest>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                        <rdf:rest>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                                <rdf:rest rdf:resource="&rdf;nil"/>
+                                                                                                <rdf:first>
+                                                                                                    <rdf:Description>
+                                                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                                        <swrl:propertyPredicate rdf:resource="&tmr;promotedBy"/>
+                                                                                                        <swrl:argument2 rdf:resource="urn:swrl#ca"/>
+                                                                                                        <swrl:argument1 rdf:resource="urn:swrl#t2"/>
+                                                                                                    </rdf:Description>
+                                                                                                </rdf:first>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:rest>
+                                                                                        <rdf:first>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                                <swrl:propertyPredicate rdf:resource="&tmr;promotedBy"/>
+                                                                                                <swrl:argument2 rdf:resource="urn:swrl#ca"/>
+                                                                                                <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:first>
+                                                                                    </rdf:Description>
+                                                                                </rdf:rest>
+                                                                            </rdf:Description>
+                                                                        </rdf:rest>
+                                                                        <rdf:first>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                <swrl:propertyPredicate rdf:resource="&tmr;hasTransformableSituation"/>
+                                                                                <swrl:argument2 rdf:resource="urn:swrl#sa"/>
+                                                                                <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:first>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                        <swrl:propertyPredicate rdf:resource="&tmr;hasExpectedPostSituation"/>
+                                                                        <swrl:argument2 rdf:resource="urn:swrl#sa"/>
+                                                                        <swrl:argument1 rdf:resource="urn:swrl#t2"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                <swrl:classPredicate rdf:resource="&tmr;Transition"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                    </rdf:Description>
+                                </rdf:rest>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="&tmr;SituationType"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#sb"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="&tmr;SituationType"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#sa"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+

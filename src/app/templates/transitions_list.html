@@ -1,0 +1,6 @@
+<h5>Transitions</h5>
+<div class="list-group">
+{% for tr in transitions %}
+    <a href="#" class="list-group-item" uri='{{tr.post_situation.value }}'>{{ tr.post_situation_label.value }}</a>
+{% endfor %}
+</div>

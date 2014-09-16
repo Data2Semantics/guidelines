@@ -1,0 +1,1614 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
+    <!ENTITY swrlb "http://www.w3.org/2003/11/swrlb#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY tmr4i "http://guidelines.data2semantics.org/vocab/" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/veruskacz/ontologies/2014/8/TMR4I#"
+     xml:base="http://www.semanticweb.org/veruskacz/ontologies/2014/8/TMR4I"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:tmr4i="http://guidelines.data2semantics.org/vocab/">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/veruskacz/ontologies/2014/8/TMR4I">
+        <owl:imports rdf:resource="http://www.semanticweb.org/veruskacz/ontologies/2014/8/TMR"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#relates -->
+
+    <owl:ObjectProperty rdf:about="&tmr4i;relates">
+        <rdfs:domain rdf:resource="&tmr4i;InternalRecommendationInteraction"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#AlternativeDueToInverseTransition -->
+
+    <owl:Class rdf:about="&tmr4i;AlternativeDueToInverseTransition">
+        <rdfs:subClassOf rdf:resource="&tmr4i;InternalRecommendationInteraction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#AlternativeDueToSimilarTransition -->
+
+    <owl:Class rdf:about="&tmr4i;AlternativeDueToSimilarTransition">
+        <rdfs:subClassOf rdf:resource="&tmr4i;InternalRecommendationInteraction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#ContradictionDueToInverseTransition -->
+
+    <owl:Class rdf:about="&tmr4i;ContradictionDueToInverseTransition">
+        <rdfs:subClassOf rdf:resource="&tmr4i;InternalRecommendationInteraction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#ContradictionDueToSameAction -->
+
+    <owl:Class rdf:about="&tmr4i;ContradictionDueToSameAction">
+        <rdfs:subClassOf rdf:resource="&tmr4i;InternalRecommendationInteraction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#ContradictionDueToSimiliarTransition -->
+
+    <owl:Class rdf:about="&tmr4i;ContradictionDueToSimiliarTransition">
+        <rdfs:subClassOf rdf:resource="&tmr4i;InternalRecommendationInteraction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#InternalRecommendationInteraction -->
+
+    <owl:Class rdf:about="&tmr4i;InternalRecommendationInteraction"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#InternallyInteractingRecommendation -->
+
+    <owl:Class rdf:about="&tmr4i;InternallyInteractingRecommendation">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&tmr4i;Recommendation"/>
+                    <owl:Restriction>
+                        <owl:onProperty>
+                            <rdf:Description>
+                                <owl:inverseOf rdf:resource="&tmr4i;relates"/>
+                            </rdf:Description>
+                        </owl:onProperty>
+                        <owl:someValuesFrom rdf:resource="&tmr4i;InternalRecommendationInteraction"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&tmr4i;Recommendation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#RepetitionDueToSameAction -->
+
+    <owl:Class rdf:about="&tmr4i;RepetitionDueToSameAction">
+        <rdfs:subClassOf rdf:resource="&tmr4i;InternalRecommendationInteraction"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#DUTIAInteraction1 -->
+
+    <owl:NamedIndividual rdf:about="&tmr4i;DUTIAInteraction1">
+        <rdf:type rdf:resource="&tmr4i;InternalRecommendationInteraction"/>
+        <tmr4i:relates rdf:resource="&tmr4i;RecDUTIA-AvoidBleeding"/>
+        <tmr4i:relates rdf:resource="&tmr4i;RecDUTIA-RedMediumRiskVE"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#DUTIAInteraction2 -->
+
+    <owl:NamedIndividual rdf:about="&tmr4i;DUTIAInteraction2">
+        <rdf:type rdf:resource="&tmr4i;InternalRecommendationInteraction"/>
+        <tmr4i:relates rdf:resource="&tmr4i;RecDUTIA-RedMediumRiskVE"/>
+        <tmr4i:relates rdf:resource="&tmr4i;RecDUTIASol-RedMediumRiskVE"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#DUTIAInteraction3 -->
+
+    <owl:NamedIndividual rdf:about="&tmr4i;DUTIAInteraction3">
+        <rdf:type rdf:resource="&tmr4i;InternalRecommendationInteraction"/>
+        <tmr4i:relates rdf:resource="&tmr4i;RecDUTIA-AvoidBleeding"/>
+        <tmr4i:relates rdf:resource="&tmr4i;RecDUTIASol-ProtectingDuodenum"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#DUTIAInteraction4 -->
+
+    <owl:NamedIndividual rdf:about="&tmr4i;DUTIAInteraction4">
+        <rdf:type rdf:resource="&tmr4i;InternalRecommendationInteraction"/>
+        <tmr4i:relates rdf:resource="&tmr4i;RecDUTIA-HealingDU2"/>
+        <tmr4i:relates rdf:resource="&tmr4i;RecDUTIASol-ProtectingDuodenum"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#OA-HT-DM-Interaction1 -->
+
+    <owl:NamedIndividual rdf:about="&tmr4i;OA-HT-DM-Interaction1">
+        <tmr4i:relates rdf:resource="&tmr4i;RecOA-HT-DM-AntiThrombotic"/>
+        <tmr4i:relates rdf:resource="&tmr4i;RecOA-HT-DM-AvoidGIB"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#OA-HT-DM-Interaction2 -->
+
+    <owl:NamedIndividual rdf:about="&tmr4i;OA-HT-DM-Interaction2">
+        <tmr4i:relates rdf:resource="&tmr4i;RecOA-HT-DM-AvoidHighBP"/>
+        <tmr4i:relates rdf:resource="&tmr4i;RecOA-HT-DM-Painkiller"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#OA-HT-DM-Interaction3 -->
+
+    <owl:NamedIndividual rdf:about="&tmr4i;OA-HT-DM-Interaction3">
+        <tmr4i:relates rdf:resource="&tmr4i;RecOA-HT-DM-AvoidHighLBS"/>
+        <tmr4i:relates rdf:resource="&tmr4i;RecOA-HT-DM-Diuretic"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#OA-HT-DM-Interaction4 -->
+
+    <owl:NamedIndividual rdf:about="&tmr4i;OA-HT-DM-Interaction4">
+        <tmr4i:relates rdf:resource="&tmr4i;RecOA-HT-DM-Painkiller"/>
+        <tmr4i:relates rdf:resource="&tmr4i;RecOA-HT-DM-Sol-Painkiller"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#OA-HT-DM-Interaction5 -->
+
+    <owl:NamedIndividual rdf:about="&tmr4i;OA-HT-DM-Interaction5">
+        <tmr4i:relates rdf:resource="&tmr4i;RecOA-HT-DM-AntiThrombotic"/>
+        <tmr4i:relates rdf:resource="&tmr4i;RecOA-HT-DM-Sol-AntiThrombotic"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#OA-HT-DM-Interaction6 -->
+
+    <owl:NamedIndividual rdf:about="&tmr4i;OA-HT-DM-Interaction6">
+        <tmr4i:relates rdf:resource="&tmr4i;RecOA-HT-DM-Sol-AntiThrombotic"/>
+        <tmr4i:relates rdf:resource="&tmr4i;RecOA-HT-DM-Sol-Painkiller"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#OA-HT-DM-InteractionExtra -->
+
+    <owl:NamedIndividual rdf:about="&tmr4i;OA-HT-DM-InteractionExtra">
+        <tmr4i:relates rdf:resource="&tmr4i;RecOA-HT-DM-AntiThrombotic"/>
+        <tmr4i:relates rdf:resource="&tmr4i;RecOA-HT-DM-Extra-AntiThrombotic"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&tmr4i;OA-HT-DM-Interaction1"/>
+            <rdf:Description rdf:about="&tmr4i;OA-HT-DM-Interaction2"/>
+            <rdf:Description rdf:about="&tmr4i;OA-HT-DM-Interaction3"/>
+            <rdf:Description rdf:about="&tmr4i;OA-HT-DM-Interaction4"/>
+            <rdf:Description rdf:about="&tmr4i;OA-HT-DM-Interaction5"/>
+            <rdf:Description rdf:about="&tmr4i;OA-HT-DM-Interaction6"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&tmr4i;DUTIAInteraction1"/>
+            <rdf:Description rdf:about="&tmr4i;DUTIAInteraction2"/>
+            <rdf:Description rdf:about="&tmr4i;DUTIAInteraction3"/>
+            <rdf:Description rdf:about="&tmr4i;DUTIAInteraction4"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="urn:swrl#g">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#r1">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#r2">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#r3">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#i1">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#i2">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#ca">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#i">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#t1">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#t2">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#g1">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#g2">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&tmr4i;CareActionType"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#ca"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;promotedBy"/>
+                                                                <swrl:argument2 rdf:resource="urn:swrl#ca"/>
+                                                                <swrl:argument1 rdf:resource="urn:swrl#t2"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;recommendsToAvoid"/>
+                                                                        <swrl:argument1 rdf:resource="urn:swrl#r2"/>
+                                                                        <swrl:argument2 rdf:resource="urn:swrl#t2"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                        <rdf:rest>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                <rdf:first>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                                        <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                                                                                        <swrl:argument2 rdf:resource="urn:swrl#r1"/>
+                                                                                    </rdf:Description>
+                                                                                </rdf:first>
+                                                                                <rdf:rest>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                        <rdf:rest rdf:resource="&rdf;nil"/>
+                                                                                        <rdf:first>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                                                <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                                                                                                <swrl:argument2 rdf:resource="urn:swrl#r2"/>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:first>
+                                                                                    </rdf:Description>
+                                                                                </rdf:rest>
+                                                                            </rdf:Description>
+                                                                        </rdf:rest>
+                                                                        <rdf:first>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;recommendsToPursue"/>
+                                                                                <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                                                                                <swrl:argument2 rdf:resource="urn:swrl#t1"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:first>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;promotedBy"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#ca"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#r2"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                    </rdf:Description>
+                                </rdf:rest>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="&tmr4i;InternalRecommendationInteraction"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&tmr4i;ContradictionDueToSameAction"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                        <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#r2"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                        <rdf:first>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                                <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                                                                                <swrl:argument2 rdf:resource="urn:swrl#r1"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:first>
+                                                                        <rdf:rest>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                <rdf:rest rdf:resource="&rdf;nil"/>
+                                                                                <rdf:first>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                                        <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                                                                                        <swrl:argument2 rdf:resource="urn:swrl#r2"/>
+                                                                                    </rdf:Description>
+                                                                                </rdf:first>
+                                                                            </rdf:Description>
+                                                                        </rdf:rest>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;partOf"/>
+                                                                        <swrl:argument2 rdf:resource="urn:swrl#g2"/>
+                                                                        <swrl:argument1 rdf:resource="urn:swrl#r2"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;partOf"/>
+                                                                <swrl:argument2 rdf:resource="urn:swrl#g1"/>
+                                                                <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                    </rdf:Description>
+                                </rdf:rest>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="&tmr4i;InternalRecommendationInteraction"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="&tmr4i;Guideline"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#g2"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&tmr4i;Guideline"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#g1"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;SameIndividualAtom"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#g1"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#g2"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;SameIndividualAtom"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#i1"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#i2"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#r2"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                        <swrl:classPredicate rdf:resource="&tmr4i;RepetitionDueToSameAction"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#i1"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;partOf"/>
+                                                                        <swrl:argument2 rdf:resource="urn:swrl#g"/>
+                                                                        <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                        <rdf:first>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;partOf"/>
+                                                                                <swrl:argument2 rdf:resource="urn:swrl#g"/>
+                                                                                <swrl:argument1 rdf:resource="urn:swrl#r2"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:first>
+                                                                        <rdf:rest>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                <rdf:rest>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                        <rdf:first>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                                                <swrl:argument1 rdf:resource="urn:swrl#i1"/>
+                                                                                                <swrl:argument2 rdf:resource="urn:swrl#r1"/>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:first>
+                                                                                        <rdf:rest>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                                <rdf:rest>
+                                                                                                    <rdf:Description>
+                                                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                                        <rdf:rest>
+                                                                                                            <rdf:Description>
+                                                                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                                                <rdf:first>
+                                                                                                                    <rdf:Description>
+                                                                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                                                                        <swrl:argument1 rdf:resource="urn:swrl#i2"/>
+                                                                                                                        <swrl:argument2 rdf:resource="urn:swrl#r3"/>
+                                                                                                                    </rdf:Description>
+                                                                                                                </rdf:first>
+                                                                                                                <rdf:rest>
+                                                                                                                    <rdf:Description>
+                                                                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                                                        <rdf:rest rdf:resource="&rdf;nil"/>
+                                                                                                                        <rdf:first>
+                                                                                                                            <rdf:Description>
+                                                                                                                                <rdf:type rdf:resource="&swrl;DifferentIndividualsAtom"/>
+                                                                                                                                <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                                                                                                                                <swrl:argument2 rdf:resource="urn:swrl#r3"/>
+                                                                                                                            </rdf:Description>
+                                                                                                                        </rdf:first>
+                                                                                                                    </rdf:Description>
+                                                                                                                </rdf:rest>
+                                                                                                            </rdf:Description>
+                                                                                                        </rdf:rest>
+                                                                                                        <rdf:first>
+                                                                                                            <rdf:Description>
+                                                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                                                                <swrl:argument1 rdf:resource="urn:swrl#i2"/>
+                                                                                                                <swrl:argument2 rdf:resource="urn:swrl#r2"/>
+                                                                                                            </rdf:Description>
+                                                                                                        </rdf:first>
+                                                                                                    </rdf:Description>
+                                                                                                </rdf:rest>
+                                                                                                <rdf:first>
+                                                                                                    <rdf:Description>
+                                                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                                                        <swrl:argument1 rdf:resource="urn:swrl#i1"/>
+                                                                                                        <swrl:argument2 rdf:resource="urn:swrl#r2"/>
+                                                                                                    </rdf:Description>
+                                                                                                </rdf:first>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:rest>
+                                                                                    </rdf:Description>
+                                                                                </rdf:rest>
+                                                                                <rdf:first>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;partOf"/>
+                                                                                        <swrl:argument2 rdf:resource="urn:swrl#g"/>
+                                                                                        <swrl:argument1 rdf:resource="urn:swrl#r3"/>
+                                                                                    </rdf:Description>
+                                                                                </rdf:first>
+                                                                            </rdf:Description>
+                                                                        </rdf:rest>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                                <swrl:classPredicate rdf:resource="&tmr4i;RepetitionDueToSameAction"/>
+                                                                <swrl:argument1 rdf:resource="urn:swrl#i2"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#r3"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&tmr4i;Guideline"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&tmr4i;RepetitionDueToSameAction"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&tmr4i;CareActionType"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#ca"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;promotedBy"/>
+                                                                <swrl:argument2 rdf:resource="urn:swrl#ca"/>
+                                                                <swrl:argument1 rdf:resource="urn:swrl#t2"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;recommendsToPursue"/>
+                                                                        <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                                                                        <swrl:argument2 rdf:resource="urn:swrl#t1"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                        <rdf:first>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;recommendsToPursue"/>
+                                                                                <swrl:argument1 rdf:resource="urn:swrl#r2"/>
+                                                                                <swrl:argument2 rdf:resource="urn:swrl#t2"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:first>
+                                                                        <rdf:rest>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                <rdf:rest>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                        <rdf:rest>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                                <rdf:rest rdf:resource="&rdf;nil"/>
+                                                                                                <rdf:first>
+                                                                                                    <rdf:Description>
+                                                                                                        <rdf:type rdf:resource="&swrl;DifferentIndividualsAtom"/>
+                                                                                                        <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                                                                                                        <swrl:argument2 rdf:resource="urn:swrl#t2"/>
+                                                                                                    </rdf:Description>
+                                                                                                </rdf:first>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:rest>
+                                                                                        <rdf:first>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                                                <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                                                                                                <swrl:argument2 rdf:resource="urn:swrl#r2"/>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:first>
+                                                                                    </rdf:Description>
+                                                                                </rdf:rest>
+                                                                                <rdf:first>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                                        <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                                                                                        <swrl:argument2 rdf:resource="urn:swrl#r1"/>
+                                                                                    </rdf:Description>
+                                                                                </rdf:first>
+                                                                            </rdf:Description>
+                                                                        </rdf:rest>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;promotedBy"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#ca"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#r2"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="&tmr4i;InternalRecommendationInteraction"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;SameIndividualAtom"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#i1"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#i2"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&tmr4i;AlternativeDueToSimilarTransition"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#i1"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="&tmr4i;AlternativeDueToSimilarTransition"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#i2"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                        <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#r2"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                                <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                                                <swrl:argument1 rdf:resource="urn:swrl#r3"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;partOf"/>
+                                                                        <swrl:argument2 rdf:resource="urn:swrl#g"/>
+                                                                        <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                        <rdf:first>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;partOf"/>
+                                                                                <swrl:argument2 rdf:resource="urn:swrl#g"/>
+                                                                                <swrl:argument1 rdf:resource="urn:swrl#r2"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:first>
+                                                                        <rdf:rest>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                <rdf:first>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;partOf"/>
+                                                                                        <swrl:argument2 rdf:resource="urn:swrl#g"/>
+                                                                                        <swrl:argument1 rdf:resource="urn:swrl#r3"/>
+                                                                                    </rdf:Description>
+                                                                                </rdf:first>
+                                                                                <rdf:rest>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                        <rdf:first>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                                                <swrl:argument1 rdf:resource="urn:swrl#i1"/>
+                                                                                                <swrl:argument2 rdf:resource="urn:swrl#r1"/>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:first>
+                                                                                        <rdf:rest>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                                <rdf:first>
+                                                                                                    <rdf:Description>
+                                                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                                                        <swrl:argument1 rdf:resource="urn:swrl#i1"/>
+                                                                                                        <swrl:argument2 rdf:resource="urn:swrl#r2"/>
+                                                                                                    </rdf:Description>
+                                                                                                </rdf:first>
+                                                                                                <rdf:rest>
+                                                                                                    <rdf:Description>
+                                                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                                        <rdf:rest>
+                                                                                                            <rdf:Description>
+                                                                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                                                <rdf:first>
+                                                                                                                    <rdf:Description>
+                                                                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                                                                        <swrl:argument1 rdf:resource="urn:swrl#i2"/>
+                                                                                                                        <swrl:argument2 rdf:resource="urn:swrl#r3"/>
+                                                                                                                    </rdf:Description>
+                                                                                                                </rdf:first>
+                                                                                                                <rdf:rest>
+                                                                                                                    <rdf:Description>
+                                                                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                                                                        <rdf:rest rdf:resource="&rdf;nil"/>
+                                                                                                                        <rdf:first>
+                                                                                                                            <rdf:Description>
+                                                                                                                                <rdf:type rdf:resource="&swrl;DifferentIndividualsAtom"/>
+                                                                                                                                <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                                                                                                                                <swrl:argument2 rdf:resource="urn:swrl#r3"/>
+                                                                                                                            </rdf:Description>
+                                                                                                                        </rdf:first>
+                                                                                                                    </rdf:Description>
+                                                                                                                </rdf:rest>
+                                                                                                            </rdf:Description>
+                                                                                                        </rdf:rest>
+                                                                                                        <rdf:first>
+                                                                                                            <rdf:Description>
+                                                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                                                                <swrl:argument1 rdf:resource="urn:swrl#i2"/>
+                                                                                                                <swrl:argument2 rdf:resource="urn:swrl#r2"/>
+                                                                                                            </rdf:Description>
+                                                                                                        </rdf:first>
+                                                                                                    </rdf:Description>
+                                                                                                </rdf:rest>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:rest>
+                                                                                    </rdf:Description>
+                                                                                </rdf:rest>
+                                                                            </rdf:Description>
+                                                                        </rdf:rest>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="&tmr4i;Guideline"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#g"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="&tmr4i;recommendsToAvoid"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#r2"/>
+                                                <swrl:argument2 rdf:resource="urn:swrl#t2"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                                                                <swrl:argument2 rdf:resource="urn:swrl#r1"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                        <rdf:rest rdf:resource="&rdf;nil"/>
+                                                                        <rdf:first>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;similarToTransition"/>
+                                                                                <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                                                                                <swrl:argument2 rdf:resource="urn:swrl#t2"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:first>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                        <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                                                                        <swrl:argument2 rdf:resource="urn:swrl#r2"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;recommendsToPursue"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#t1"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#r2"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&tmr4i;InternalRecommendationInteraction"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&tmr4i;ContradictionDueToSimiliarTransition"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&tmr4i;AlternativeDueToInverseTransition"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#r2"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="&tmr4i;inverseToTransition"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                                                <swrl:argument2 rdf:resource="urn:swrl#t2"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;recommendsToAvoid"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#r2"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#t2"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                        <rdf:rest rdf:resource="&rdf;nil"/>
+                                                                        <rdf:first>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                                <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                                                                                <swrl:argument2 rdf:resource="urn:swrl#r2"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:first>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                        <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                                                                        <swrl:argument2 rdf:resource="urn:swrl#r1"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;recommendsToPursue"/>
+                                                                <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                                                                <swrl:argument2 rdf:resource="urn:swrl#t1"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&tmr4i;InternalRecommendationInteraction"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#r2"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="&tmr4i;recommendsToPursue"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                                                <swrl:argument2 rdf:resource="urn:swrl#t1"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                        <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                                                                        <swrl:argument2 rdf:resource="urn:swrl#r2"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                        <rdf:rest rdf:resource="&rdf;nil"/>
+                                                                        <rdf:first>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;similarToTransition"/>
+                                                                                <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                                                                                <swrl:argument2 rdf:resource="urn:swrl#t2"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:first>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                                                                <swrl:argument2 rdf:resource="urn:swrl#r1"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;recommendsToPursue"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#r2"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#t2"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&tmr4i;InternalRecommendationInteraction"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&tmr4i;AlternativeDueToSimilarTransition"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&tmr4i;ContradictionDueToInverseTransition"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#r2"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;recommendsToPursue"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#t1"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                                        <rdf:rest rdf:resource="&rdf;nil"/>
+                                                                        <rdf:first>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                                <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                                                                                <swrl:argument2 rdf:resource="urn:swrl#r2"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:first>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                        <swrl:propertyPredicate rdf:resource="&tmr4i;relates"/>
+                                                                        <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                                                                        <swrl:argument2 rdf:resource="urn:swrl#r1"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                                <swrl:propertyPredicate rdf:resource="&tmr4i;recommendsToPursue"/>
+                                                                <swrl:argument1 rdf:resource="urn:swrl#r2"/>
+                                                                <swrl:argument2 rdf:resource="urn:swrl#t2"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="&tmr4i;inverseToTransition"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#t1"/>
+                                                <swrl:argument2 rdf:resource="urn:swrl#t2"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="&tmr4i;Recommendation"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#r1"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&tmr4i;InternalRecommendationInteraction"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#i"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
