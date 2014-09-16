@@ -21,9 +21,7 @@ def index():
     
 @app.route('/guidelines')
 def guidelines():
-    
-    
-    query = PREFIXES + "SELECT DISTINCT ?gl WHERE {?gl gl:composedBy ?rec }";
+    query = PREFIXES + "SELECT DISTINCT ?gl WHERE {?rec gl:partOf ?gl . }";
     
     guidelines = sparql(query, strip=True)
 
@@ -33,7 +31,7 @@ def guidelines():
 @app.route('/recommendations', methods=['GET'])
 def recommendations():
     uri = request.args.get('uri', '')
-    query = PREFIXES + 'SELECT DISTINCT ?rec ?crec WHERE {<' + uri + '> gl:composedBy ?rec . OPTIONAL {?rec gl:contradictsRecommendation ?crec}}'
+    query = PREFIXES + 'SELECT DISTINCT ?rec ?crec WHERE { ?rec gl:partOf <' + uri + '>  . OPTIONAL {?rec gl:contradictsRecommendation ?crec}}'
     
     recommendations = sparql(query, strip=True)
     return render_template('recommendations_list.html', recommendations = recommendations)
@@ -44,11 +42,11 @@ def transitions():
     query = PREFIXES + """
     SELECT DISTINCT * WHERE {
       {
-        <""" + uri + """> gl:recommends ?pos_transition .
+        <""" + uri + """> gl:recommendsToPursue ?pos_transition .
         ?pos_transition gl:hasTransformableSituation ?transformable_situation .
       	?pos_transition gl:hasExpectedPostSituation ?post_situation .
       } UNION {
-        <""" + uri + """> gl:nonRecommends ?neg_transition .
+        <""" + uri + """> gl:recommendsToAvoid ?neg_transition .
         ?neg_transition gl:hasTransformableSituation ?transformable_situation .
       	?neg_transition gl:hasExpectedPostSituation ?post_situation .
       }
