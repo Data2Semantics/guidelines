@@ -1,0 +1,6 @@
+<h5>Care Actions</h5>
+<div class="list-group">
+{% for ca in care_actions %}
+    <a href="#" class="list-group-item" uri='{{ca.value }}'>{{ ca_label.value }}</a>
+{% endfor %}
+</div>

@@ -2,6 +2,13 @@ $( document ).ready(function() {
     $('#gl_list_row').hide();
     $('#rec_list_row').hide();
     
+    $('#inferenceButton').on('click',function(){
+        $.get('/inference',function(data){
+            console.log(data);
+            // $('#inferenceButton').text(data['status']);
+        });
+    });
+    
     $('#startButton').on('click',function(){
         $.get('/guidelines',function(data){
             $('#gl_list_row').hide();

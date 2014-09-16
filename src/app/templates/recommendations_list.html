@@ -5,7 +5,9 @@
         {% if loop.first %}
             <a href="#" class="list-group-item" uri='{{e.rec.value }}'>
                 <span class="list-group-item-heading">{{ grouper.value }}</span>
-                
+                {%if 'irec_label' in e %}
+                    <span class="badge" target="{{ e.irec.value }}">{{ e.irec_label.value }}</span>
+                {% endif %}
         {% endif %}
         {% if 'crec_label' in e %}
                 <span class="badge" target="{{ e.crec.value }}">{{ e.crec_label.value }}</span>

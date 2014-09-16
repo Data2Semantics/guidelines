@@ -14,17 +14,25 @@
                 <h1>Guideline Viewer</h1>
             </div>
         </div>
-
+        {% include 'inference.html' %}
 
         {% include 'guidelines.html' %}
 
         {% include 'recommendations.html' %}
+        
+        <div class='row'>
     </div>
 {% endblock %}
 
 {% block scripts %}
 {{super()}}
 <script src="{{url_for('.static', filename='guidelines.js')}}"></script>
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="{{url_for('.static', filename='bootstrap.min.css')}}">
 {% endblock %}
 
 {% block bootstrap_js_bottom %}

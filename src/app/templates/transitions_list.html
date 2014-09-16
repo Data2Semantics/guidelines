@@ -1,6 +1,46 @@
-<h5>Transitions</h5>
+{% if pos_transitions|length %}
+<h4>Transitions to Pursue</h4>
 <div class="list-group">
-{% for tr in transitions %}
-    <a href="#" class="list-group-item" uri='{{tr.post_situation.value }}'>{{ tr.post_situation_label.value }}</a>
+{% for tr in pos_transitions %}
+    <a href="#" class="list-group-item" uri='{{tr.pos_transition.value }}'>
+        <h4 class="list-group-item-heading">{{ tr.pos_transition_label.value }}</h4>
+        <p class="list-group-item-text">
+            <table class="table table-striped">
+                <thead>
+                    <tr><th class='col-sm-2'>Condition</th><th>Situation</th></tr>
+                </thead>
+                <tbody>
+                    <tr><th>Transformable situation</th><td>{{ tr.transformable_situation_label.value }}</td></tr>
+                    <tr><th>Filter condition</th><td>{{ tr.filter_condition_label.value }}</td></tr>
+                    <tr><th>Post situation</th><td>{{ tr.post_situation_label.value }}</td></tr>
+                </tbody>
+            </table>
+            
+        </p>
+    </a>
 {% endfor %}
 </div>
+{% endif %}
+
+{% if neg_transitions|length %}
+{% for tr in neg_transitions %}
+<h4>Transitions to Avoid</h4>
+<div class="list-group">
+    <a href="#" class="list-group-item" uri='{{tr.neg_transition.value }}'>
+        <h4 class="list-group-item-heading">{{ tr.neg_transition_label.value }}</h4>
+        <p class="list-group-item-text">
+            <table class="table table-striped">
+                <thead>
+                    <tr><th class='col-sm-2'>Condition</th><th>Situation</th></tr>
+                </thead>
+                <tbody>
+                    <tr><th>Transformable situation</th><td>{{ tr.transformable_situation_label.value }}</td></tr>
+                    <tr><th>Filter condition</th><td>{{ tr.filter_condition_label.value }}</td></tr>
+                    <tr><th>Post situation</th><td>{{ tr.post_situation_label.value }}</td></tr>
+                </tbody>
+            </table>
+        </p>
+    </a>
+</div>
+{% endfor %}
+{% endif %}
