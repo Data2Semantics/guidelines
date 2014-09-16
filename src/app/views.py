@@ -52,17 +52,18 @@ def transitions():
       }
     }
     """
-    
+    print query
     transitions = sparql(query, strip=True)
     
     print transitions
     return render_template('transitions_list.html', transitions = transitions)
 
+
+
 def sparql(query, strip=False, strip_prefix = 'http://guidelines.data2semantics.org/vocab/'):
+    """This method replaces the SPARQLWrapper sparql interface, since SPARQLWrapper cannot handle the Stardog-style query headers needed for inferencing"""
     result = requests.get(ENDPOINT_URL,params={'query': query}, headers=QUERY_HEADERS)
     result_dict = json.loads(result.content)
-    
-    print result_dict
     
     if strip:
         new_results = []
