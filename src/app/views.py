@@ -114,11 +114,23 @@ def transitions():
     uri = request.args.get('uri', '')
     pos_query = PREFIXES + """
     SELECT DISTINCT * WHERE {
-        <""" + uri + """> gl:recommendsToPursue ?pos_transition .
-        ?pos_transition gl:hasTransformableSituation ?transformable_situation .
-      	?pos_transition gl:hasExpectedPostSituation ?post_situation .
+        <""" + uri + """> gl:recommendsToPursue ?transition .
+        ?transition gl:hasTransformableSituation ?transformable_situation .
+      	?transition gl:hasExpectedPostSituation ?post_situation .
+        ?transition a owl:NamedIndividual .
+        ?transformable_situation a owl:NamedIndividual .
+        ?post_situation a owl:NamedIndividual .
         OPTIONAL {
-            ?pos_transition gl:hasFilterCondition ?f_condition
+            ?transition gl:hasFilterCondition ?f_condition .
+            ?f_condition a owl:NamedIndividual .
+        }
+        OPTIONAL {
+            ?transition gl:inverseToTransition ?inverse_transition .
+            ?inverse_transition a owl:NamedIndividual .
+        }
+        OPTIONAL {
+            ?transition gl:similarToTransition ?similar_transition .
+            ?similar_transition a owl:NamedIndividual .
         }
         BIND(IF (bound(?f_condition), ?f_condition, "none") as ?filter_condition)
     }
@@ -126,13 +138,26 @@ def transitions():
 
     neg_query = PREFIXES + """
     SELECT DISTINCT * WHERE {
-        <""" + uri + """> gl:recommendsToAvoid ?neg_transition .
-        ?neg_transition gl:hasTransformableSituation ?transformable_situation .
-      	?neg_transition gl:hasExpectedPostSituation ?post_situation .
+        <""" + uri + """> gl:recommendsToAvoid ?transition .
+        ?transition gl:hasTransformableSituation ?transformable_situation .
+      	?transition gl:hasExpectedPostSituation ?post_situation .
+        ?transition a owl:NamedIndividual .
+        ?transformable_situation a owl:NamedIndividual .
+        ?post_situation a owl:NamedIndividual .
         OPTIONAL {
-            ?neg_transition gl:hasFilterCondition ?f_condition .
+            ?transition gl:hasFilterCondition ?f_condition .
+            ?f_condition a owl:NamedIndividual .
+        }
+        OPTIONAL {
+            ?transition gl:inverseToTransition ?inverse_transition .
+            ?inverse_transition a owl:NamedIndividual .
+        }
+        OPTIONAL {
+            ?transition gl:similarToTransition ?similar_transition .
+            ?similar_transition a owl:NamedIndividual .
         }
         BIND(IF (bound(?f_condition), ?f_condition, "none") as ?filter_condition)
+
     }
     """
 
