@@ -14,9 +14,14 @@
                 <h1>Guideline Viewer</h1>
             </div>
         </div>
-        {% include 'inference.html' %}
-
-        {% include 'guidelines.html' %}
+        <div class="row">
+            <div class='col-md-6'>
+                {% include 'inference.html' %}
+            </div>
+            <div class='col-md-6'>
+                {% include 'guidelines.html' %}
+            </div>
+        </div>
 
         {% include 'recommendations.html' %}
         

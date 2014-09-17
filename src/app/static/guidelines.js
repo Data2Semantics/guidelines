@@ -5,7 +5,14 @@ $( document ).ready(function() {
     $('#inferenceButton').on('click',function(){
         $.get('/inference',function(data){
             console.log(data);
-            // $('#inferenceButton').text(data['status']);
+            
+            if (data['status'] == 'true') {
+                $('#inferenceButton').text('Success');
+            } else {
+                $('#inferenceButton').text('Something went wrong');
+            }
+            
+            $('#inferenceButton').text('Status: '+ data['status']);
         });
     });
     
@@ -40,6 +47,7 @@ $( document ).ready(function() {
                         var uri = $(this).attr('uri');
                         $.get('/transitions', data={'uri': uri}, function(data){
                             console.log(this);
+                            $("div[transitions_for=\""+ uri +"\"]").toggle();
                             $("div[transitions_for=\""+ uri +"\"]").html(data);
                         })
                     })

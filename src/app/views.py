@@ -17,7 +17,7 @@ QUERY_HEADERS = {
                 }
                 
 UPDATE_HEADERS = {
-    'Accept': 'application/sparql-update',
+    'Content-Type': 'application/sparql-update',
     'SD-Connection-String': 'reasoning={}'.format(REASONING_TYPE)
 }
                 
@@ -31,45 +31,48 @@ def index():
 @app.route('/inference')
 def inference():
     query = PREFIXES + """
-    INSERT DATA
+    INSERT
     { 
         _:iir   a  gl:InternalRecommendationInteraction .
         _:iir   gl:relates ?r1 .
-        _:iir   gl:relates ?r2 
+        _:iir   gl:relates ?r2 .
+        ?r1 gl:interactsInternallyWith ?r2 .
+        ?r2 gl:interactsInternallyWith ?r1 .
+        gl:interactsInternallyWith a owl:ObjectProperty .
     } 
-WHERE
- { 
-     ?r1  a  gl:Recommendation .
-     ?r1  a  owl:NamedIndividual .
-     ?r2  a  gl:Recommendation .
-     ?r2  a  owl:NamedIndividual .
-     ?r1  gl:partOf  ?g .
-     ?r2  gl:partOf  ?g .
-     ?g  a  owl:NamedIndividual .
-     ?r1  gl:recommends ?t1 .
-     ?r2  gl:recommends ?t2 .
-     ?t1 a owl:NamedIndividual .
-     ?t2 a owl:NamedIndividual .
+    WHERE
+    { 
+         ?r1  a  gl:Recommendation .
+         ?r1  a  owl:NamedIndividual .
+         ?r2  a  gl:Recommendation .
+         ?r2  a  owl:NamedIndividual .
+         ?r1  gl:partOf  ?g .
+         ?r2  gl:partOf  ?g .
+         ?g  a  owl:NamedIndividual .
+         ?r1  gl:recommends ?t1 .
+         ?r2  gl:recommends ?t2 .
+         ?t1 a owl:NamedIndividual .
+         ?t2 a owl:NamedIndividual .
      
-     { 
-         ?t1    gl:similarTo ?t2 .
-     }
-     UNION
-     {
-         ?t1    gl:inverseTo ?t2 .
-     }
-     UNION
-     {
-         ?ca    a gl:CareAcionType .
-         ?ca    gl:promotes ?t1 .
-         ?ca    gl:promotes ?t2 .
-     }
-     FILTER (?r1 != ?r2 && ?t1 != ?t2)
-   } """
+         { 
+             ?t1    gl:similarToTransition ?t2 .
+         }
+         UNION
+         {
+             ?t1    gl:inverseToTransition ?t2 .
+         }
+         UNION
+         {
+             ?ca    a gl:CareAcionType .
+             ?t1    gl:promotedBy ?t1 .
+             ?t2    gl:promotedBy ?t2 .
+         }
+         FILTER (?r1 != ?r2 && ?t1 != ?t2)
+    } """
     
     result = sparql_update(query)
     
-    return jsonify(result)
+    return jsonify({'status': result})
 
     
 @app.route('/guidelines')
@@ -90,7 +93,7 @@ def recommendations():
         ?rec gl:partOf <""" + uri + """>  . 
         ?rec a owl:NamedIndividual .
         OPTIONAL {
-            ?rec gl:contradictsRecommendation ?crec .
+            ?rec gl:interactsInternallyWith ?crec .
             ?crec a owl:NamedIndividual .
         }
         OPTIONAL {
@@ -153,15 +156,11 @@ def care_actions():
     
 
 def sparql_update(query, endpoint_url = UPDATE_URL):
-    result = requests.get(endpoint_url,params={'query': query, 'reasoning': REASONING_TYPE}, headers=QUERY_HEADERS)
     
-    print result.headers
-    print result.status_code
-    print result.content
+    print query 
     
-    # result_dict = json.loads(result.content)
+    result = requests.post(endpoint_url,params={'reasoning': REASONING_TYPE}, data=query, headers=UPDATE_HEADERS)
     
-
     return result.content
 
 def sparql(query, strip=False, endpoint_url = ENDPOINT_URL, strip_prefix = 'http://guidelines.data2semantics.org/vocab/'):
