@@ -30,18 +30,16 @@
              }
              UNION
              {
-                 ?ca    a tmr4i:CareAcionType .
+                 ?ca    a tmr4i:CareActionType .
                  ?ca    a owl:NamedIndividual .
                  ?t1    tmr4i:promotedBy ?ca .
                  ?t2    tmr4i:promotedBy ?ca .
              }
              FILTER (?r1 != ?r2 && ?t1 != ?t2)
-             
-             BIND(UUID() AS ?iir)
         } THEN {
-            ?iir   a  tmr4i:InternalRecommendationInteraction .
-            ?iir   tmr4i:relates ?r1 .
-            ?iir   tmr4i:relates ?r2 .
+            _:iir   a  tmr4i:InternalRecommendationInteraction, owl:NamedIndividual .
+            _:iir  tmr4i:relates ?r1 .
+            _:iir  tmr4i:relates ?r2 .
             ?r1 tmr4i:interactsInternallyWith ?r2 .
             ?r2 tmr4i:interactsInternallyWith ?r1 .
             tmr4i:interactsInternallyWith a owl:ObjectProperty . 
@@ -69,6 +67,8 @@
             ?t2	tmr4i:hasTransformableSituation	 ?sa .
             ?t1	tmr4i:promotedBy	?ca1 .
             ?t2	tmr4i:promotedBy	?ca2 .
+            ?ca1 a  owl:NamedIndividual .
+            ?ca2 a  owl:NamedIndividual .
             ?ca1	owl:differentFrom	?ca2 .
         } THEN { 
             ?t1	tmr4i:similarToTransition	 ?t2 .
@@ -92,6 +92,7 @@
             ?t1	tmr4i:inverseToTransition	 ?t2 .
         }""".
 
+# Rule 3
 []	a	rule:SPARQLRule;
 	rule:content	"""
         PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
@@ -103,6 +104,8 @@
             ?r2	a	tmr4i:Recommendation, owl:NamedIndividual .
             ?t1	tmr4i:promotedBy	 ?ca .
             ?t2	tmr4i:promotedBy	 ?ca .
+            ?t1 a  owl:NamedIndividual .
+            ?t2 a  owl:NamedIndividual .
             ?r2	tmr4i:recommendsToAvoid	 ?t2 .
             ?r1	tmr4i:recommendsToPursue	 ?t1 .
             ?i	tmr4i:relates	 ?r1 .
@@ -111,7 +114,7 @@
             ?i	a	tmr4i:ContradictionDueToSameAction, owl:NamedIndividual .
         }""".
 
-
+# Rule 4
 []	a	rule:SPARQLRule;
 	rule:content	"""
         PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
@@ -123,12 +126,15 @@
             ?t1	tmr4i:inverseToTransition	 ?t2 .
             ?r1	tmr4i:recommendsToPursue	 ?t1 .
             ?r2	tmr4i:recommendsToPursue	 ?t2 .
+            ?t1 a  owl:NamedIndividual .
+            ?t2 a  owl:NamedIndividual .
             ?i	tmr4i:relates	 ?r1 .
             ?i	tmr4i:relates	 ?r2 .
         } THEN { 
             ?i	a	tmr4i:ContradictionDueToInverseTransition, owl:NamedIndividual .
         }""".
 
+# Rule 5
 []	a	rule:SPARQLRule;
 	rule:content	"""
         PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
@@ -139,6 +145,8 @@
             ?r2	a	tmr4i:Recommendation, owl:NamedIndividual .
             ?r2	tmr4i:recommendsToAvoid	 ?t2 .
             ?r1	tmr4i:recommendsToPursue	 ?t1 .
+            ?t1 a  owl:NamedIndividual .
+            ?t2 a  owl:NamedIndividual .
             ?i	tmr4i:relates	 ?r1 .
             ?i	tmr4i:relates	 ?r2 .
             ?t1	tmr4i:similarToTransition	 ?t2 .
@@ -146,6 +154,7 @@
             ?i	a	tmr4i:ContradictionDueToSimiliarTransition, owl:NamedIndividual .
         }""".
 
+# Rule 6
 []	a	rule:SPARQLRule;
 	rule:content	"""
         PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
@@ -157,6 +166,8 @@
             ?r2	a	tmr4i:Recommendation, owl:NamedIndividual .
             ?t1	tmr4i:promotedBy	 ?ca .
             ?t2	tmr4i:promotedBy	 ?ca .
+            ?t1 a  owl:NamedIndividual .
+            ?t2 a  owl:NamedIndividual .
             ?r1	tmr4i:recommendsToPursue	 ?t1 .
             ?r2	tmr4i:recommendsToPursue	 ?t2 .
             ?i	tmr4i:relates	 ?r1 .
@@ -166,6 +177,7 @@
             ?i	a	tmr4i:RepetitionDueToSameAction, owl:NamedIndividual .
         }""".
 
+# Rule 7
 []	a	rule:SPARQLRule;
 	rule:content	"""
         PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
@@ -189,6 +201,7 @@
             ?i1	owl:sameAs	?i2 .
         }""".
 
+# Rule 8
 []	a	rule:SPARQLRule;
 	rule:content	"""
         PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
@@ -200,12 +213,15 @@
             ?t1	tmr4i:inverseToTransition	 ?t2 .
             ?r2	tmr4i:recommendsToAvoid	 ?t2 .
             ?r1	tmr4i:recommendsToPursue	 ?t1 .
+            ?t1 a  owl:NamedIndividual .
+            ?t2 a  owl:NamedIndividual .
             ?i	tmr4i:relates	 ?r1 .
             ?i	tmr4i:relates	 ?r2 .
         } THEN { 
             ?i	a	tmr4i:AlternativeDueToInverseTransition, owl:NamedIndividual .
         }""".
 
+# Rule 9
 []	a	rule:SPARQLRule;
 	rule:content	"""
         PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
@@ -229,6 +245,7 @@
             ?i1	owl:sameAs	?i2 .
         }""".
 
+# Rule 10
 []	a	rule:SPARQLRule;
 	rule:content	"""
         PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
@@ -239,6 +256,8 @@
             ?r2	a	tmr4i:Recommendation, owl:NamedIndividual .
             ?r1	tmr4i:recommendsToPursue	 ?t1 .
             ?r2	tmr4i:recommendsToPursue	 ?t2 .
+            ?t1 a  owl:NamedIndividual .
+            ?t2 a  owl:NamedIndividual .
             ?i	tmr4i:relates	 ?r1 .
             ?i	tmr4i:relates	 ?r2 .
             ?t1	tmr4i:similarToTransition	 ?t2 .
@@ -246,6 +265,7 @@
             ?i	a	tmr4i:AlternativeDueToSimilarTransition, owl:NamedIndividual .
         }""".
 
+# Rule 11
 []	a	rule:SPARQLRule;
 	rule:content	"""
         PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
