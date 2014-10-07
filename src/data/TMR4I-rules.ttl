@@ -1,0 +1,214 @@
+@prefix rule: <tag:stardog:api:rule:> .
+
+[]	a	rule:SPARQLRule;
+	rule:content	"""
+        PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        IF { 
+            ?ca1	a	tmr4i:CareActionType .
+            ?ca2	a	tmr4i:CareActionType .
+            ?sa	a	tmr4i:SituationType .
+            ?sb	a	tmr4i:SituationType .
+            ?t1	a	tmr4i:Transition .
+            ?t2	a	tmr4i:Transition .
+            ?t1	tmr4i:hasExpectedPostSituation	 ?sb .
+            ?t2	tmr4i:hasExpectedPostSituation	 ?sb .
+            ?t1	tmr4i:hasTransformableSituation	 ?sa .
+            ?t2	tmr4i:hasTransformableSituation	 ?sa .
+            ?t1	tmr4i:promotedBy	?ca1 .
+            ?t2	tmr4i:promotedBy	?ca2 .
+            ?ca1	owl:differentFrom	?ca2 .
+        } THEN { 
+            ?t1	tmr4i:similarToTransition	 ?t2 .
+        }""".
+
+[]	a	rule:SPARQLRule;
+	rule:content	"""
+        PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        IF { 
+            ?sa	a	tmr4i:SituationType .
+            ?sb	a	tmr4i:SituationType .
+            ?t1	a	tmr4i:Transition .
+            ?t2	a	tmr4i:Transition .
+            ?t1	tmr4i:hasExpectedPostSituation	 ?sb .
+            ?t2	tmr4i:hasExpectedPostSituation	 ?sa .
+            ?t1	tmr4i:hasTransformableSituation	 ?sa .
+            ?t2	tmr4i:hasTransformableSituation	 ?sb .
+        } THEN { 
+            ?t1	tmr4i:inverseToTransition	 ?t2 .
+        }""".
+
+[]	a	rule:SPARQLRule;
+	rule:content	"""
+        PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        IF { 
+            ?ca	a	tmr4i:CareActionType .
+            ?i	a	tmr4i:InternalRecommendationInteraction .
+            ?r1	a	tmr4i:Recommendation .
+            ?r2	a	tmr4i:Recommendation .
+            ?t1	tmr4i:promotedBy	 ?ca .
+            ?t2	tmr4i:promotedBy	 ?ca .
+            ?r2	tmr4i:recommendsToAvoid	 ?t2 .
+            ?r1	tmr4i:recommendsToPursue	 ?t1 .
+            ?i	tmr4i:relates	 ?r1 .
+            ?i	tmr4i:relates	 ?r2 .
+        } THEN { 
+            ?i	a	tmr4i:ContradictionDueToSameAction .
+        }""".
+
+
+[]	a	rule:SPARQLRule;
+	rule:content	"""
+        PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        IF { 
+            ?i	a	tmr4i:InternalRecommendationInteraction .
+            ?r1	a	tmr4i:Recommendation .
+            ?r2	a	tmr4i:Recommendation .
+            ?t1	tmr4i:inverseToTransition	 ?t2 .
+            ?r1	tmr4i:recommendsToPursue	 ?t1 .
+            ?r2	tmr4i:recommendsToPursue	 ?t2 .
+            ?i	tmr4i:relates	 ?r1 .
+            ?i	tmr4i:relates	 ?r2 .
+        } THEN { 
+            ?i	a	tmr4i:ContradictionDueToInverseTransition .
+        }""".
+
+[]	a	rule:SPARQLRule;
+	rule:content	"""
+        PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        IF { 
+            ?i	a	tmr4i:InternalRecommendationInteraction .
+            ?r1	a	tmr4i:Recommendation .
+            ?r2	a	tmr4i:Recommendation .
+            ?r2	tmr4i:recommendsToAvoid	 ?t2 .
+            ?r1	tmr4i:recommendsToPursue	 ?t1 .
+            ?i	tmr4i:relates	 ?r1 .
+            ?i	tmr4i:relates	 ?r2 .
+            ?t1	tmr4i:similarToTransition	 ?t2 .
+        } THEN { 
+            ?i	a	tmr4i:ContradictionDueToSimiliarTransition .
+        }""".
+
+[]	a	rule:SPARQLRule;
+	rule:content	"""
+        PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        IF { 
+            ?ca	a	tmr4i:CareActionType .
+            ?i	a	tmr4i:InternalRecommendationInteraction .
+            ?r1	a	tmr4i:Recommendation .
+            ?r2	a	tmr4i:Recommendation .
+            ?t1	tmr4i:promotedBy	 ?ca .
+            ?t2	tmr4i:promotedBy	 ?ca .
+            ?r1	tmr4i:recommendsToPursue	 ?t1 .
+            ?r2	tmr4i:recommendsToPursue	 ?t2 .
+            ?i	tmr4i:relates	 ?r1 .
+            ?i	tmr4i:relates	 ?r2 .
+            ?t1	owl:differentFrom	?t2 .
+        } THEN { 
+            ?i	a	tmr4i:RepetitionDueToSameAction .
+        }""".
+
+[]	a	rule:SPARQLRule;
+	rule:content	"""
+        PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        IF { 
+            ?g	a	tmr4i:Guideline .
+            ?r1	a	tmr4i:Recommendation .
+            ?r2	a	tmr4i:Recommendation .
+            ?r3	a	tmr4i:Recommendation .
+            ?i1	a	tmr4i:RepetitionDueToSameAction .
+            ?i2	a	tmr4i:RepetitionDueToSameAction .
+            ?r1	tmr4i:partOf	 ?g .
+            ?r2	tmr4i:partOf	 ?g .
+            ?r3	tmr4i:partOf	 ?g .
+            ?i1	tmr4i:relates	 ?r1 .
+            ?i1	tmr4i:relates	 ?r2 .
+            ?i2	tmr4i:relates	 ?r2 .
+            ?i2	tmr4i:relates	 ?r3 .
+            ?r1	owl:differentFrom	?r3 .
+        } THEN {  
+            ?i1	owl:sameAs	?i2 .
+        }""".
+
+[]	a	rule:SPARQLRule;
+	rule:content	"""
+        PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        IF { 
+            ?i	a	tmr4i:InternalRecommendationInteraction .
+            ?r1	a	tmr4i:Recommendation .
+            ?r2	a	tmr4i:Recommendation .
+            ?t1	tmr4i:inverseToTransition	 ?t2 .
+            ?r2	tmr4i:recommendsToAvoid	 ?t2 .
+            ?r1	tmr4i:recommendsToPursue	 ?t1 .
+            ?i	tmr4i:relates	 ?r1 .
+            ?i	tmr4i:relates	 ?r2 .
+        } THEN { 
+            ?i	a	tmr4i:AlternativeDueToInverseTransition .
+        }""".
+
+[]	a	rule:SPARQLRule;
+	rule:content	"""
+        PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        IF { 
+            ?i1	a	tmr4i:AlternativeDueToSimilarTransition .
+            ?i2	a	tmr4i:AlternativeDueToSimilarTransition .
+            ?g	a	tmr4i:Guideline .
+            ?r1	a	tmr4i:Recommendation .
+            ?r2	a	tmr4i:Recommendation .
+            ?r3	a	tmr4i:Recommendation .
+            ?r1	tmr4i:partOf	 ?g .
+            ?r2	tmr4i:partOf	 ?g .
+            ?r3	tmr4i:partOf	 ?g .
+            ?i1	tmr4i:relates	 ?r1 .
+            ?i1	tmr4i:relates	 ?r2 .
+            ?i2	tmr4i:relates	 ?r2 .
+            ?i2	tmr4i:relates	 ?r3 .
+            ?r1	owl:differentFrom	?r3 .
+        } THEN {  
+            ?i1	owl:sameAs	?i2 .
+        }""".
+
+[]	a	rule:SPARQLRule;
+	rule:content	"""
+        PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        IF { 
+            ?i	a	tmr4i:InternalRecommendationInteraction .
+            ?r1	a	tmr4i:Recommendation .
+            ?r2	a	tmr4i:Recommendation .
+            ?r1	tmr4i:recommendsToPursue	 ?t1 .
+            ?r2	tmr4i:recommendsToPursue	 ?t2 .
+            ?i	tmr4i:relates	 ?r1 .
+            ?i	tmr4i:relates	 ?r2 .
+            ?t1	tmr4i:similarToTransition	 ?t2 .
+        } THEN { 
+            ?i	a	tmr4i:AlternativeDueToSimilarTransition .
+        }""".
+
+[]	a	rule:SPARQLRule;
+	rule:content	"""
+        PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        IF { 
+            ?ca	a	tmr4i:CareActionType .
+            ?sa	a	tmr4i:SituationType .
+            ?sb	a	tmr4i:SituationType .
+            ?t1	a	tmr4i:Transition .
+            ?t2	a	tmr4i:Transition .
+            ?t1	tmr4i:hasExpectedPostSituation	 ?sb .
+            ?t2	tmr4i:hasExpectedPostSituation	 ?sa .
+            ?t1	tmr4i:hasTransformableSituation	 ?sa .
+            ?t2	tmr4i:hasTransformableSituation	 ?sb .
+            ?t1	tmr4i:promotedBy	 ?ca .
+            ?t2	tmr4i:promotedBy	 ?ca .
+        } THEN {  
+            ?t1	owl:sameAs	?t2 .
+        }""".
