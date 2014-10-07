@@ -1,6 +1,6 @@
 #!/bin/sh
 
-stardog-admin db create -n guidelines data/TMR.owl data/TMR4I.owl
+stardog-admin db create -n guidelines data/TMR4I.owl
 
 echo "Setting tag:stardog:api:context:all as TBox graph"
 # Other option: http://guidelines.data2semantics.org/vocab
