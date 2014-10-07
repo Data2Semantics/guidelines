@@ -17,7 +17,7 @@ stardog query "guidelines;reasoning=SL" "SELECT DISTINCT ?i1 ?i2 { ?i1 owl:sameA
 echo "Different individuals"
 stardog query "guidelines;reasoning=SL" "SELECT DISTINCT ?i1 ?i2 { ?i1 owl:differentFrom ?i2 . ?i1 a owl:NamedIndividual. ?i2 a owl:NamedIndividual }"
 
-echo "Rule - Number of internal recommendation interaction individuals"
+echo "Rule - Number of internal recommendation interaction individuals (should be 11)"
 stardog query "guidelines;reasoning=SL" "SELECT (COUNT(DISTINCT ?iir) as ?c) { ?iir	a tmr4i:InternalRecommendationInteraction . }"
 
 
