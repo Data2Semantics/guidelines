@@ -69,7 +69,8 @@
             ?t2	tmr4i:promotedBy	?ca2 .
             ?ca1 a  owl:NamedIndividual .
             ?ca2 a  owl:NamedIndividual .
-            ?ca1	owl:differentFrom	?ca2 .
+            # ?ca1	owl:differentFrom	?ca2 .
+            FILTER (?ca1 != ?ca2)
         } THEN { 
             ?t1	tmr4i:similarToTransition	 ?t2 .
         }""".
@@ -172,7 +173,8 @@
             ?r2	tmr4i:recommendsToPursue	 ?t2 .
             ?i	tmr4i:relates	 ?r1 .
             ?i	tmr4i:relates	 ?r2 .
-            ?t1	owl:differentFrom	?t2 .
+            # ?t1	owl:differentFrom	?t2 .
+            FILTER( ?t1 != ?t2 )
         } THEN { 
             ?i	a	tmr4i:RepetitionDueToSameAction, owl:NamedIndividual .
         }""".
@@ -196,7 +198,8 @@
             ?i1	tmr4i:relates	 ?r2 .
             ?i2	tmr4i:relates	 ?r2 .
             ?i2	tmr4i:relates	 ?r3 .
-            ?r1	owl:differentFrom	?r3 .
+            # ?r1	owl:differentFrom	?r3 .
+            FILTER (?r1 != ?r3)
         } THEN {  
             ?i1	owl:sameAs	?i2 .
         }""".
@@ -240,7 +243,8 @@
             ?i1	tmr4i:relates	 ?r2 .
             ?i2	tmr4i:relates	 ?r2 .
             ?i2	tmr4i:relates	 ?r3 .
-            ?r1	owl:differentFrom	?r3 .
+            # ?r1	owl:differentFrom	?r3 .
+            FILTER (?r1 != ?r3)
         } THEN {  
             ?i1	owl:sameAs	?i2 .
         }""".
