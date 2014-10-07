@@ -63,7 +63,7 @@ def inference():
          }
          UNION
          {
-             ?ca    a tmr4i:CareAcionType .
+             ?ca    a tmr4i:CareActionType .
              ?t1    tmr4i:promotedBy ?t1 .
              ?t2    tmr4i:promotedBy ?t2 .
          }
