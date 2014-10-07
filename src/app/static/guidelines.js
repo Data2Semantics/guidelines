@@ -3,7 +3,7 @@ $( document ).ready(function() {
     $('#rec_list_row').hide();
     
     $('#inferenceButton').on('click',function(){
-        $.get('/inference',function(data){
+        $.get('/getinference',function(data){
             console.log(data);
             
             if (data['status'] == 'true') {
@@ -17,7 +17,7 @@ $( document ).ready(function() {
     });
     
     $('#startButton').on('click',function(){
-        $.get('/guidelines',function(data){
+        $.get('/getguidelines',function(data){
             $('#gl_list_row').hide();
             $('#rec_list_row').hide();
             $('#gl_list_col').html(data); 
@@ -28,7 +28,7 @@ $( document ).ready(function() {
                 $('#rec_list_col').html('Loading...');
                 $('#rec_list_row').show();
                 
-                $.get('/recommendations',data={'uri': uri},function(data){
+                $.get('/getrecommendations',data={'uri': uri},function(data){
                     $('#rec_list_col').html(data);
                     
                     $("#rec_list_col span").on('mouseover',function(){
@@ -45,7 +45,7 @@ $( document ).ready(function() {
                     
                     $("#rec_list_col a").on('click', function(){
                         var uri = $(this).attr('uri');
-                        $.get('/transitions', data={'uri': uri}, function(data){
+                        $.get('/gettransitions', data={'uri': uri}, function(data){
                             console.log(this);
                             $("div[transitions_for=\""+ uri +"\"]").toggle();
                             $("div[transitions_for=\""+ uri +"\"]").html(data);

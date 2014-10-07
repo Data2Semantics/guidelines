@@ -8,20 +8,20 @@
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-    <!ENTITY tmr4i "http://guidelines.data2semantics.org/vocab#" >
+    <!ENTITY tmr4i "http://guidelines.data2semantics.org/vocab/" >
 ]>
 
 
-<rdf:RDF xmlns="http://guidelines.data2semantics.org/vocab#"
-     xml:base="http://guidelines.data2semantics.org/vocab"
+<rdf:RDF xmlns="http://guidelines.data2semantics.org/vocab/"
+     xml:base="http://guidelines.data2semantics.org/vocab/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:swrl="http://www.w3.org/2003/11/swrl#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:tmr4i="http://guidelines.data2semantics.org/vocab#">
-    <owl:Ontology rdf:about="http://guidelines.data2semantics.org/vocab"/>
+     xmlns:tmr4i="http://guidelines.data2semantics.org/vocab/">
+    <owl:Ontology rdf:about="http://guidelines.data2semantics.org/vocab/"/>
     
 
 

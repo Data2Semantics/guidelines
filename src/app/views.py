@@ -21,51 +21,51 @@ UPDATE_HEADERS = {
     'SD-Connection-String': 'reasoning={}'.format(REASONING_TYPE)
 }
                 
-PREFIXES = "PREFIX gl: <http://guidelines.data2semantics.org/vocab/>\n"
+PREFIXES = "PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>\n"
 
 @app.route("/")
 def index():
     return render_template('base.html')
     
     
-@app.route('/inference')
+@app.route('/getinference')
 def inference():
     query = PREFIXES + """
     INSERT
     { 
-        _:iir   a  gl:InternalRecommendationInteraction .
-        _:iir   gl:relates ?r1 .
-        _:iir   gl:relates ?r2 .
-        ?r1 gl:interactsInternallyWith ?r2 .
-        ?r2 gl:interactsInternallyWith ?r1 .
-        gl:interactsInternallyWith a owl:ObjectProperty .
+        _:iir   a  tmr4i:InternalRecommendationInteraction .
+        _:iir   tmr4i:relates ?r1 .
+        _:iir   tmr4i:relates ?r2 .
+        ?r1 tmr4i:interactsInternallyWith ?r2 .
+        ?r2 tmr4i:interactsInternallyWith ?r1 .
+        tmr4i:interactsInternallyWith a owl:ObjectProperty .
     } 
     WHERE
     { 
-         ?r1  a  gl:Recommendation .
+         ?r1  a  tmr4i:Recommendation .
          ?r1  a  owl:NamedIndividual .
-         ?r2  a  gl:Recommendation .
+         ?r2  a  tmr4i:Recommendation .
          ?r2  a  owl:NamedIndividual .
-         ?r1  gl:partOf  ?g .
-         ?r2  gl:partOf  ?g .
+         ?r1  tmr4i:partOf  ?g .
+         ?r2  tmr4i:partOf  ?g .
          ?g  a  owl:NamedIndividual .
-         ?r1  gl:recommends ?t1 .
-         ?r2  gl:recommends ?t2 .
+         ?r1  tmr4i:recommends ?t1 .
+         ?r2  tmr4i:recommends ?t2 .
          ?t1 a owl:NamedIndividual .
          ?t2 a owl:NamedIndividual .
      
          { 
-             ?t1    gl:similarToTransition ?t2 .
+             ?t1    tmr4i:similarToTransition ?t2 .
          }
          UNION
          {
-             ?t1    gl:inverseToTransition ?t2 .
+             ?t1    tmr4i:inverseToTransition ?t2 .
          }
          UNION
          {
-             ?ca    a gl:CareAcionType .
-             ?t1    gl:promotedBy ?t1 .
-             ?t2    gl:promotedBy ?t2 .
+             ?ca    a tmr4i:CareAcionType .
+             ?t1    tmr4i:promotedBy ?t1 .
+             ?t2    tmr4i:promotedBy ?t2 .
          }
          FILTER (?r1 != ?r2 && ?t1 != ?t2)
     } """
@@ -75,31 +75,31 @@ def inference():
     return jsonify({'status': result})
 
     
-@app.route('/guidelines')
+@app.route('/getguidelines')
 def guidelines():
-    query = PREFIXES + "SELECT DISTINCT ?gl WHERE {?rec gl:partOf ?gl . }";
+    query = PREFIXES + "SELECT DISTINCT ?gl WHERE {?rec tmr4i:partOf ?gl . }";
     
     guidelines = sparql(query, strip=True)
 
     return render_template('guidelines_list.html',guidelines = guidelines)
     
 
-@app.route('/recommendations', methods=['GET'])
+@app.route('/getrecommendations', methods=['GET'])
 def recommendations():
     uri = request.args.get('uri', '')
     query = PREFIXES + """
     SELECT DISTINCT ?rec ?crec ?irec WHERE 
     { 
-        ?rec gl:partOf <""" + uri + """>  . 
+        ?rec tmr4i:partOf <""" + uri + """>  . 
         ?rec a owl:NamedIndividual .
         OPTIONAL {
-            ?rec gl:interactsInternallyWith ?crec .
+            ?rec tmr4i:interactsInternallyWith ?crec .
             ?crec a owl:NamedIndividual .
         }
         OPTIONAL {
             ?rec a ?irec .
             ?irec a owl:Class .
-            FILTER(?irec = gl:InternallyInteractingRecommendation)
+            FILTER(?irec = tmr4i:InternallyInteractingRecommendation)
         }
     }"""
     
@@ -109,27 +109,27 @@ def recommendations():
     
     return render_template('recommendations_list.html', recommendations = recommendations)
 
-@app.route('/transitions', methods=['GET'])
+@app.route('/gettransitions', methods=['GET'])
 def transitions():
     uri = request.args.get('uri', '')
     pos_query = PREFIXES + """
     SELECT DISTINCT * WHERE {
-        <""" + uri + """> gl:recommendsToPursue ?transition .
-        ?transition gl:hasTransformableSituation ?transformable_situation .
-      	?transition gl:hasExpectedPostSituation ?post_situation .
+        <""" + uri + """> tmr4i:recommendsToPursue ?transition .
+        ?transition tmr4i:hasTransformableSituation ?transformable_situation .
+      	?transition tmr4i:hasExpectedPostSituation ?post_situation .
         ?transition a owl:NamedIndividual .
         ?transformable_situation a owl:NamedIndividual .
         ?post_situation a owl:NamedIndividual .
         OPTIONAL {
-            ?transition gl:hasFilterCondition ?f_condition .
+            ?transition tmr4i:hasFilterCondition ?f_condition .
             ?f_condition a owl:NamedIndividual .
         }
         OPTIONAL {
-            ?transition gl:inverseToTransition ?inverse_transition .
+            ?transition tmr4i:inverseToTransition ?inverse_transition .
             ?inverse_transition a owl:NamedIndividual .
         }
         OPTIONAL {
-            ?transition gl:similarToTransition ?similar_transition .
+            ?transition tmr4i:similarToTransition ?similar_transition .
             ?similar_transition a owl:NamedIndividual .
         }
         BIND(IF (bound(?f_condition), ?f_condition, "none") as ?filter_condition)
@@ -138,22 +138,22 @@ def transitions():
 
     neg_query = PREFIXES + """
     SELECT DISTINCT * WHERE {
-        <""" + uri + """> gl:recommendsToAvoid ?transition .
-        ?transition gl:hasTransformableSituation ?transformable_situation .
-      	?transition gl:hasExpectedPostSituation ?post_situation .
+        <""" + uri + """> tmr4i:recommendsToAvoid ?transition .
+        ?transition tmr4i:hasTransformableSituation ?transformable_situation .
+      	?transition tmr4i:hasExpectedPostSituation ?post_situation .
         ?transition a owl:NamedIndividual .
         ?transformable_situation a owl:NamedIndividual .
         ?post_situation a owl:NamedIndividual .
         OPTIONAL {
-            ?transition gl:hasFilterCondition ?f_condition .
+            ?transition tmr4i:hasFilterCondition ?f_condition .
             ?f_condition a owl:NamedIndividual .
         }
         OPTIONAL {
-            ?transition gl:inverseToTransition ?inverse_transition .
+            ?transition tmr4i:inverseToTransition ?inverse_transition .
             ?inverse_transition a owl:NamedIndividual .
         }
         OPTIONAL {
-            ?transition gl:similarToTransition ?similar_transition .
+            ?transition tmr4i:similarToTransition ?similar_transition .
             ?similar_transition a owl:NamedIndividual .
         }
         BIND(IF (bound(?f_condition), ?f_condition, "none") as ?filter_condition)
@@ -166,12 +166,12 @@ def transitions():
     
     return render_template('transitions_list.html', pos_transitions = pos_transitions, neg_transitions = neg_transitions)
 
-@app.route('/care_actions', methods=['GET'])
+@app.route('/getcare_actions', methods=['GET'])
 def care_actions():
     uri = request.args.get('uri','')
     query = PREFIXES + """
         SELECT DISTINCT * WHERE {
-            <"""+uri+"""> gl:promotedBy ?ca .
+            <"""+uri+"""> tmr4i:promotedBy ?ca .
             ?ca a owl:NamedIndividual .
         }
     """
