@@ -11,6 +11,16 @@
 echo "Check if rules were loaded (should be 12)"
 stardog query "guidelines;reasoning=SL" "SELECT (COUNT(DISTINCT ?r) as ?c) { ?r	a rule:SPARQLRule . }"
 
+echo "Same individuals"
+stardog query "guidelines;reasoning=SL" "SELECT DISTINCT ?i1 ?i2 { ?i1 owl:sameAs ?i2 . ?i1 a owl:NamedIndividual. ?i2 a owl:NamedIndividual }"
+
+echo "Different individuals"
+stardog query "guidelines;reasoning=SL" "SELECT DISTINCT ?i1 ?i2 { ?i1 owl:differentFrom ?i2 . ?i1 a owl:NamedIndividual. ?i2 a owl:NamedIndividual }"
+
+echo "Rule - Number of internal recommendation interaction individuals"
+stardog query "guidelines;reasoning=SL" "SELECT (COUNT(DISTINCT ?iir) as ?c) { ?iir	a tmr4i:InternalRecommendationInteraction . }"
+
+
 echo "Rule - Interaction Assertion"
 stardog query "guidelines;reasoning=SL" "ASK { ?iir   a  tmr4i:InternalRecommendationInteraction .
             ?iir   tmr4i:relates ?r1 .
