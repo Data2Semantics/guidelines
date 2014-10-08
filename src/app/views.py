@@ -3,6 +3,7 @@ from SPARQLWrapper import SPARQLWrapper
 import requests
 import json
 from app import app
+import uuid
 
 ENDPOINT_URL = 'http://localhost:5820/guidelines/query'
 UPDATE_URL = 'http://localhost:5820/guidelines/update'
@@ -31,15 +32,7 @@ def index():
 @app.route('/getinference')
 def inference():
     query = PREFIXES + """
-    INSERT
-    { 
-        _:iir   a  tmr4i:InternalRecommendationInteraction .
-        _:iir   tmr4i:relates ?r1 .
-        _:iir   tmr4i:relates ?r2 .
-        ?r1 tmr4i:interactsInternallyWith ?r2 .
-        ?r2 tmr4i:interactsInternallyWith ?r1 .
-        tmr4i:interactsInternallyWith a owl:ObjectProperty .
-    } 
+    SELECT DISTINCT ?r1 ?r2 
     WHERE
     { 
          ?r1  a  tmr4i:Recommendation .
@@ -63,16 +56,57 @@ def inference():
          }
          UNION
          {
-             ?ca    a tmr4i:CareActionType .
-             ?t1    tmr4i:promotedBy ?t1 .
-             ?t2    tmr4i:promotedBy ?t2 .
+             ?t1    tmr4i:promotedBy ?ca .
+             ?t2    tmr4i:promotedBy ?ca .
          }
          FILTER (?r1 != ?r2 && ?t1 != ?t2)
+         
+         # Need to make sure that we are not adding duplicate interactions
+         FILTER NOT EXISTS {
+             ?iir   tmr4i:relates ?t1 .
+             ?iir   tmr4i:relates ?t2 .
+         }
     } """
+    results = sparql(query)
     
-    result = sparql_update(query)
+    deduped_results = set()
+    for r in results :
+        one = r['r1']['value']
+        two = r['r2']['value']
+        
+        if not (two,one) in deduped_results:
+            print "adding", (one,two)
+            deduped_results.add((one,two))
+        else :
+            print "result already found", (two,one)        
+ 
+    print len(deduped_results), "interactions found."
+ 
+    update_template = PREFIXES + """
+    INSERT DATA
+    {{ 
+        tmr4i:{0}   a  tmr4i:InternalRecommendationInteraction, owl:NamedIndividual .
+        tmr4i:{0}   tmr4i:relates <{1}> .
+        tmr4i:{0}   tmr4i:relates <{2}> .
+        <{1}> tmr4i:interactsInternallyWith <{2}> .
+        <{2}> tmr4i:interactsInternallyWith <{1}> .
+        tmr4i:interactsInternallyWith a owl:ObjectProperty .
+    }}
+    """
+     
+    for (one,two) in deduped_results :
+        interaction = "internal_recommendation_interaction_{}".format(str(uuid.uuid4()))
+        
+        update = update_template.format(interaction, one, two)
+        
+        print interaction, one, two
+        result = sparql_update(update)
     
-    return jsonify({'status': result})
+
+    
+    # result = sparql_update(query)
+    
+    return jsonify({'status': 'true'})
 
     
 @app.route('/getguidelines')
@@ -190,11 +224,12 @@ def sparql_update(query, endpoint_url = UPDATE_URL):
 
 def sparql(query, strip=False, endpoint_url = ENDPOINT_URL, strip_prefix = 'http://guidelines.data2semantics.org/vocab/'):
     """This method replaces the SPARQLWrapper sparql interface, since SPARQLWrapper cannot handle the Stardog-style query headers needed for inferencing"""
-    print query
     
     result = requests.get(endpoint_url,params={'query': query, 'reasoning': REASONING_TYPE}, headers=QUERY_HEADERS)
-    result_dict = json.loads(result.content)
-    print result_dict
+    try :
+        result_dict = json.loads(result.content)
+    except Exception as e:
+        return result.content
     
     if strip:
         new_results = []

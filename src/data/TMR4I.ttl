@@ -138,7 +138,8 @@ tmr4i:relates rdf:type owl:ObjectProperty ;
 ###  http://guidelines.data2semantics.org/vocab/similarToTransition
 
 tmr4i:similarToTransition rdf:type owl:ObjectProperty ,
-                                   owl:SymmetricProperty ;
+                                   owl:SymmetricProperty,
+                                   owl:IrreflexiveProperty ;
                           
                           rdfs:subPropertyOf tmr4i:relatedToTranstion .
 
