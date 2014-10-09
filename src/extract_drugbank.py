@@ -25,6 +25,10 @@ for drug in drugs:
     ids = []
     for db_id in db_ids:
         ids.append(db_id.text)
+        
+    id = ids[0]
+    
+    print id
     
     n = drug.find('name')
     if n :
@@ -55,11 +59,10 @@ for drug in drugs:
         for db_interaction in db_interactions.find_all('drug-interaction') :
             interactions.append(db_interaction.find('drugbank-id').text)
         
-    print ids, name, description, categories, interactions
     
     g.add((DRUG[ids[0]],RDF.type,DB['drugs']))
-    for id in ids[1:]:
-        g.add((DRUG[ids[0]],OWL.sameAs,DRUG[id]))
+    for alt_id in ids[1:]:
+        g.add((DRUG[id],OWL.sameAs,DRUG[alt_id]))
         
     if name:
         g.add((DRUG[id],RDFS.label,Literal(name)))
@@ -71,8 +74,10 @@ for drug in drugs:
         c_stripped = c.replace(' ','')
         g.add((CATEGORY[c_stripped],RDFS.label,Literal(c)))
         g.add((DRUG[id],DB['drugCategory'],CATEGORY[c_stripped]))
-        
+    
+    
     for i in interactions :
+        print id, i
         g.add((DRUG[id],DB['interactsWith'],DRUG[i]))
         g.add((DRUG[i],DB['interactsWith'],DRUG[id]))
         
