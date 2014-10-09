@@ -106,7 +106,7 @@ def inference():
     
     # result = sparql_update(query)
     
-    return jsonify({'status': 'true'})
+    return jsonify({'status': 'Done'})
 
     
 @app.route('/getguidelines')
@@ -136,9 +136,8 @@ def recommendations():
             ?crec a owl:NamedIndividual .
         }
         OPTIONAL {
-            ?rec a ?irec .
-            ?irec a owl:Class .
-            FILTER(?irec = tmr4i:InternallyInteractingRecommendation)
+            ?rec a tmr4i:InternallyInteractingRecommendation .
+            BIND(tmr4i:InternallyInteractingRecommendation AS ?irec)
         }
     }"""
     
@@ -169,10 +168,12 @@ def transitions():
         OPTIONAL {
             ?transition tmr4i:inverseToTransition ?inverse_transition .
             ?inverse_transition a owl:NamedIndividual .
+            ?irec tmr4i:recommends ?inverse_transition .
         }
         OPTIONAL {
             ?transition tmr4i:similarToTransition ?similar_transition .
             ?similar_transition a owl:NamedIndividual .
+            ?srec tmr4i:recommends ?similar_transition .
         }
         BIND(IF (bound(?f_condition), ?f_condition, "none") as ?filter_condition)
     }

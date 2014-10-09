@@ -17,10 +17,10 @@
                         <tr><th>Post situation</th><td>{{ e.post_situation_label.value }}</td></tr>
         {% endif %}
         {% if e.inverse_transition %}
-                        <tr><th>Inverse transition</th><td><span class='badge alert-danger'>{{ e.inverse_transition_label.value }}</span></td></tr>
+                        <tr><th>Inverse transition</th><td>{{ e.irec_label.value }} <span class='badge alert-danger'>{{ e.inverse_transition_label.value }}</span></td></tr>
         {% endif %}
         {% if e.similar_transition %}
-                        <tr><th>Similar transition</th><td><span class='badge alert-warning'>{{ e.similar_transition_label.value }}</span></td></tr>
+                        <tr><th>Similar transition</th><td>{{ e.srec_label.value }} <span class='badge alert-warning'>{{ e.similar_transition_label.value }}</span></td></tr>
         {% endif %}
         {% if loop.last %}
                     </tbody>

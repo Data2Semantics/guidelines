@@ -12,7 +12,7 @@ $( document ).ready(function() {
                 $('#inferenceButton').text('Something went wrong');
             }
             
-            $('#inferenceButton').text('Status: '+ data['status']);
+            $('#inferenceButton').text(data['status']);
         });
     });
     
@@ -46,10 +46,10 @@ $( document ).ready(function() {
                     
                     $("#rec_list_col a").on('click', function(){
                         var uri = $(this).attr('uri');
-                        $.each(".transition").hide();
+                        $(".transition").hide();
                         $.get('/gettransitions', data={'uri': uri}, function(data){
                             console.log(this);
-                            $("div[transitions_for=\""+ uri +"\"]").show();
+                            $("div[transition_container_for=\""+ uri +"\"]").show();
                             $("div[transitions_for=\""+ uri +"\"]").html(data);
                         })
                     })
