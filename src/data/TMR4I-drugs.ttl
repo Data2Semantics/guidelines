@@ -1,0 +1,41 @@
+@prefix : <http://guidelines.data2semantics.org/vocab/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
+@prefix tmr4i: <http://guidelines.data2semantics.org/vocab/> .
+@base <http://guidelines.data2semantics.org/vocab/> .
+@prefix drug: <http://wifo5-04.informatik.uni-mannheim.de/drugbank/resource/drugs/> .
+@prefix drugbank: <http://wifo5-04.informatik.uni-mannheim.de/drugbank/resource/drugbank/> .
+
+
+:ActAdministerAspirin   :involves   drug:DB00945 .
+
+:ActAdministerClopidogrel   :involves   drug:DB00758 .
+
+:ActAdministerDipyridamole  :involves   drug:DB00975 .
+
+# Thiazide is actually a *category* of drugs! Need to make sure our SPARQL query can deal with that.
+:ThiazideAdministeringActs  a   owl:Class;
+    owl:equivalentClass     [   a   owl:Restriction;
+                                owl:onProperty  :involves;
+                                owl:someValuesFrom  [
+                                    a   owl:Restriction ;
+                                    owl:onProperty  drugbank:drugCategory ;
+                                    owl:hasValue    <http://www4.wiwiss.fu-berlin.de/drugbank/resource/drugcategory/diuretics,Thiazide> 
+                                ] 
+                            ] ;
+    owl:oneOf       ( :ActAdministerThiazide ) .
+
+:ActAdministerThiazide  :involves <http://www4.wiwiss.fu-berlin.de/drugbank/resource/drugcategory/diuretics,Thiazide> .
+
+:ActAdministerTramadol  :involves drug:DB00193 .
+
+# PPI = Proton Pump Inhibitor... again, this is a *category* of drugs.
+:ActAdministerPPI   :involves <http://www4.wiwiss.fu-berlin.de/drugbank/resource/drugcategory/proton-pumpInhibitors> .
+
+
+:ActAdministerIbuprofen :involves   drug:DB01050 .
