@@ -274,7 +274,36 @@
             ?i	a	tmr4i:AlternativeDueToSimilarTransition .
         }""".
 
-# Rule 11 SMUSHING
+
+# Rule 11 External Interaction due to drug-drug interaction in Drugbank
+# []    a    rule:SPARQLRule;
+#     rule:content    """
+#         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+#         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+#         PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
+#         PREFIX drugbank: <http://wifo5-04.informatik.uni-mannheim.de/drugbank/resource/drugbank/>
+#         PREFIX drug: <http://wifo5-04.informatik.uni-mannheim.de/drugbank/resource/drugs/>
+#         PREFIX owl: <http://www.w3.org/2002/07/owl#>
+#
+#         IF {
+#             ?d1 drugbank:interactsWith ?d2 .
+#
+#             ?ca1 tmr4i:involves ?d1 .
+#             ?ca2 tmr4i:involves ?d2 .
+#
+#             ?t1 tmr4i:promotedBy ?ca1 .
+#             ?t2 tmr4i:promotedBy ?ca2 .
+#
+#             ?r1 tmr4i:recommends ?t1 .
+#             ?r2 tmr4i:recommends ?t2 .
+#
+#             FILTER(?d1 != ?d2 && ?ca1 != ?ca2 )
+#         } THEN {
+#             ?i    a    tmr4i:AlternativeDueToSimilarTransition .
+#         }""".
+
+
+# Rule 12 SMUSHING
 []  a   rule:SPARQLRule;
     rule:content    """
         PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
