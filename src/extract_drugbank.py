@@ -3,14 +3,7 @@ from rdflib import Graph, Namespace, RDF, OWL, RDFS, Literal
 
 BASE_URI = 'http://wifo5-04.informatik.uni-mannheim.de/drugbank/resource/'
 
-DB = Namespace(BASE_URI+'drugbank/')
-DRUG = Namespace(BASE_URI+'drugs/')
-CATEGORY = Namespace(BASE_URI+'drug_categories/')
 
-g = Graph()
-g.bind('drugbank',DB)
-g.bind('drug',DRUG)
-g.bind('category',CATEGORY)
 
 FILE = 'drugbank.xml'
 
@@ -19,7 +12,14 @@ db = BeautifulSoup(open(FILE,'r'))
 drugs = db.find_all('drug')
 
 
+DB = Namespace(BASE_URI+'drugbank/')
+DRUG = Namespace(BASE_URI+'drugs/')
+CATEGORY = Namespace(BASE_URI+'drug_categories/')
 
+g = Graph()
+g.bind('drugbank',DB)
+g.bind('drug',DRUG)
+g.bind('category',CATEGORY)
 for drug in drugs:
     db_ids = drug.find_all('drugbank-id')
     ids = []
