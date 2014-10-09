@@ -111,7 +111,8 @@ def inference():
     
 @app.route('/getguidelines')
 def guidelines():
-    query = PREFIXES + "SELECT DISTINCT ?gl WHERE {?rec tmr4i:partOf ?gl . }";
+    print "Retrieving guidelines"
+    query = PREFIXES + "SELECT DISTINCT ?gl ?gl_label WHERE {?rec tmr4i:partOf ?gl . ?gl rdfs:label ?gl_label .}";
     
     guidelines = sparql(query, strip=True)
 
@@ -120,11 +121,15 @@ def guidelines():
 
 @app.route('/getrecommendations', methods=['GET'])
 def recommendations():
-    uri = request.args.get('uri', '')
+    print "Retrieving recommendations"
+    guideline_uri = request.args.get('uri', '')
+    guideline_label = request.args.get('label','')
+    
     query = PREFIXES + """
-    SELECT DISTINCT ?rec ?crec ?irec WHERE 
+    SELECT DISTINCT ?rec ?rec_label ?crec ?irec WHERE 
     { 
-        ?rec tmr4i:partOf <""" + uri + """>  . 
+        ?rec tmr4i:partOf <""" + guideline_uri + """>  . 
+        ?rec rdfs:label ?rec_label .
         ?rec a owl:NamedIndividual .
         OPTIONAL {
             ?rec tmr4i:interactsInternallyWith ?crec .
@@ -141,16 +146,19 @@ def recommendations():
     
     print recommendations
     
-    return render_template('recommendations_list.html', recommendations = recommendations)
+    return render_template('recommendations_list.html', recommendations = recommendations, guideline_label = guideline_label)
 
 @app.route('/gettransitions', methods=['GET'])
 def transitions():
+    print "Retrieving transitions"
     uri = request.args.get('uri', '')
     pos_query = PREFIXES + """
     SELECT DISTINCT * WHERE {
         <""" + uri + """> tmr4i:recommendsToPursue ?transition .
         ?transition tmr4i:hasTransformableSituation ?transformable_situation .
+        ?transformable_situation rdfs:label ?transformable_situation_label .
       	?transition tmr4i:hasExpectedPostSituation ?post_situation .
+        ?post_situation rdfs:label ?post_situation_label .
         ?transition a owl:NamedIndividual .
         ?transformable_situation a owl:NamedIndividual .
         ?post_situation a owl:NamedIndividual .
@@ -174,7 +182,9 @@ def transitions():
     SELECT DISTINCT * WHERE {
         <""" + uri + """> tmr4i:recommendsToAvoid ?transition .
         ?transition tmr4i:hasTransformableSituation ?transformable_situation .
+        ?transformable_situation rdfs:label ?transformable_situation_label .
       	?transition tmr4i:hasExpectedPostSituation ?post_situation .
+        ?post_situation rdfs:label ?post_situation_label .
         ?transition a owl:NamedIndividual .
         ?transformable_situation a owl:NamedIndividual .
         ?post_situation a owl:NamedIndividual .
@@ -237,11 +247,11 @@ def sparql(query, strip=False, endpoint_url = ENDPOINT_URL, strip_prefix = 'http
             new_result = {}
             for k, v in r.items():
                 print k, v
-                if v['type'] == 'uri' :
+                if v['type'] == 'uri' and not k+'_label' in r.keys():
                     new_result[k+'_label'] = {}
                     new_result[k+'_label']['type'] = 'literal'
                     new_result[k+'_label']['value'] = v['value'].replace(strip_prefix,'')
-                else :
+                elif not k+'_label' in r.keys():
                     new_result[k+'_label'] = {}
                     new_result[k+'_label']['type'] = 'literal'
                     new_result[k+'_label']['value'] = v['value']

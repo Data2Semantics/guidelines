@@ -24,11 +24,12 @@ $( document ).ready(function() {
            
             $('#gl_list_col a').on('click',function(){
                 var uri = $(this).attr('uri');
+                var label = $(this).attr('label');
 
                 $('#rec_list_col').html('Loading...');
                 $('#rec_list_row').show();
                 
-                $.get('/getrecommendations',data={'uri': uri},function(data){
+                $.get('/getrecommendations',data={'uri': uri, 'label': label},function(data){
                     $('#rec_list_col').html(data);
                     
                     $("#rec_list_col span").on('mouseover',function(){
@@ -45,9 +46,10 @@ $( document ).ready(function() {
                     
                     $("#rec_list_col a").on('click', function(){
                         var uri = $(this).attr('uri');
+                        $.each(".transition").hide();
                         $.get('/gettransitions', data={'uri': uri}, function(data){
                             console.log(this);
-                            $("div[transitions_for=\""+ uri +"\"]").toggle();
+                            $("div[transitions_for=\""+ uri +"\"]").show();
                             $("div[transitions_for=\""+ uri +"\"]").html(data);
                         })
                     })

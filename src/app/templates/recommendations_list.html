@@ -1,22 +1,42 @@
+<h3>{{ guideline_label }}</3>
 <h4>Recommendations</h4>
-<div class="list-group">
-{% for grouper, list in recommendations|groupby('rec_label') %}
-    {% for e in list %}
-        {% if loop.first %}
-            <a href="#" class="list-group-item" uri='{{e.rec.value }}'>
-                <span class="list-group-item-heading">{{ grouper.value }}</span>
-                {%if 'irec_label' in e %}
-                    <span class="badge alert-info" target="{{ e.irec.value }}">{{ e.irec_label.value }}</span>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="list-group">
+        {% for grouper, list in recommendations|groupby('rec_label') %}
+            {% for e in list %}
+                {% if loop.first %}
+                    <a href="#" class="list-group-item" uri='{{e.rec.value }}'>
+                        <span class="list-group-item-heading">{{ grouper.value }}</span>
+                        {%if 'irec_label' in e %}
+                            <span class="badge alert-info" target="{{ e.irec.value }}">{{ e.irec_label.value }}</span>
+                        {% endif %}
                 {% endif %}
-        {% endif %}
-        {% if 'crec_label' in e %}
-                <span class="badge alert-warning" target="{{ e.crec.value }}">{{ e.crec_label.value }}</span>
-        {% endif %}
-        {% if loop.last %}
-                <div class="list-group-item-content" style="display: none;" transitions_for='{{e.rec.value}}'>
-                </div>
-            </a>
-        {% endif %}
+                {% if 'crec_label' in e %}
+                        <span class="badge alert-warning" target="{{ e.crec.value }}">{{ e.crec_label.value }}</span>
+                {% endif %}
+                {% if loop.last %}
+                    </a>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        </div>
+    </div>
+    <div class="col-md-8">
+    {% for grouper, list in recommendations|groupby('rec_label') %}
+        {% for e in list %}
+            {% if loop.last %}
+                    <div class="transition">
+                        <h4>{{ rec_label }}</h4>
+                        <div style="display: none;" transitions_for='{{e.rec.value}}'>
+                        </div>
+                    </div>
+            {% endif %}
+        {% endfor %}
     {% endfor %}
-{% endfor %}
+    </div>
 </div>
+
+
+
