@@ -131,7 +131,7 @@ tmr4i:relatedToTranstion rdf:type owl:ObjectProperty ;
 
 tmr4i:relates rdf:type owl:ObjectProperty ;
               
-              rdfs:domain tmr4i:InternalRecommendationInteraction .
+              rdfs:domain tmr4i:RecommendationInteraction .
 
 
 
@@ -144,7 +144,13 @@ tmr4i:similarToTransition rdf:type owl:ObjectProperty ,
                           rdfs:subPropertyOf tmr4i:relatedToTranstion .
 
 
+###  http://guidelines.data2semantics.org/vocab/interactsInternallyWith
 
+tmr4i:interactsInternallyWith a owl:ObjectProperty .
+
+###  http://guidelines.data2semantics.org/vocab/interactsExternallyWith
+
+tmr4i:interactsExternallyWith a owl:ObjectProperty .
 
 
 #################################################################
@@ -213,17 +219,36 @@ tmr4i:ContradictionDueToSimiliarTransition rdf:type owl:Class ;
 tmr4i:Guideline rdf:type owl:Class .
 
 
+###  http://guidelines.data2semantics.org/vocab/RecommendationInteraction
+
+tmr4i:RecommendationInteraction rdf:type owl:Class .
 
 ###  http://guidelines.data2semantics.org/vocab/InternalRecommendationInteraction
 
-tmr4i:InternalRecommendationInteraction rdf:type owl:Class .
+tmr4i:InternalRecommendationInteraction rdf:type owl:Class ;
 
+                                        rdfs:subClassOf tmr4i:RecommendationInteraction .
+
+###  http://guidelines.data2semantics.org/vocab/ExternalRecommendationInteraction
+
+tmr4i:ExternalRecommendationInteraction rdf:type owl:Class ;
+
+                                        owl:equivalentClass [ rdf:type owl:Class ;
+                                                                owl:intersectionOf ( tmr4i:RecommendationInteraction
+                                                                                    [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty  tmr4i:relates ;
+                                                                                        owl:someValuesFrom tmr4i:ExternalInformation
+                                                                                    ]
+                                                                                   )
+                                                            ] ;
+
+                                        rdfs:subClassOf tmr4i:RecommendationInteraction .
 
 
 ###  http://guidelines.data2semantics.org/vocab/InternallyInteractingRecommendation
 
 tmr4i:InternallyInteractingRecommendation rdf:type owl:Class ;
-                                          
+
                                           owl:equivalentClass [ rdf:type owl:Class ;
                                                                 owl:intersectionOf ( tmr4i:Recommendation
                                                                                      [ rdf:type owl:Restriction ;
@@ -236,6 +261,21 @@ tmr4i:InternallyInteractingRecommendation rdf:type owl:Class ;
                                           
                                           rdfs:subClassOf tmr4i:Recommendation .
 
+###  http://guidelines.data2semantics.org/vocab/ExternallyInteractingRecommendation
+
+tmr4i:ExternallyInteractingRecommendation rdf:type owl:Class ;
+
+                                        owl:equivalentClass [ rdf:type owl:Class ;
+                                                                owl:intersectionOf ( tmr4i:Recommendation
+                                                                                        [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty [ owl:inverseOf tmr4i:relates
+                                                                                                        ] ;
+                                                                                        owl:someValuesFrom tmr4i:ExternalRecommendationInteraction
+                                                                                        ]
+                                                                                    )
+                                                             ] ;
+
+                                        rdfs:subClassOf tmr4i:Recommendation .
 
 
 ###  http://guidelines.data2semantics.org/vocab/Recommendation
@@ -247,7 +287,7 @@ tmr4i:Recommendation rdf:type owl:Class .
 ###  http://guidelines.data2semantics.org/vocab/RepetitionDueToSameAction
 
 tmr4i:RepetitionDueToSameAction rdf:type owl:Class ;
-                                
+
                                 rdfs:subClassOf tmr4i:InternalRecommendationInteraction .
 
 
@@ -255,7 +295,7 @@ tmr4i:RepetitionDueToSameAction rdf:type owl:Class ;
 ###  http://guidelines.data2semantics.org/vocab/SingleDiseaseGuideline
 
 tmr4i:SingleDiseaseGuideline rdf:type owl:Class ;
-                             
+
                              rdfs:subClassOf tmr4i:Guideline .
 
 
@@ -320,17 +360,17 @@ tmr4i:ActAdministerTramadol rdf:type tmr4i:CareActionType ,
 
 
 
-###  http://guidelines.data2semantics.org/vocab/ActAdminsterPPI
+###  http://guidelines.data2semantics.org/vocab/ActAdministerPPI
 
-tmr4i:ActAdminsterPPI rdf:type tmr4i:CareActionType ,
+tmr4i:ActAdministerPPI rdf:type tmr4i:CareActionType ,
                                owl:NamedIndividual ;
                             rdfs:label "Administer PPI"@en .
 
 
 
-###  http://guidelines.data2semantics.org/vocab/ActAdmnisterIbuprofen
+###  http://guidelines.data2semantics.org/vocab/ActAdministerIbuprofen
 
-tmr4i:ActAdmnisterIbuprofen rdf:type tmr4i:CareActionType ,
+tmr4i:ActAdministerIbuprofen rdf:type tmr4i:CareActionType ,
                                      owl:NamedIndividual ;
                             rdfs:label "Administer Ibuprofen"@en .
 
@@ -868,7 +908,7 @@ tmr4i:T2 rdf:type tmr4i:Transition ,
 tmr4i:T3 rdf:type tmr4i:Transition ,
                   owl:NamedIndividual ;
          
-         tmr4i:promotedBy tmr4i:ActAdminsterPPI ;
+         tmr4i:promotedBy tmr4i:ActAdministerPPI ;
          
          tmr4i:hasExpectedPostSituation tmr4i:SitDUHealed ;
          
@@ -907,7 +947,7 @@ tmr4i:T5 rdf:type tmr4i:Transition ,
 tmr4i:T6 rdf:type tmr4i:Transition ,
                   owl:NamedIndividual ;
          
-         tmr4i:promotedBy tmr4i:ActAdminsterPPI ;
+         tmr4i:promotedBy tmr4i:ActAdministerPPI ;
          
          tmr4i:hasTransformableSituation tmr4i:SitHighRiskGIB ;
          
@@ -933,7 +973,7 @@ tmr4i:T7 rdf:type tmr4i:Transition ,
 tmr4i:T8 rdf:type tmr4i:Transition ,
                   owl:NamedIndividual ;
          
-         tmr4i:promotedBy tmr4i:ActAdmnisterIbuprofen ;
+         tmr4i:promotedBy tmr4i:ActAdministerIbuprofen ;
          
          tmr4i:hasExpectedPostSituation tmr4i:SitPatientHasNoPain ;
          
@@ -946,7 +986,7 @@ tmr4i:T8 rdf:type tmr4i:Transition ,
 tmr4i:T9 rdf:type tmr4i:Transition ,
                   owl:NamedIndividual ;
          
-         tmr4i:promotedBy tmr4i:ActAdmnisterIbuprofen ;
+         tmr4i:promotedBy tmr4i:ActAdministerIbuprofen ;
          
          tmr4i:hasExpectedPostSituation tmr4i:SitHighBP ;
          
@@ -1040,8 +1080,8 @@ tmr4i:T9 rdf:type tmr4i:Transition ,
                         tmr4i:ActAdministerDipyridamole
                         tmr4i:ActAdministerThiazide
                         tmr4i:ActAdministerTramadol
-                        tmr4i:ActAdminsterPPI
-                        tmr4i:ActAdmnisterIbuprofen
+                        tmr4i:ActAdministerPPI
+                        tmr4i:ActAdministerIbuprofen
                         tmr4i:ActEradicationTherapy
                       )
 ] .

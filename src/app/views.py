@@ -22,7 +22,11 @@ UPDATE_HEADERS = {
     'SD-Connection-String': 'reasoning={}'.format(REASONING_TYPE)
 }
                 
-PREFIXES = "PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>\n"
+PREFIXES = """
+            PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
+            PREFIX drugbank: <http://wifo5-04.informatik.uni-mannheim.de/drugbank/resource/drugbank/>
+            PREFIX drug: <http://wifo5-04.informatik.uni-mannheim.de/drugbank/resource/drugs/>
+            """
 
 @app.route("/")
 def index():
@@ -63,8 +67,9 @@ def inference():
          
          # Need to make sure that we are not adding duplicate interactions
          FILTER NOT EXISTS {
-             ?iir   tmr4i:relates ?t1 .
-             ?iir   tmr4i:relates ?t2 .
+             ?iir   a tmr4i:InternalRecommendationInteraction .
+             ?iir   tmr4i:relates ?r1 .
+             ?iir   tmr4i:relates ?r2 .
          }
     } """
     results = sparql(query)
@@ -90,7 +95,6 @@ def inference():
         tmr4i:{0}   tmr4i:relates <{2}> .
         <{1}> tmr4i:interactsInternallyWith <{2}> .
         <{2}> tmr4i:interactsInternallyWith <{1}> .
-        tmr4i:interactsInternallyWith a owl:ObjectProperty .
     }}
     """
      
@@ -102,13 +106,127 @@ def inference():
         print interaction, one, two
         result = sparql_update(update)
     
+        results = sparql(query)
 
+    # Including Incompatible Drugs External Interactions
+    query = PREFIXES + """
     
-    # result = sparql_update(query)
+        SELECT distinct ?r1 ?r2 ?d1 ?d2
+        WHERE {
+        ?r1 tmr4i:recommendsToPursue ?t1 .
+        ?t1 tmr4i:promotedBy ?ca1 .
+        ?r2 tmr4i:recommendsToPursue ?t2 .
+        ?t2 tmr4i:promotedBy ?ca2 .
+        ?r1 tmr4i:partOf ?g .
+        ?r2 tmr4i:partOf ?g .
     
+        { ?ca1 tmr4i:involves ?d1 . } UNION { ?ca1 tmr4i:involves ?c1 . ?d1 drugbank:drugCategory ?c1 .}
+        { ?ca2 tmr4i:involves ?d2 . } UNION { ?ca2 tmr4i:involves ?c2 . ?d2 drugbank:drugCategory ?c2 .}
+        ?d1 drugbank:interactsWith ?d2 .
+    
+        FILTER(?r1 != ?r2 && ?d1 != ?d2 && ?ca1 != ?ca2 )
+        
+        # Need to make sure that we are not adding duplicate interactions
+        FILTER NOT EXISTS {
+        ?iir   a tmr4i:IncompatibleDrugExternalInteraction .
+        ?iir   tmr4i:relates ?r1 .
+        ?iir   tmr4i:relates ?r2 .
+        }
+        
+        }
+        """
+    results = sparql(query)
+
+    deduped_results = set()
+    for r in results :
+        ROne = r['r1']['value']
+        RTwo = r['r2']['value']
+        DOne = r['d1']['value']
+        DTwo = r['d2']['value']
+            
+        if not (RTwo,ROne,DTwo,DOne) in deduped_results:
+            print "adding", (ROne,RTwo,DOne,DTwo)
+            deduped_results.add((ROne,RTwo,DOne,DTwo))
+        else :
+            print "result already found", (RTwo,ROne,DTwo,DOne)
+
+    print len(deduped_results), "external interactions found."
+    
+    update_template = PREFIXES + """
+            INSERT DATA
+            {{
+            tmr4i:{0}   a  tmr4i:IncompatibleDrugExternalInteraction, owl:NamedIndividual .
+            tmr4i:{0}   tmr4i:relates <{1}> .
+            tmr4i:{0}   tmr4i:relates <{2}> .
+            tmr4i:{0}   tmr4i:relates <{3}> .
+            tmr4i:{0}   tmr4i:relates <{4}> .
+            <{1}> tmr4i:interactsExternallyWith <{2}> .
+            <{2}> tmr4i:interactsExternallyWith <{1}> .
+            }}
+            """
+    
+    for (ROne,RTwo,DOne,DTwo) in deduped_results :
+        interaction = "external_recommendation_interaction_{}".format(str(uuid.uuid4()))
+        
+        update = update_template.format(interaction, ROne,RTwo,DOne,DTwo)
+        
+        print interaction, ROne,RTwo,DOne,DTwo
+        result = sparql_update(update)
+
+    # Including Alternative Drug External Interactions
+    # The rules for classifying the internal interaction should be already performed
+    query = PREFIXES + """
+        INSERT
+        {
+        _:iir   a  tmr4i:AlternativeDrugExternalInteraction .
+        _:iir   tmr4i:relates ?rec .
+        _:iir   tmr4i:relates ?ca .
+        _:iir   tmr4i:relates ?d .
+        _:iir   tmr4i:relates ?dALT .
+        }
+        WHERE
+        {
+        { {?i a tmr4i:ContradictionDueToSameAction .} UNION {?i a tmr4i:ContradictionDueToInverseTransition .}
+        UNION {?i a tmr4i:ContradictionDueToSimiliarTransition} .} #Given a contradictory interaction
+        ?i tmr4i:relates ?rec .
+        ?rec tmr4i:recommendsToPursue ?t .
+        ?rec tmr4i:partOf ?g .
+        ?t tmr4i:regards ?dc .						  	#For a transition related with the effetc meant by DrugCategory
+        
+        ?t tmr4i:promotedBy ?ca .
+        ?ca tmr4i:involves ?d .
+        
+        ?dALT drugbank:drugCategory ?dc .				#Find alternative drugs with the same effect / Category
+        
+        FILTER (?d != ?dALT) .
+        
+        FILTER NOT EXISTS
+        { ?dALT drugbank:interactsWith ?d2 .
+        { ?ca2 tmr4i:involves ?d2 . }
+        UNION { ?ca2 tmr4i:involves ?c2 . ?d2 drugbank:drugCategory ?c2 .} .
+        ?t2 tmr4i:promotedBy ?ca2 .
+        ?rec2 tmr4i:recommendsToPursue ?t2 .
+        ?rec2 tmr4i:partOf ?g .
+        FILTER(?dALT != ?d2)
+        }
+        
+        # Need to make sure that we are not adding duplicate interactions
+        FILTER NOT EXISTS {
+        ?iir   a tmr4i:AlternativeDrugExternalInteraction .
+        ?iir   tmr4i:relates ?rec .
+        ?iir   tmr4i:relates ?ca .
+        ?iir   tmr4i:relates ?d .
+        ?iir   tmr4i:relates ?dALT .
+        }
+    
+        }
+        """
+    results = sparql(query)
+    print results
+
     return jsonify({'status': 'Done'})
 
-    
+
 @app.route('/getguidelines')
 def guidelines():
     print "Retrieving guidelines"

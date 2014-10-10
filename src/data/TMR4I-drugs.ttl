@@ -39,3 +39,26 @@
 
 
 :ActAdministerIbuprofen :involves   drug:DB01050 .
+
+:T2 :regards <http://wifo5-04.informatik.uni-mannheim.de/drugbank/resource/drugcategory/anti-bacterialAgents> .
+
+:T3 :regards <http://wifo5-04.informatik.uni-mannheim.de/drugbank/resource/drugcategory/proton-pumpInhibitors> .
+
+:T4 :regards <http://www4.wiwiss.fu-berlin.de/drugbank/resource/drugcategory/PlateletAggregationInhibitors> .
+
+:T5 :regards <http://www4.wiwiss.fu-berlin.de/drugbank/resource/drugcategory/PlateletAggregationInhibitors> .
+
+:T6 :regards <http://wifo5-04.informatik.uni-mannheim.de/drugbank/resource/drugcategory/proton-pumpInhibitors> .
+
+:T7 :regards <http://www4.wiwiss.fu-berlin.de/drugbank/resource/drugcategory/PlateletAggregationInhibitors> .
+
+:T8 :regards <http://wifo5-04.informatik.uni-mannheim.de/drugbank/resource/drugcategory/analgesics> .
+
+:T10 :regards <http://wifo5-04.informatik.uni-mannheim.de/drugbank/resource/drugcategory/antihypertensiveAgents> .
+
+:T12 :regards <http://wifo5-04.informatik.uni-mannheim.de/drugbank/resource/drugcategory/analgesics> .
+
+:T13 :regards <http://www4.wiwiss.fu-berlin.de/drugbank/resource/drugcategory/PlateletAggregationInhibitors> .
+
+drug:DB01240 drugbank:drugCategory <http://www4.wiwiss.fu-berlin.de/drugbank/resource/drugcategory/PlateletAggregationInhibitors>  .
+

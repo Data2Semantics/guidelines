@@ -133,7 +133,8 @@ queries = {
                 ?i1	tmr4i:relates	 ?r2 .
                 ?i2	tmr4i:relates	 ?r2 .
                 ?i2	tmr4i:relates	 ?r3 .
-                ?r1	owl:differentFrom	?r3 .
+                #?r1	owl:differentFrom	?r3 .
+                FILTER (?r1	!= ?r2 && ?r2 != ?r3 && ?i1 != ?i2)
     } """,
     	'rule_08_alternative_inverse_transition_c': """ SELECT (COUNT(DISTINCT ?i) as ?c) WHERE { ?i	a	tmr4i:AlternativeDueToInverseTransition, owl:NamedIndividual .} """,
     	'rule_08_alternative_inverse_transition_a': """ ASK { ?i	a	tmr4i:InternalRecommendationInteraction, owl:NamedIndividual .
@@ -163,7 +164,7 @@ queries = {
                 ?i1	tmr4i:relates	 ?r2 .
                 ?i2	tmr4i:relates	 ?r2 .
                 ?i2	tmr4i:relates	 ?r3 .
-                FILTER (?r1	!=	?r3) .
+                FILTER (?r1	!= ?r2 && ?r2 != ?r3 && ?i1 != ?i2) .
     } """,
     	'rule_10_alternative_similar_transition_c': """ SELECT (COUNT(DISTINCT ?i) as ?c) WHERE { ?i	a	tmr4i:AlternativeDueToSimilarTransition .} """,
     	'rule_10_alternative_similar_transition_a': """ ASK { ?i	a	tmr4i:InternalRecommendationInteraction, owl:NamedIndividual .
