@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-md-4" style='border-right: 1px solid grey;'>
         <h3>{{ guideline_label }}</h3>
+        <h4>Recommendations</h4>
         <div class="list-group">
         {% for grouper, list in recommendations|groupby('rec_label') %}
             {% for e in list %}
