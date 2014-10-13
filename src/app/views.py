@@ -225,6 +225,61 @@ def inference():
     results = sparql(query)
     print results
 
+    # Including insert query to derive owl:sameAs for cumulative interactions
+    # The rules for classifying the internal interaction should be already performed
+
+    query = PREFIXES + """
+        INSERT
+        {   ?i1 owl:sameAs ?i2 .
+            ?i1 tmr4i:relates ?r3 .
+            ?i2 tmr4i:relates ?r1 .}
+        WHERE
+        {   ?i1    a    tmr4i:AlternativeDueToSimilarTransition, owl:NamedIndividual .
+            ?i2    a    tmr4i:AlternativeDueToSimilarTransition, owl:NamedIndividual .
+            ?g    a    tmr4i:Guideline, owl:NamedIndividual .
+            ?r1    a    tmr4i:Recommendation, owl:NamedIndividual .
+            ?r2    a    tmr4i:Recommendation, owl:NamedIndividual .
+            ?r3    a    tmr4i:Recommendation, owl:NamedIndividual .
+            ?r1    tmr4i:partOf     ?g .
+            ?r2    tmr4i:partOf     ?g .
+            ?r3    tmr4i:partOf     ?g .
+            ?i1    tmr4i:relates     ?r1 .
+            ?i1    tmr4i:relates     ?r2 .
+            ?i2    tmr4i:relates     ?r2 .
+            ?i2    tmr4i:relates     ?r3 .
+            FILTER (?r1	!= ?r2 && ?r1 != ?r3 && ?r2 != ?r3 && ?i1 != ?i2)
+        }
+        """
+    
+    results = sparql(query)
+    print results
+    
+    query = PREFIXES + """
+        INSERT
+        {   ?i1 owl:sameAs ?i2 .
+            ?i1 tmr4i:relates ?r3 .
+            ?i2 tmr4i:relates ?r1 .}
+        WHERE
+        {   ?i1    a    tmr4i:RepetitionDueToSameAction, owl:NamedIndividual .
+            ?i2    a    tmr4i:RepetitionDueToSameAction, owl:NamedIndividual .
+            ?g    a    tmr4i:Guideline, owl:NamedIndividual .
+            ?r1    a    tmr4i:Recommendation, owl:NamedIndividual .
+            ?r2    a    tmr4i:Recommendation, owl:NamedIndividual .
+            ?r3    a    tmr4i:Recommendation, owl:NamedIndividual .
+            ?r1    tmr4i:partOf     ?g .
+            ?r2    tmr4i:partOf     ?g .
+            ?r3    tmr4i:partOf     ?g .
+            ?i1    tmr4i:relates     ?r1 .
+            ?i1    tmr4i:relates     ?r2 .
+            ?i2    tmr4i:relates     ?r2 .
+            ?i2    tmr4i:relates     ?r3 .
+            FILTER (?r1	!= ?r2 && ?r1 != ?r3 && ?r2 != ?r3 && ?i1 != ?i2)
+        }
+        """
+
+    results = sparql(query)
+    print results
+
     return jsonify({'status': 'Done'})
 
 
