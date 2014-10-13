@@ -176,7 +176,6 @@ def inference():
     # Including Alternative Drug External Interactions
     # The rules for classifying the internal interaction should be already performed
     
-    # RH: TODO: THIS NEEDS TO BE CHANGED... the 'regards' relation is not necessary, since the drugs are already related to a drug category. 
     query = PREFIXES + """
         INSERT
         {
