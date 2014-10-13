@@ -175,6 +175,8 @@ def inference():
 
     # Including Alternative Drug External Interactions
     # The rules for classifying the internal interaction should be already performed
+    
+    # RH: TODO: THIS NEEDS TO BE CHANGED... the 'regards' relation is not necessary, since the drugs are already related to a drug category. 
     query = PREFIXES + """
         INSERT
         {
@@ -187,11 +189,11 @@ def inference():
         WHERE
         {
         { {?i a tmr4i:ContradictionDueToSameAction .} UNION {?i a tmr4i:ContradictionDueToInverseTransition .}
-        UNION {?i a tmr4i:ContradictionDueToSimiliarTransition} .} #Given a contradictory interaction
+        UNION {?i a tmr4i:ContradictionDueToSimiliarTransition} .} #Given a contradictory interaction (RH: Why not just check for an instance of RecommendationInteraction?)
         ?i tmr4i:relates ?rec .
         ?rec tmr4i:recommendsToPursue ?t .
         ?rec tmr4i:partOf ?g .
-        ?t tmr4i:regards ?dc .						  	#For a transition related with the effetc meant by DrugCategory
+        ?t tmr4i:regards ?dc .						  	#For a transition related with the effect meant by DrugCategory
         
         ?t tmr4i:promotedBy ?ca .
         ?ca tmr4i:involves ?d .
@@ -244,7 +246,7 @@ def recommendations():
     guideline_label = request.args.get('label','')
     
     query = PREFIXES + """
-    SELECT DISTINCT ?rec ?rec_label ?crec ?irec WHERE 
+    SELECT DISTINCT ?rec ?rec_label ?crec ?irec ?erec WHERE 
     { 
         ?rec tmr4i:partOf <""" + guideline_uri + """>  . 
         ?rec rdfs:label ?rec_label .
@@ -257,7 +259,12 @@ def recommendations():
             ?rec a tmr4i:InternallyInteractingRecommendation .
             BIND(tmr4i:InternallyInteractingRecommendation AS ?irec)
         }
+        OPTIONAL {
+            ?rec a tmr4i:ExternallyInteractingRecommendation .
+            BIND(tmr4i:ExternallyInteractingRecommendation AS ?erec)
+        }
     }"""
+    
     
     recommendations = sparql(query, strip=True)
     
@@ -293,6 +300,8 @@ def transitions():
             ?similar_transition a owl:NamedIndividual .
             ?srec tmr4i:recommends ?similar_transition .
         }
+        
+        
         BIND(IF (bound(?f_condition), ?f_condition, "none") as ?filter_condition)
     }
     """
