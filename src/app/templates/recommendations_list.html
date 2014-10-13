@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-md-4" style='border-right: 1px solid grey;'>
         <h3>{{ guideline_label }}</h3>
+        <h4>Recommendations</h4>
         <div class="list-group">
         {% for grouper, list in recommendations|groupby('rec_label') %}
             {% for e in list %}
@@ -19,6 +20,7 @@
     {% for grouper, list in recommendations|groupby('rec_label') %}
         {% for e in list %}
             {% if loop.first %}
+                    {% set uri = e.rec.value %}
                     <div class="transition" style="display: none;" transition_container_for='{{e.rec.value}}'>
                         <h3>{{ grouper.value }}</h3>
                     {%if 'irec_label' in e %}
@@ -31,7 +33,7 @@
             {% if loop.last %}
                     
                         
-                        <div transitions_for='{{e.rec.value}}'>
+                        <div transitions_for='{{ uri }}'>
                         </div>
                     </div>
             {% endif %}

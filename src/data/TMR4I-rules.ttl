@@ -202,7 +202,7 @@
             # ?r1    owl:differentFrom    ?r3 .
             FILTER (?r1	!= ?r2 && ?r1 != ?r3 && ?r2 != ?r3 && ?i1 != ?i2)
         } THEN {
-            ?i1    owl:sameAs    ?i2 .
+            ?i1    tmr4i:sameAs    ?i2 .
         }""".
 
 # Rule 8
@@ -314,7 +314,7 @@
             ?i1    tmr4i:relates ?r .
             ?r     a    owl:NamedIndividual .
             FILTER (?i1 != ?i2)
-            FILTER NOT EXISTS {?i2 tmr4i:relates ?r}
+            # FILTER NOT EXISTS {?i2 tmr4i:relates ?r}
         } THEN {
             ?i2    tmr4i:relates ?r .
         }""".

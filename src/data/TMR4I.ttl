@@ -448,7 +448,7 @@ tmr4i:CIG-TIA rdf:type tmr4i:Guideline ,
 
 tmr4i:RecDM-AntiThrombotic rdf:type tmr4i:Recommendation ,
                                     owl:NamedIndividual ;
-                           rdfs:label "Recommendation for Avoiding Thrombus"@en ;
+                           rdfs:label "Avoid thrombi"@en ;
                            tmr4i:partOf tmr4i:CIG-DM ;
                            tmr4i:recommendsToPursue tmr4i:T4 .
 
@@ -458,7 +458,7 @@ tmr4i:RecDM-AntiThrombotic rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecDM-AvoidHighLBS rdf:type tmr4i:Recommendation ,
                                   owl:NamedIndividual ;
-                         rdfs:label "Recommendation for Avoiding High Level of Blood Sugar"@en ;
+                         rdfs:label "Avoid high blood sugar level"@en ;
                          tmr4i:partOf tmr4i:CIG-DM ;
                          tmr4i:recommendsToAvoid tmr4i:T11 .
 
@@ -468,7 +468,7 @@ tmr4i:RecDM-AvoidHighLBS rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecDU-AvoidGIB rdf:type tmr4i:Recommendation ,
                               owl:NamedIndividual ;
-                     rdfs:label "Recommendation for Avoiding Gastrointestinal Bleeding"@en ;
+                     rdfs:label "Avoid gastrointestinal bleeding"@en ;
                      tmr4i:partOf tmr4i:CIG-DU ;
                      tmr4i:recommendsToAvoid tmr4i:T1 .
 
@@ -478,7 +478,7 @@ tmr4i:RecDU-AvoidGIB rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecDU-HealingDU1 rdf:type tmr4i:Recommendation ,
                                 owl:NamedIndividual ;
-                       rdfs:label "Recommendation for Healing Duodenal Ulcer"@en ;
+                       rdfs:label "Heal duodenal ulcer"@en ;
                        tmr4i:partOf tmr4i:CIG-DU ;
                        tmr4i:recommendsToPursue tmr4i:T2 .
 
@@ -488,7 +488,7 @@ tmr4i:RecDU-HealingDU1 rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecDU-HealingDU2 rdf:type tmr4i:Recommendation ,
                                 owl:NamedIndividual ;
-                       rdfs:label "Recommendation for Healing Duodenal Ulcer"@en ;
+                       rdfs:label "Heal duodenal ulcer"@en ;
                        tmr4i:partOf tmr4i:CIG-DU ;
                        tmr4i:recommendsToPursue tmr4i:T3 .
 
@@ -498,7 +498,7 @@ tmr4i:RecDU-HealingDU2 rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecDUTIA-AvoidBleeding rdf:type tmr4i:Recommendation ,
                                       owl:NamedIndividual ;
-                             rdfs:label "Recommendation for Avoiding Gastrointestinal Bleeding"@en ;
+                             rdfs:label "Avoid gastrointestinal bleeding"@en ;
                              tmr4i:partOf tmr4i:CIG-DU-TIA ;
                              tmr4i:recommendsToAvoid tmr4i:T1 .
 
@@ -507,7 +507,7 @@ tmr4i:RecDUTIA-AvoidBleeding rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecDUTIA-HealingDU1 rdf:type tmr4i:Recommendation ,
                                    owl:NamedIndividual ;
-                          rdfs:label "Recommendation for Healing Duodenal Ulcer"@en ;
+                          rdfs:label "Heal duodenal ulcer"@en ;
                           tmr4i:partOf tmr4i:CIG-DU-TIA ;
                           tmr4i:recommendsToPursue tmr4i:T2 .
 
@@ -517,7 +517,7 @@ tmr4i:RecDUTIA-HealingDU1 rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecDUTIA-HealingDU2 rdf:type tmr4i:Recommendation ,
                                    owl:NamedIndividual ;
-                          rdfs:label "Recommendation for Healing Duodenal Ulcer"@en ;
+                          rdfs:label "Heal duodenal ulcer"@en ;
                           tmr4i:partOf tmr4i:CIG-DU-TIA ;
                           tmr4i:recommendsToPursue tmr4i:T3 .
 
@@ -527,7 +527,7 @@ tmr4i:RecDUTIA-HealingDU2 rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecDUTIA-RedHighRiskVE rdf:type tmr4i:Recommendation ,
                                       owl:NamedIndividual ;
-                             rdfs:label "Recommendation for Reducing High Risk of Vascular Event"@en ;
+                             rdfs:label "Reducing high risk of vascular event"@en ;
                              tmr4i:partOf tmr4i:CIG-DU-TIA ;
                              tmr4i:recommendsToPursue tmr4i:T5 .
 
@@ -537,7 +537,7 @@ tmr4i:RecDUTIA-RedHighRiskVE rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecDUTIA-RedMediumRiskVE rdf:type tmr4i:Recommendation ,
                                         owl:NamedIndividual ;
-                               rdfs:label "Recommendation for Reducing High Medium of Vascular Event"@en ;
+                               rdfs:label "Reduce medium risk of vascular event"@en ;
                                tmr4i:partOf tmr4i:CIG-DU-TIA ;
                                tmr4i:recommendsToPursue tmr4i:T4 .
 
@@ -547,7 +547,7 @@ tmr4i:RecDUTIA-RedMediumRiskVE rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecDUTIASol-ProtectingDuodenum rdf:type tmr4i:Recommendation ,
                                               owl:NamedIndividual ;
-                                     rdfs:label "Recommendation for Protecting Duodenum"@en ;
+                                     rdfs:label "Protect duodenum"@en ;
                                      tmr4i:partOf tmr4i:CIG-DU-TIA ;
                                      tmr4i:recommendsToPursue tmr4i:T6 .
 
@@ -557,7 +557,7 @@ tmr4i:RecDUTIASol-ProtectingDuodenum rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecDUTIASol-RedMediumRiskVE rdf:type tmr4i:Recommendation ,
                                            owl:NamedIndividual ;
-                                  rdfs:label "Recommendation for Reducing Medium Risk of Vascular Event"@en ;
+                                  rdfs:label "Reduce medium risk of vascular event"@en ;
                                   tmr4i:partOf tmr4i:CIG-DU-TIA ;
                                   tmr4i:recommendsToPursue tmr4i:T7 .
 
@@ -567,7 +567,7 @@ tmr4i:RecDUTIASol-RedMediumRiskVE rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecHT-AvoidHighBP rdf:type tmr4i:Recommendation ,
                                  owl:NamedIndividual ;
-                        rdfs:label "Recommendation for Avoiding High Blood Pressure"@en ;
+                        rdfs:label "Avoid high blood pressure"@en ;
                         tmr4i:partOf tmr4i:CIG-HT ;
                         tmr4i:recommendsToAvoid tmr4i:T9 .
 
@@ -577,7 +577,7 @@ tmr4i:RecHT-AvoidHighBP rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecHT-Diuretic rdf:type tmr4i:Recommendation ,
                               owl:NamedIndividual ;
-                     rdfs:label "Recommendation for Reducing Blood Pressure"@en ;
+                     rdfs:label "Reduce blood pressure"@en ;
                      tmr4i:partOf tmr4i:CIG-HT ;
                      tmr4i:recommendsToPursue tmr4i:T10 .
 
@@ -587,7 +587,7 @@ tmr4i:RecHT-Diuretic rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecOA-AvoidGIB rdf:type tmr4i:Recommendation ,
                               owl:NamedIndividual ;
-                     rdfs:label "Recommendation for Avoiding Gastroinstetinal Bleeding"@en ;
+                     rdfs:label "Avoid gastrointestinal bleeding"@en ;
                      tmr4i:partOf tmr4i:CIG-OA ;
                      tmr4i:recommendsToAvoid tmr4i:T1 .
 
@@ -597,7 +597,7 @@ tmr4i:RecOA-AvoidGIB rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecOA-HT-DM-AntiThrombotic rdf:type tmr4i:Recommendation ,
                                           owl:NamedIndividual ;
-                                 rdfs:label "Recommendation for Avoiding Thrombus"@en ;
+                                 rdfs:label "Avoid thrombi"@en ;
                                  tmr4i:partOf tmr4i:CIG-OA-HT-DM ;
                                  tmr4i:recommendsToPursue tmr4i:T4 .
 
@@ -607,7 +607,7 @@ tmr4i:RecOA-HT-DM-AntiThrombotic rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecOA-HT-DM-AvoidGIB rdf:type tmr4i:Recommendation ,
                                     owl:NamedIndividual ;
-                           rdfs:label "Recommendation for Avoiding Gastroinstetinal Bleeding"@en ;
+                           rdfs:label "Avoiding gastrointestinal bleeding"@en ;
                            tmr4i:partOf tmr4i:CIG-OA-HT-DM ;
                            tmr4i:recommendsToAvoid tmr4i:T1 .
 
@@ -617,7 +617,7 @@ tmr4i:RecOA-HT-DM-AvoidGIB rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecOA-HT-DM-AvoidHighBP rdf:type tmr4i:Recommendation ,
                                        owl:NamedIndividual ;
-                              rdfs:label "Recommendation for Avoiding High Blood Pressure"@en ;
+                              rdfs:label "Avoid high blood pressure"@en ;
                               tmr4i:partOf tmr4i:CIG-OA-HT-DM ;
                               tmr4i:recommendsToAvoid tmr4i:T9 .
 
@@ -627,7 +627,7 @@ tmr4i:RecOA-HT-DM-AvoidHighBP rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecOA-HT-DM-AvoidHighLBS rdf:type tmr4i:Recommendation ,
                                         owl:NamedIndividual ;
-                               rdfs:label "Recommendation for Avoiding High Level of Blood Sugar"@en ;
+                               rdfs:label "Avoid high blood sugar level"@en ;
                                tmr4i:partOf tmr4i:CIG-OA-HT-DM ;
                                tmr4i:recommendsToAvoid tmr4i:T11 .
 
@@ -637,7 +637,7 @@ tmr4i:RecOA-HT-DM-AvoidHighLBS rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecOA-HT-DM-Diuretic rdf:type tmr4i:Recommendation ,
                                     owl:NamedIndividual ;
-                           rdfs:label "Recommendation for Reducing Blood Pressure"@en ;
+                           rdfs:label "Reduce blood pressure"@en ;
                            tmr4i:partOf tmr4i:CIG-OA-HT-DM ;
                            tmr4i:recommendsToPursue tmr4i:T10 .
 
@@ -647,7 +647,7 @@ tmr4i:RecOA-HT-DM-Diuretic rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecOA-HT-DM-Extra-AntiThrombotic rdf:type tmr4i:Recommendation ,
                                                 owl:NamedIndividual ;
-                                       rdfs:label "Recommendation for Avoiding Thrombus"@en ;
+                                       rdfs:label "Avoid thrombi"@en ;
                                        tmr4i:partOf tmr4i:CIG-OA-HT-DM ;
                                        tmr4i:recommendsToPursue tmr4i:T7 .
 
@@ -657,7 +657,7 @@ tmr4i:RecOA-HT-DM-Extra-AntiThrombotic rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecOA-HT-DM-Painkiller rdf:type tmr4i:Recommendation ,
                                       owl:NamedIndividual ;
-                             rdfs:label "Recommendation for Reducing Pain"@en ;
+                             rdfs:label "Reduce pain"@en ;
                              tmr4i:partOf tmr4i:CIG-OA-HT-DM ;
                              tmr4i:recommendsToPursue tmr4i:T8 .
 
@@ -666,7 +666,7 @@ tmr4i:RecOA-HT-DM-Painkiller rdf:type tmr4i:Recommendation ,
 ###  http://guidelines.data2semantics.org/vocab/RecOA-HT-DM-Sol-AntiThrombotic
 
 tmr4i:RecOA-HT-DM-Sol-AntiThrombotic rdf:type owl:NamedIndividual ;
-                                     rdfs:label "Recommendation for Avoiding Thrombus"@en ;
+                                     rdfs:label "Avoid thrombi"@en ;
                                      tmr4i:partOf tmr4i:CIG-OA-HT-DM ;
                                      tmr4i:recommendsToPursue tmr4i:T13 .
 
@@ -675,7 +675,7 @@ tmr4i:RecOA-HT-DM-Sol-AntiThrombotic rdf:type owl:NamedIndividual ;
 ###  http://guidelines.data2semantics.org/vocab/RecOA-HT-DM-Sol-Painkiller
 
 tmr4i:RecOA-HT-DM-Sol-Painkiller rdf:type owl:NamedIndividual ;
-                                 rdfs:label "Recommendation for Reducing Pain"@en ;
+                                 rdfs:label "Reduce pain"@en ;
                                  tmr4i:partOf tmr4i:CIG-OA-HT-DM ;
                                  tmr4i:recommendsToPursue tmr4i:T12 .
 
@@ -685,7 +685,7 @@ tmr4i:RecOA-HT-DM-Sol-Painkiller rdf:type owl:NamedIndividual ;
 
 tmr4i:RecOA-Painkiller rdf:type tmr4i:Recommendation ,
                                 owl:NamedIndividual ;
-                       rdfs:label "Recommendation for Reducing Pain"@en ;
+                       rdfs:label "Reduce pain"@en ;
                        tmr4i:partOf tmr4i:CIG-OA ;
                        tmr4i:recommendsToPursue tmr4i:T8 .
 
@@ -695,7 +695,7 @@ tmr4i:RecOA-Painkiller rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecTIA-RedHighRiskVE rdf:type tmr4i:Recommendation ,
                                     owl:NamedIndividual ;
-                           rdfs:label "Recommendation for Reducing High Blood Pressure"@en ;
+                           rdfs:label "Reduce high blood pressure"@en ;
                            tmr4i:partOf tmr4i:CIG-TIA ;
                            tmr4i:recommendsToPursue tmr4i:T5 .
 
@@ -705,7 +705,7 @@ tmr4i:RecTIA-RedHighRiskVE rdf:type tmr4i:Recommendation ,
 
 tmr4i:RecTIA-RedMediumRiskVE rdf:type tmr4i:Recommendation ,
                                       owl:NamedIndividual ;
-                             rdfs:label "Recommendation for Reducing Medium Risk of Vascular Event"@en ;
+                             rdfs:label "Reduce medium risk of vascular event"@en ;
                              tmr4i:partOf tmr4i:CIG-TIA ;
                              tmr4i:recommendsToPursue tmr4i:T4 .
 
@@ -715,7 +715,7 @@ tmr4i:RecTIA-RedMediumRiskVE rdf:type tmr4i:Recommendation ,
 
 tmr4i:SitDUHealed rdf:type tmr4i:SituationType ,
                             owl:NamedIndividual ;
-                  rdfs:label "Ulcer is Healed"@en .
+                  rdfs:label "Ulcer is healed"@en .
 
 
 
@@ -723,7 +723,7 @@ tmr4i:SitDUHealed rdf:type tmr4i:SituationType ,
 
 tmr4i:SitDUUnhealed rdf:type tmr4i:SituationType ,
                             owl:NamedIndividual ;
-                    rdfs:label "Ulcer is Unhealed"@en .
+                    rdfs:label "Ulcer is unhealed"@en .
 
 
 
