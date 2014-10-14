@@ -316,3 +316,58 @@
         } THEN {
             ?i2    tmr4i:relates ?r .
         }""".
+
+
+# Rule 13 EXT-ALT
+#[]  a   rule:SPARQLRule;
+#rule:content    """
+#PREFIX tmr4i: <http://guidelines.data2semantics.org/vocab/>
+#PREFIX owl: <http://www.w3.org/2002/07/owl#>
+#IF
+#{
+#{ {?i a tmr4i:ContradictionDueToSameAction .} UNION {?i a tmr4i:ContradictionDueToInverseTransition .}
+#UNION {?i a tmr4i:ContradictionDueToSimiliarTransition .} UNION {?i a tmr4i:IncompatibleDrugExternalInteraction .} }
+##Given a contradictory or incompatibleDrug interaction (search for alternatives when it's needed)
+#?i tmr4i:relates ?rec .
+#?rec tmr4i:recommendsToPursue ?t .
+#?rec tmr4i:partOf ?g .
+#?t tmr4i:regards ?dc .						  	#For a transition related with the effect meant by DrugCategory
+#
+#?t tmr4i:promotedBy ?ca .
+#?ca tmr4i:involves ?d .
+#
+#?dALT drugbank:drugCategory ?dc .				#Find alternative drugs with the same effect / Category
+#
+#FILTER (?d != ?dALT) .
+#
+#FILTER NOT EXISTS                               #Don't consider alternative drugs that are incompatible with recommended ones
+#{ ?dALT drugbank:interactsWith ?d2 .
+#{ ?ca2 tmr4i:involves ?d2 . }
+#UNION { ?ca2 tmr4i:involves ?c2 . ?d2 drugbank:drugCategory ?c2 .} .
+#?t2 tmr4i:promotedBy ?ca2 .
+#?rec2 tmr4i:recommendsToPursue ?t2 .
+#?rec2 tmr4i:partOf ?g .
+#FILTER(?dALT != ?d2)
+#}
+#
+#BIND (UUID() AS ?iir)
+#
+## Need to make sure that we are not adding duplicate interactions
+#FILTER NOT EXISTS {
+#?iir2   a tmr4i:AlternativeDrugExternalInteraction .
+#?iir2   tmr4i:relates ?rec .
+#?iir2   tmr4i:relates ?ca .
+#?iir2   tmr4i:relates ?d .
+#?iir2   tmr4i:relates ?dALT .
+#}
+#
+#}
+#
+#THEN
+#{
+#?iir   a  tmr4i:AlternativeDrugExternalInteraction .
+#?iir   tmr4i:relates ?rec .
+#?iir   tmr4i:relates ?ca .
+#?iir   tmr4i:relates ?d .
+#?iir   tmr4i:relates ?dALT .
+#}""".

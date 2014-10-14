@@ -104,7 +104,9 @@ tmr4i:recommends rdf:type owl:ObjectProperty ;
 ###  http://guidelines.data2semantics.org/vocab/recommendsToAvoid
 
 tmr4i:recommendsToAvoid rdf:type owl:ObjectProperty ;
-                        
+
+                        rdfs:label "Avoid"@en;
+
                         rdfs:subPropertyOf tmr4i:recommends .
 
 
@@ -112,7 +114,9 @@ tmr4i:recommendsToAvoid rdf:type owl:ObjectProperty ;
 ###  http://guidelines.data2semantics.org/vocab/recommendsToPursue
 
 tmr4i:recommendsToPursue rdf:type owl:ObjectProperty ;
-                         
+
+                        rdfs:label "Pursue"@en;
+
                          rdfs:subPropertyOf tmr4i:recommends .
 
 
@@ -163,7 +167,9 @@ tmr4i:interactsExternallyWith a owl:ObjectProperty .
 ###  http://guidelines.data2semantics.org/vocab/AlternativeDueToInverseTransition
 
 tmr4i:AlternativeDueToInverseTransition rdf:type owl:Class ;
-                                        
+
+                                        rdfs:label "Alternative Due To Inverse Transition"@en;
+
                                         rdfs:subClassOf tmr4i:InternalRecommendationInteraction .
 
 
@@ -171,6 +177,8 @@ tmr4i:AlternativeDueToInverseTransition rdf:type owl:Class ;
 ###  http://guidelines.data2semantics.org/vocab/AlternativeDueToSimilarTransition
 
 tmr4i:AlternativeDueToSimilarTransition rdf:type owl:Class ;
+
+                                        rdfs:label "Alternative Due To Similar Transition"@en;
                                         
                                         rdfs:subClassOf tmr4i:InternalRecommendationInteraction .
 
@@ -193,6 +201,8 @@ tmr4i:ComposedGuideline rdf:type owl:Class ;
 ###  http://guidelines.data2semantics.org/vocab/ContradictionDueToInverseTransition
 
 tmr4i:ContradictionDueToInverseTransition rdf:type owl:Class ;
+
+                                          rdfs:label "Contradiction Due To Inverse Transition"@en;
                                           
                                           rdfs:subClassOf tmr4i:InternalRecommendationInteraction .
 
@@ -201,6 +211,8 @@ tmr4i:ContradictionDueToInverseTransition rdf:type owl:Class ;
 ###  http://guidelines.data2semantics.org/vocab/ContradictionDueToSameAction
 
 tmr4i:ContradictionDueToSameAction rdf:type owl:Class ;
+
+                                   rdfs:label "Contradiction Due To Same Action"@en;
                                    
                                    rdfs:subClassOf tmr4i:InternalRecommendationInteraction .
 
@@ -209,6 +221,8 @@ tmr4i:ContradictionDueToSameAction rdf:type owl:Class ;
 ###  http://guidelines.data2semantics.org/vocab/ContradictionDueToSimiliarTransition
 
 tmr4i:ContradictionDueToSimiliarTransition rdf:type owl:Class ;
+
+                                           rdfs:label "Contradiction Due To Similar Transition"@en;
                                            
                                            rdfs:subClassOf tmr4i:InternalRecommendationInteraction .
 
@@ -244,6 +258,22 @@ tmr4i:ExternalRecommendationInteraction rdf:type owl:Class ;
 
                                         rdfs:subClassOf tmr4i:RecommendationInteraction .
 
+
+###  http://guidelines.data2semantics.org/vocab/IncompatibleDrugExternalInteraction
+
+tmr4i:IncompatibleDrugExternalInteraction rdf:type owl:Class ;
+
+                                          rdfs:label "Incompatible Drug External Interaction"@en;
+
+                                          rdfs:subClassOf tmr4i:ExternalRecommendationInteraction .
+
+###  http://guidelines.data2semantics.org/vocab/AlternativeDrugExternalInteraction
+
+tmr4i:AlternativeDrugExternalInteraction rdf:type owl:Class ;
+
+                                          rdfs:label "Alternative Drug External Interaction"@en;
+
+                                          rdfs:subClassOf tmr4i:AlternativeDrugExternalInteraction .
 
 ###  http://guidelines.data2semantics.org/vocab/InternallyInteractingRecommendation
 
@@ -288,6 +318,8 @@ tmr4i:Recommendation rdf:type owl:Class .
 
 tmr4i:RepetitionDueToSameAction rdf:type owl:Class ;
 
+                                rdfs:label "Repetition Due To Same Action"@en;
+
                                 rdfs:subClassOf tmr4i:InternalRecommendationInteraction .
 
 
@@ -312,690 +344,6 @@ tmr4i:Transition rdf:type owl:Class .
 
 
 
-
-
-#################################################################
-#
-#    Individuals
-#
-#################################################################
-
-
-###  http://guidelines.data2semantics.org/vocab/ActAdministerAspirin
-
-tmr4i:ActAdministerAspirin  rdf:type tmr4i:CareActionType ,
-                                    owl:NamedIndividual ;
-                            rdfs:label "Administer Aspirin"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/ActAdministerClopidogrel
-
-tmr4i:ActAdministerClopidogrel rdf:type tmr4i:CareActionType ,
-                                        owl:NamedIndividual ;
-                            rdfs:label "Administer Clopidogrel"@en .
-
-
-###  http://guidelines.data2semantics.org/vocab/ActAdministerDipyridamole
-
-tmr4i:ActAdministerDipyridamole rdf:type tmr4i:CareActionType ,
-                                         owl:NamedIndividual ;
-                            rdfs:label "Administer Dipyridamole"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/ActAdministerThiazide
-
-tmr4i:ActAdministerThiazide rdf:type tmr4i:CareActionType ,
-                                     owl:NamedIndividual ;
-                            rdfs:label "Administer Thiazide"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/ActAdministerTramadol
-
-tmr4i:ActAdministerTramadol rdf:type tmr4i:CareActionType ,
-                                     owl:NamedIndividual ;
-                            rdfs:label "Administer Tramadol"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/ActAdministerPPI
-
-tmr4i:ActAdministerPPI rdf:type tmr4i:CareActionType ,
-                               owl:NamedIndividual ;
-                            rdfs:label "Administer PPI"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/ActAdministerIbuprofen
-
-tmr4i:ActAdministerIbuprofen rdf:type tmr4i:CareActionType ,
-                                     owl:NamedIndividual ;
-                            rdfs:label "Administer Ibuprofen"@en .
-
-
-###  http://guidelines.data2semantics.org/vocab/ActEradicationTherapy
-
-tmr4i:ActEradicationTherapy rdf:type tmr4i:CareActionType ,
-                                     owl:NamedIndividual ;
-                            rdfs:label "Eradication Therapy"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/CIG-DM
-
-tmr4i:CIG-DM rdf:type tmr4i:Guideline ,
-                      owl:NamedIndividual ;
-            rdfs:label "CIG for Diabetes Mellitus"@en .
-
-
-###  http://guidelines.data2semantics.org/vocab/CIG-DU
-
-tmr4i:CIG-DU rdf:type tmr4i:Guideline ,
-                      owl:NamedIndividual ;
-            rdfs:label "CIG for Duodenal Ulcer"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/CIG-DU-TIA
-
-tmr4i:CIG-DU-TIA rdf:type tmr4i:Guideline ,
-                          owl:NamedIndividual ;
-                 rdfs:label "Combined CIG for Duodenal Ulcer and Transient Ischemic Attack"@en ;
-                 tmr4i:derivesFrom tmr4i:CIG-DU ,
-                                   tmr4i:CIG-TIA .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/CIG-HT
-
-tmr4i:CIG-HT rdf:type tmr4i:Guideline ,
-                      owl:NamedIndividual ;
-                      rdfs:label "CIG for Hypertension"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/CIG-OA
-
-tmr4i:CIG-OA rdf:type tmr4i:Guideline ,
-                      owl:NamedIndividual ;
-                      rdfs:label "CIG for Osteoarthritis"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/CIG-OA-HT-DM
-
-tmr4i:CIG-OA-HT-DM rdf:type tmr4i:Guideline ,
-                            owl:NamedIndividual ;
-                   rdfs:label "Combined CIG for Osteoarthritis, Hypertension and Diabetes Mellitus"@en ;
-                   
-                   tmr4i:derivesFrom tmr4i:CIG-DM ,
-                                     tmr4i:CIG-HT ,
-                                     tmr4i:CIG-OA .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/CIG-TIA
-
-tmr4i:CIG-TIA rdf:type tmr4i:Guideline ,
-                        owl:NamedIndividual ;
-              rdfs:label "CIG for Transient Ischemic Attack"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecDM-AntiThrombotic
-
-tmr4i:RecDM-AntiThrombotic rdf:type tmr4i:Recommendation ,
-                                    owl:NamedIndividual ;
-                           rdfs:label "Avoid thrombi"@en ;
-                           tmr4i:partOf tmr4i:CIG-DM ;
-                           tmr4i:recommendsToPursue tmr4i:T4 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecDM-AvoidHighLBS
-
-tmr4i:RecDM-AvoidHighLBS rdf:type tmr4i:Recommendation ,
-                                  owl:NamedIndividual ;
-                         rdfs:label "Avoid high blood sugar level"@en ;
-                         tmr4i:partOf tmr4i:CIG-DM ;
-                         tmr4i:recommendsToAvoid tmr4i:T11 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecDU-AvoidGIB
-
-tmr4i:RecDU-AvoidGIB rdf:type tmr4i:Recommendation ,
-                              owl:NamedIndividual ;
-                     rdfs:label "Avoid gastrointestinal bleeding"@en ;
-                     tmr4i:partOf tmr4i:CIG-DU ;
-                     tmr4i:recommendsToAvoid tmr4i:T1 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecDU-HealingDU1
-
-tmr4i:RecDU-HealingDU1 rdf:type tmr4i:Recommendation ,
-                                owl:NamedIndividual ;
-                       rdfs:label "Heal duodenal ulcer"@en ;
-                       tmr4i:partOf tmr4i:CIG-DU ;
-                       tmr4i:recommendsToPursue tmr4i:T2 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecDU-HealingDU2
-
-tmr4i:RecDU-HealingDU2 rdf:type tmr4i:Recommendation ,
-                                owl:NamedIndividual ;
-                       rdfs:label "Heal duodenal ulcer"@en ;
-                       tmr4i:partOf tmr4i:CIG-DU ;
-                       tmr4i:recommendsToPursue tmr4i:T3 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecDUTIA-AvoidBleeding
-
-tmr4i:RecDUTIA-AvoidBleeding rdf:type tmr4i:Recommendation ,
-                                      owl:NamedIndividual ;
-                             rdfs:label "Avoid gastrointestinal bleeding"@en ;
-                             tmr4i:partOf tmr4i:CIG-DU-TIA ;
-                             tmr4i:recommendsToAvoid tmr4i:T1 .
-
-
-###  http://guidelines.data2semantics.org/vocab/RecDUTIA-HealingDU1
-
-tmr4i:RecDUTIA-HealingDU1 rdf:type tmr4i:Recommendation ,
-                                   owl:NamedIndividual ;
-                          rdfs:label "Heal duodenal ulcer"@en ;
-                          tmr4i:partOf tmr4i:CIG-DU-TIA ;
-                          tmr4i:recommendsToPursue tmr4i:T2 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecDUTIA-HealingDU2
-
-tmr4i:RecDUTIA-HealingDU2 rdf:type tmr4i:Recommendation ,
-                                   owl:NamedIndividual ;
-                          rdfs:label "Heal duodenal ulcer"@en ;
-                          tmr4i:partOf tmr4i:CIG-DU-TIA ;
-                          tmr4i:recommendsToPursue tmr4i:T3 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecDUTIA-RedHighRiskVE
-
-tmr4i:RecDUTIA-RedHighRiskVE rdf:type tmr4i:Recommendation ,
-                                      owl:NamedIndividual ;
-                             rdfs:label "Reducing high risk of vascular event"@en ;
-                             tmr4i:partOf tmr4i:CIG-DU-TIA ;
-                             tmr4i:recommendsToPursue tmr4i:T5 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecDUTIA-RedMediumRiskVE
-
-tmr4i:RecDUTIA-RedMediumRiskVE rdf:type tmr4i:Recommendation ,
-                                        owl:NamedIndividual ;
-                               rdfs:label "Reduce medium risk of vascular event"@en ;
-                               tmr4i:partOf tmr4i:CIG-DU-TIA ;
-                               tmr4i:recommendsToPursue tmr4i:T4 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecDUTIASol-ProtectingDuodenum
-
-tmr4i:RecDUTIASol-ProtectingDuodenum rdf:type tmr4i:Recommendation ,
-                                              owl:NamedIndividual ;
-                                     rdfs:label "Protect duodenum"@en ;
-                                     tmr4i:partOf tmr4i:CIG-DU-TIA ;
-                                     tmr4i:recommendsToPursue tmr4i:T6 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecDUTIASol-RedMediumRiskVE
-
-tmr4i:RecDUTIASol-RedMediumRiskVE rdf:type tmr4i:Recommendation ,
-                                           owl:NamedIndividual ;
-                                  rdfs:label "Reduce medium risk of vascular event"@en ;
-                                  tmr4i:partOf tmr4i:CIG-DU-TIA ;
-                                  tmr4i:recommendsToPursue tmr4i:T7 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecHT-AvoidHighBP
-
-tmr4i:RecHT-AvoidHighBP rdf:type tmr4i:Recommendation ,
-                                 owl:NamedIndividual ;
-                        rdfs:label "Avoid high blood pressure"@en ;
-                        tmr4i:partOf tmr4i:CIG-HT ;
-                        tmr4i:recommendsToAvoid tmr4i:T9 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecHT-Diuretic
-
-tmr4i:RecHT-Diuretic rdf:type tmr4i:Recommendation ,
-                              owl:NamedIndividual ;
-                     rdfs:label "Reduce blood pressure"@en ;
-                     tmr4i:partOf tmr4i:CIG-HT ;
-                     tmr4i:recommendsToPursue tmr4i:T10 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecOA-AvoidGIB
-
-tmr4i:RecOA-AvoidGIB rdf:type tmr4i:Recommendation ,
-                              owl:NamedIndividual ;
-                     rdfs:label "Avoid gastrointestinal bleeding"@en ;
-                     tmr4i:partOf tmr4i:CIG-OA ;
-                     tmr4i:recommendsToAvoid tmr4i:T1 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecOA-HT-DM-AntiThrombotic
-
-tmr4i:RecOA-HT-DM-AntiThrombotic rdf:type tmr4i:Recommendation ,
-                                          owl:NamedIndividual ;
-                                 rdfs:label "Avoid thrombi"@en ;
-                                 tmr4i:partOf tmr4i:CIG-OA-HT-DM ;
-                                 tmr4i:recommendsToPursue tmr4i:T4 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecOA-HT-DM-AvoidGIB
-
-tmr4i:RecOA-HT-DM-AvoidGIB rdf:type tmr4i:Recommendation ,
-                                    owl:NamedIndividual ;
-                           rdfs:label "Avoiding gastrointestinal bleeding"@en ;
-                           tmr4i:partOf tmr4i:CIG-OA-HT-DM ;
-                           tmr4i:recommendsToAvoid tmr4i:T1 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecOA-HT-DM-AvoidHighBP
-
-tmr4i:RecOA-HT-DM-AvoidHighBP rdf:type tmr4i:Recommendation ,
-                                       owl:NamedIndividual ;
-                              rdfs:label "Avoid high blood pressure"@en ;
-                              tmr4i:partOf tmr4i:CIG-OA-HT-DM ;
-                              tmr4i:recommendsToAvoid tmr4i:T9 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecOA-HT-DM-AvoidHighLBS
-
-tmr4i:RecOA-HT-DM-AvoidHighLBS rdf:type tmr4i:Recommendation ,
-                                        owl:NamedIndividual ;
-                               rdfs:label "Avoid high blood sugar level"@en ;
-                               tmr4i:partOf tmr4i:CIG-OA-HT-DM ;
-                               tmr4i:recommendsToAvoid tmr4i:T11 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecOA-HT-DM-Diuretic
-
-tmr4i:RecOA-HT-DM-Diuretic rdf:type tmr4i:Recommendation ,
-                                    owl:NamedIndividual ;
-                           rdfs:label "Reduce blood pressure"@en ;
-                           tmr4i:partOf tmr4i:CIG-OA-HT-DM ;
-                           tmr4i:recommendsToPursue tmr4i:T10 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecOA-HT-DM-Extra-AntiThrombotic
-
-tmr4i:RecOA-HT-DM-Extra-AntiThrombotic rdf:type tmr4i:Recommendation ,
-                                                owl:NamedIndividual ;
-                                       rdfs:label "Avoid thrombi"@en ;
-                                       tmr4i:partOf tmr4i:CIG-OA-HT-DM ;
-                                       tmr4i:recommendsToPursue tmr4i:T7 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecOA-HT-DM-Painkiller
-
-tmr4i:RecOA-HT-DM-Painkiller rdf:type tmr4i:Recommendation ,
-                                      owl:NamedIndividual ;
-                             rdfs:label "Reduce pain"@en ;
-                             tmr4i:partOf tmr4i:CIG-OA-HT-DM ;
-                             tmr4i:recommendsToPursue tmr4i:T8 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecOA-HT-DM-Sol-AntiThrombotic
-
-tmr4i:RecOA-HT-DM-Sol-AntiThrombotic rdf:type owl:NamedIndividual ;
-                                     rdfs:label "Avoid thrombi"@en ;
-                                     tmr4i:partOf tmr4i:CIG-OA-HT-DM ;
-                                     tmr4i:recommendsToPursue tmr4i:T13 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecOA-HT-DM-Sol-Painkiller
-
-tmr4i:RecOA-HT-DM-Sol-Painkiller rdf:type owl:NamedIndividual ;
-                                 rdfs:label "Reduce pain"@en ;
-                                 tmr4i:partOf tmr4i:CIG-OA-HT-DM ;
-                                 tmr4i:recommendsToPursue tmr4i:T12 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecOA-Painkiller
-
-tmr4i:RecOA-Painkiller rdf:type tmr4i:Recommendation ,
-                                owl:NamedIndividual ;
-                       rdfs:label "Reduce pain"@en ;
-                       tmr4i:partOf tmr4i:CIG-OA ;
-                       tmr4i:recommendsToPursue tmr4i:T8 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecTIA-RedHighRiskVE
-
-tmr4i:RecTIA-RedHighRiskVE rdf:type tmr4i:Recommendation ,
-                                    owl:NamedIndividual ;
-                           rdfs:label "Reduce high blood pressure"@en ;
-                           tmr4i:partOf tmr4i:CIG-TIA ;
-                           tmr4i:recommendsToPursue tmr4i:T5 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/RecTIA-RedMediumRiskVE
-
-tmr4i:RecTIA-RedMediumRiskVE rdf:type tmr4i:Recommendation ,
-                                      owl:NamedIndividual ;
-                             rdfs:label "Reduce medium risk of vascular event"@en ;
-                             tmr4i:partOf tmr4i:CIG-TIA ;
-                             tmr4i:recommendsToPursue tmr4i:T4 .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/SitDUHealed
-
-tmr4i:SitDUHealed rdf:type tmr4i:SituationType ,
-                            owl:NamedIndividual ;
-                  rdfs:label "Ulcer is healed"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/SitDUUnhealed
-
-tmr4i:SitDUUnhealed rdf:type tmr4i:SituationType ,
-                            owl:NamedIndividual ;
-                    rdfs:label "Ulcer is unhealed"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/SitHPyloriNegative
-
-tmr4i:SitHPyloriNegative rdf:type tmr4i:SituationType ,
-                            owl:NamedIndividual ;
-                    rdfs:label "H. Pylori exam is negative"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/SitHPyloriPositive
-
-tmr4i:SitHPyloriPositive rdf:type tmr4i:SituationType ,
-                                  owl:NamedIndividual ;
-                        rdfs:label "H. Pylori exam is positive"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/SitHighBP
-
-tmr4i:SitHighBP rdf:type tmr4i:SituationType ,
-                         owl:NamedIndividual;
-                rdfs:label "Blood Pressure is High"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/SitHighLBS
-
-tmr4i:SitHighLBS rdf:type tmr4i:SituationType ,
-                          owl:NamedIndividual;
-                  rdfs:label "Level of Blood Sugar is High"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/SitHighRiskGIB
-
-tmr4i:SitHighRiskGIB rdf:type tmr4i:SituationType ,
-                              owl:NamedIndividual ;
-                     rdfs:label "Risk of Gastrointestinal Bleeding is High"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/SitHighRiskThrombus
-
-tmr4i:SitHighRiskThrombus rdf:type tmr4i:SituationType ,
-                                   owl:NamedIndividual ;
-                          rdfs:label "Risk of Thrombus is High"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/SitLowRiskGIB
-
-tmr4i:SitLowRiskGIB rdf:type tmr4i:SituationType ,
-                             owl:NamedIndividual ;
-                             rdfs:label "Risk of Gastrointestinal Bleeding is Low"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/SitLowRiskThrombus
-
-tmr4i:SitLowRiskThrombus rdf:type tmr4i:SituationType ,
-                                  owl:NamedIndividual ;
-                          rdfs:label "Risk of Thrombus is Low"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/SitMediumRiskThrombus
-
-tmr4i:SitMediumRiskThrombus rdf:type tmr4i:SituationType ,
-                                     owl:NamedIndividual ;
-                            rdfs:label "Risk of Thrombus is Medium"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/SitNormalBP
-
-tmr4i:SitNormalBP rdf:type tmr4i:SituationType ,
-                           owl:NamedIndividual ;
-                            rdfs:label "Blood Pressure is Normal"@en .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/SitNormalLBS
-
-tmr4i:SitNormalLBS rdf:type tmr4i:SituationType ,
-                            owl:NamedIndividual ;
-                    rdfs:label "Level of Blood Sugar is Normal"@en .
-
-
-###  http://guidelines.data2semantics.org/vocab/SitPatientHasNoPain
-
-tmr4i:SitPatientHasNoPain rdf:type tmr4i:SituationType ,
-                                   owl:NamedIndividual ;
-                          rdfs:label "Patient has no Pain"@en .
-
-
-###  http://guidelines.data2semantics.org/vocab/SitPatientHasPain
-
-tmr4i:SitPatientHasPain rdf:type tmr4i:SituationType ,
-                                 owl:NamedIndividual ;
-                            rdfs:label "Patient has Pain"@en .
-
-
-###  http://guidelines.data2semantics.org/vocab/T1
-
-tmr4i:T1 rdf:type tmr4i:Transition ,
-                  owl:NamedIndividual ;
-         tmr4i:promotedBy tmr4i:ActAdministerAspirin ;
-         tmr4i:hasExpectedPostSituation tmr4i:SitHighRiskGIB ;
-         tmr4i:hasTransformableSituation tmr4i:SitLowRiskGIB .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/T10
-
-tmr4i:T10 rdf:type tmr4i:Transition ,
-                   owl:NamedIndividual ;
-          
-          tmr4i:promotedBy tmr4i:ActAdministerThiazide ;
-          
-          tmr4i:hasTransformableSituation tmr4i:SitHighBP ;
-          
-          tmr4i:hasExpectedPostSituation tmr4i:SitNormalBP .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/T11
-
-tmr4i:T11 rdf:type tmr4i:Transition ,
-                   owl:NamedIndividual ;
-          
-          tmr4i:promotedBy tmr4i:ActAdministerThiazide ;
-          
-          tmr4i:hasExpectedPostSituation tmr4i:SitHighLBS ;
-          
-          tmr4i:hasTransformableSituation tmr4i:SitNormalLBS .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/T12
-
-tmr4i:T12 rdf:type tmr4i:Transition ,
-                   owl:NamedIndividual ;
-          
-          tmr4i:promotedBy tmr4i:ActAdministerTramadol ;
-          
-          tmr4i:hasExpectedPostSituation tmr4i:SitPatientHasNoPain ;
-          
-          tmr4i:hasTransformableSituation tmr4i:SitPatientHasPain .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/T13
-
-tmr4i:T13 rdf:type tmr4i:Transition ,
-                   owl:NamedIndividual ;
-          
-          tmr4i:promotedBy tmr4i:ActAdministerTramadol ;
-          
-          tmr4i:hasExpectedPostSituation tmr4i:SitLowRiskThrombus ;
-          
-          tmr4i:hasTransformableSituation tmr4i:SitMediumRiskThrombus .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/T2
-
-tmr4i:T2 rdf:type tmr4i:Transition ,
-                  owl:NamedIndividual ;
-         
-         tmr4i:promotedBy tmr4i:ActEradicationTherapy ;
-         
-         tmr4i:hasExpectedPostSituation tmr4i:SitDUHealed ;
-         
-         tmr4i:hasTransformableSituation tmr4i:SitDUUnhealed .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/T3
-
-tmr4i:T3 rdf:type tmr4i:Transition ,
-                  owl:NamedIndividual ;
-         
-         tmr4i:promotedBy tmr4i:ActAdministerPPI ;
-         
-         tmr4i:hasExpectedPostSituation tmr4i:SitDUHealed ;
-         
-         tmr4i:hasTransformableSituation tmr4i:SitDUUnhealed .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/T4
-
-tmr4i:T4 rdf:type tmr4i:Transition ,
-                  owl:NamedIndividual ;
-         
-         tmr4i:promotedBy tmr4i:ActAdministerAspirin ;
-         
-         tmr4i:hasExpectedPostSituation tmr4i:SitLowRiskThrombus ;
-         
-         tmr4i:hasTransformableSituation tmr4i:SitMediumRiskThrombus .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/T5
-
-tmr4i:T5 rdf:type tmr4i:Transition ,
-                  owl:NamedIndividual ;
-         
-         tmr4i:promotedBy tmr4i:ActAdministerDipyridamole ;
-         
-         tmr4i:hasTransformableSituation tmr4i:SitHighRiskThrombus ;
-         
-         tmr4i:hasExpectedPostSituation tmr4i:SitLowRiskThrombus .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/T6
-
-tmr4i:T6 rdf:type tmr4i:Transition ,
-                  owl:NamedIndividual ;
-         
-         tmr4i:promotedBy tmr4i:ActAdministerPPI ;
-         
-         tmr4i:hasTransformableSituation tmr4i:SitHighRiskGIB ;
-         
-         tmr4i:hasExpectedPostSituation tmr4i:SitLowRiskGIB .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/T7
-
-tmr4i:T7 rdf:type tmr4i:Transition ,
-                  owl:NamedIndividual ;
-         
-         tmr4i:promotedBy tmr4i:ActAdministerClopidogrel ;
-         
-         tmr4i:hasExpectedPostSituation tmr4i:SitLowRiskThrombus ;
-         
-         tmr4i:hasTransformableSituation tmr4i:SitMediumRiskThrombus .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/T8
-
-tmr4i:T8 rdf:type tmr4i:Transition ,
-                  owl:NamedIndividual ;
-         
-         tmr4i:promotedBy tmr4i:ActAdministerIbuprofen ;
-         
-         tmr4i:hasExpectedPostSituation tmr4i:SitPatientHasNoPain ;
-         
-         tmr4i:hasTransformableSituation tmr4i:SitPatientHasPain .
-
-
-
-###  http://guidelines.data2semantics.org/vocab/T9
-
-tmr4i:T9 rdf:type tmr4i:Transition ,
-                  owl:NamedIndividual ;
-         
-         tmr4i:promotedBy tmr4i:ActAdministerIbuprofen ;
-         
-         tmr4i:hasExpectedPostSituation tmr4i:SitHighBP ;
-         
-         tmr4i:hasTransformableSituation tmr4i:SitNormalBP .
-
-
-
-
-
 #################################################################
 #
 #    General axioms
@@ -1003,101 +351,16 @@ tmr4i:T9 rdf:type tmr4i:Transition ,
 #################################################################
 
 
-[ rdf:type owl:AllDifferent ;
-  owl:distinctMembers ( tmr4i:T1
-                        tmr4i:T10
-                        tmr4i:T11
-                        tmr4i:T12
-                        tmr4i:T13
-                        tmr4i:T2
-                        tmr4i:T3
-                        tmr4i:T4
-                        tmr4i:T5
-                        tmr4i:T6
-                        tmr4i:T7
-                        tmr4i:T8
-                        tmr4i:T9
-                      )
-] .
-[ rdf:type owl:AllDifferent ;
-  owl:distinctMembers ( tmr4i:RecDM-AntiThrombotic
-                        tmr4i:RecDM-AvoidHighLBS
-                        tmr4i:RecDU-AvoidGIB
-                        tmr4i:RecDU-HealingDU1
-                        tmr4i:RecDU-HealingDU2
-                        tmr4i:RecDUTIA-AvoidBleeding
-                        tmr4i:RecDUTIA-HealingDU1
-                        tmr4i:RecDUTIA-HealingDU2
-                        tmr4i:RecDUTIA-RedHighRiskVE
-                        tmr4i:RecDUTIA-RedMediumRiskVE
-                        tmr4i:RecDUTIASol-ProtectingDuodenum
-                        tmr4i:RecDUTIASol-RedMediumRiskVE
-                        tmr4i:RecHT-AvoidHighBP
-                        tmr4i:RecHT-Diuretic
-                        tmr4i:RecOA-AvoidGIB
-                        tmr4i:RecOA-HT-DM-AntiThrombotic
-                        tmr4i:RecOA-HT-DM-AvoidGIB
-                        tmr4i:RecOA-HT-DM-AvoidHighBP
-                        tmr4i:RecOA-HT-DM-AvoidHighLBS
-                        tmr4i:RecOA-HT-DM-Diuretic
-                        tmr4i:RecOA-HT-DM-Painkiller
-                        tmr4i:RecOA-HT-DM-Sol-AntiThrombotic
-                        tmr4i:RecOA-HT-DM-Sol-Painkiller
-                        tmr4i:RecOA-Painkiller
-                        tmr4i:RecTIA-RedHighRiskVE
-                        tmr4i:RecTIA-RedMediumRiskVE
-                      )
-] .
 [ rdf:type owl:AllDisjointClasses ;
-  owl:members ( tmr4i:CareActionType
-                tmr4i:Guideline
-                tmr4i:Recommendation
-                tmr4i:SituationType
-                tmr4i:Transition
-              )
+owl:members ( tmr4i:CareActionType
+tmr4i:Guideline
+tmr4i:Recommendation
+tmr4i:SituationType
+tmr4i:Transition
+)
 ] .
-[ rdf:type owl:AllDifferent ;
-  owl:distinctMembers ( tmr4i:SitDUHealed
-                        tmr4i:SitDUUnhealed
-                        tmr4i:SitHPyloriNegative
-                        tmr4i:SitHPyloriPositive
-                        tmr4i:SitHighBP
-                        tmr4i:SitHighLBS
-                        tmr4i:SitHighRiskGIB
-                        tmr4i:SitHighRiskThrombus
-                        tmr4i:SitLowRiskGIB
-                        tmr4i:SitLowRiskThrombus
-                        tmr4i:SitMediumRiskThrombus
-                        tmr4i:SitNormalBP
-                        tmr4i:SitNormalLBS
-                        tmr4i:SitPatientHasNoPain
-                        tmr4i:SitPatientHasPain
-                      )
-] .
-[ rdf:type owl:AllDifferent ;
-  owl:distinctMembers ( tmr4i:ActAdministerAspirin
-                        tmr4i:ActAdministerClopidogrel
-                        tmr4i:ActAdministerDipyridamole
-                        tmr4i:ActAdministerThiazide
-                        tmr4i:ActAdministerTramadol
-                        tmr4i:ActAdministerPPI
-                        tmr4i:ActAdministerIbuprofen
-                        tmr4i:ActEradicationTherapy
-                      )
-] .
-[ rdf:type owl:AllDifferent ;
-  owl:distinctMembers ( tmr4i:CIG-DM
-                        tmr4i:CIG-DU
-                        tmr4i:CIG-DU-TIA
-                        tmr4i:CIG-HT
-                        tmr4i:CIG-OA
-                        tmr4i:CIG-OA-HT-DM
-                        tmr4i:CIG-TIA
-                      )
-] .
-
-
-
 
 ###  Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net
+
+
 

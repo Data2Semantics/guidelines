@@ -1,0 +1,177 @@
+@prefix : <http://guidelines.data2semantics.org/data/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
+@prefix tmr4i: <http://guidelines.data2semantics.org/vocab/> .
+@base <http://guidelines.data2semantics.org/data/> .
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+
+###  http://guidelines.data2semantics.org/data/CIG-DU-TIA
+:CIG-DU-TIA rdf:type tmr4i:Guideline ,
+                          owl:NamedIndividual ;
+                 rdfs:label "Combined CIG for Duodenal Ulcer and Transient Ischemic Attack"@en ;
+                 tmr4i:derivesFrom :CIG-DU ,
+                                   :CIG-TIA .
+
+
+###  http://guidelines.data2semantics.org/data/CIG-OA-HT-DM
+:CIG-OA-HT-DM rdf:type tmr4i:Guideline ,
+                            owl:NamedIndividual ;
+                   rdfs:label "Combined CIG for Osteoarthritis, Hypertension and Diabetes Mellitus"@en ;
+                   
+                   tmr4i:derivesFrom :CIG-DM ,
+                                     :CIG-HT ,
+                                     :CIG-OA .
+
+###  http://guidelines.data2semantics.org/data/RecDUTIA-AvoidBleeding
+:RecDUTIA-AvoidBleeding rdf:type tmr4i:Recommendation ,
+                                      owl:NamedIndividual ;
+                             rdfs:label "Avoid gastrointestinal bleeding"@en ;
+                             tmr4i:partOf :CIG-DU-TIA ;
+                             tmr4i:recommendsToAvoid :T1 .
+
+
+###  http://guidelines.data2semantics.org/data/RecDUTIA-HealingDU1
+:RecDUTIA-HealingDU1 rdf:type tmr4i:Recommendation ,
+                                   owl:NamedIndividual ;
+                          rdfs:label "Heal duodenal ulcer"@en ;
+                          tmr4i:partOf :CIG-DU-TIA ;
+                          tmr4i:recommendsToPursue :T2 .
+
+
+
+###  http://guidelines.data2semantics.org/data/RecDUTIA-HealingDU2
+:RecDUTIA-HealingDU2 rdf:type tmr4i:Recommendation ,
+                                   owl:NamedIndividual ;
+                          rdfs:label "Heal duodenal ulcer"@en ;
+                          tmr4i:partOf :CIG-DU-TIA ;
+                          tmr4i:recommendsToPursue :T3 .
+
+
+
+###  http://guidelines.data2semantics.org/data/RecDUTIA-RedHighRiskVE
+:RecDUTIA-RedHighRiskVE rdf:type tmr4i:Recommendation ,
+                                      owl:NamedIndividual ;
+                             rdfs:label "Reduce high risk of vascular event"@en ;
+                             tmr4i:partOf :CIG-DU-TIA ;
+                             tmr4i:recommendsToPursue :T5 .
+
+
+
+###  http://guidelines.data2semantics.org/data/RecDUTIA-RedMediumRiskVE
+:RecDUTIA-RedMediumRiskVE rdf:type tmr4i:Recommendation ,
+                                        owl:NamedIndividual ;
+                               rdfs:label "Reduce medium risk of vascular event"@en ;
+                               tmr4i:partOf :CIG-DU-TIA ;
+                               tmr4i:recommendsToPursue :T4 .
+
+
+###  http://guidelines.data2semantics.org/data/RecOA-HT-DM-AntiThrombotic
+:RecOA-HT-DM-AntiThrombotic rdf:type tmr4i:Recommendation ,
+                                          owl:NamedIndividual ;
+                                 rdfs:label "Avoid thrombi"@en ;
+                                 tmr4i:partOf :CIG-OA-HT-DM ;
+                                 tmr4i:recommendsToPursue :T4 .
+
+
+###  http://guidelines.data2semantics.org/data/RecOA-HT-DM-AvoidGIB
+:RecOA-HT-DM-AvoidGIB rdf:type tmr4i:Recommendation ,
+                                    owl:NamedIndividual ;
+                           rdfs:label "Avoid gastrointestinal bleeding"@en ;
+                           tmr4i:partOf :CIG-OA-HT-DM ;
+                           tmr4i:recommendsToAvoid :T1 .
+
+
+
+###  http://guidelines.data2semantics.org/data/RecOA-HT-DM-AvoidHighBP
+:RecOA-HT-DM-AvoidHighBP rdf:type tmr4i:Recommendation ,
+                                       owl:NamedIndividual ;
+                              rdfs:label "Avoid high blood pressure"@en ;
+                              tmr4i:partOf :CIG-OA-HT-DM ;
+                              tmr4i:recommendsToAvoid :T9 .
+
+
+
+###  http://guidelines.data2semantics.org/data/RecOA-HT-DM-AvoidHighLBS
+:RecOA-HT-DM-AvoidHighLBS rdf:type tmr4i:Recommendation ,
+                                        owl:NamedIndividual ;
+                               rdfs:label "Avoid high blood sugar level"@en ;
+                               tmr4i:partOf :CIG-OA-HT-DM ;
+                               tmr4i:recommendsToAvoid :T11 .
+
+
+
+###  http://guidelines.data2semantics.org/data/RecOA-HT-DM-Diuretic
+:RecOA-HT-DM-Diuretic rdf:type tmr4i:Recommendation ,
+                                    owl:NamedIndividual ;
+                           rdfs:label "Reduce blood pressure"@en ;
+                           tmr4i:partOf :CIG-OA-HT-DM ;
+                           tmr4i:recommendsToPursue :T10 .
+
+
+###  http://guidelines.data2semantics.org/data/RecOA-HT-DM-Painkiller
+:RecOA-HT-DM-Painkiller rdf:type tmr4i:Recommendation ,
+                                      owl:NamedIndividual ;
+                             rdfs:label "Reduce pain"@en ;
+                             tmr4i:partOf :CIG-OA-HT-DM ;
+                             tmr4i:recommendsToPursue :T8 .
+
+
+#################################################################
+#
+#    General axioms
+#
+#################################################################
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :RecDM-AntiThrombotic
+                        :RecDM-AvoidHighLBS
+                        :RecDU-AvoidGIB
+                        :RecDU-HealingDU1
+                        :RecDU-HealingDU2
+                        :RecDUTIA-AvoidBleeding
+                        :RecDUTIA-HealingDU1
+                        :RecDUTIA-HealingDU2
+                        :RecDUTIA-RedHighRiskVE
+                        :RecDUTIA-RedMediumRiskVE
+                        :RecHT-AvoidHighBP
+                        :RecHT-Diuretic
+                        :RecOA-AvoidGIB
+                        :RecOA-HT-DM-AntiThrombotic
+                        :RecOA-HT-DM-AvoidGIB
+                        :RecOA-HT-DM-AvoidHighBP
+                        :RecOA-HT-DM-AvoidHighLBS
+                        :RecOA-HT-DM-Diuretic
+                        :RecOA-HT-DM-Painkiller
+                        :RecOA-Painkiller
+                        :RecTIA-RedHighRiskVE
+                        :RecTIA-RedMediumRiskVE
+                      )
+] .
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :CIG-DM
+                        :CIG-DU
+                        :CIG-DU-TIA
+                        :CIG-HT
+                        :CIG-OA
+                        :CIG-OA-HT-DM
+                        :CIG-TIA
+                      )
+] .
+
+
+
+
+###  Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net
+

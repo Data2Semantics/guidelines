@@ -188,7 +188,8 @@ def inference():
         WHERE
         {
         { {?i a tmr4i:ContradictionDueToSameAction .} UNION {?i a tmr4i:ContradictionDueToInverseTransition .}
-        UNION {?i a tmr4i:ContradictionDueToSimiliarTransition} .} #Given a contradictory interaction (RH: Why not just check for an instance of RecommendationInteraction?)
+        UNION {?i a tmr4i:ContradictionDueToSimiliarTransition .} UNION {?i a tmr4i:IncompatibleDrugExternalInteraction .} }
+                                                        #Given a contradictory or incompatibleDrug interaction (search for alternatives when it's needed)
         ?i tmr4i:relates ?rec .
         ?rec tmr4i:recommendsToPursue ?t .
         ?rec tmr4i:partOf ?g .
@@ -201,7 +202,7 @@ def inference():
         
         FILTER (?d != ?dALT) .
         
-        FILTER NOT EXISTS
+        FILTER NOT EXISTS                               #Don't consider alternative drugs that are incompatible with recommended ones
         { ?dALT drugbank:interactsWith ?d2 .
         { ?ca2 tmr4i:involves ?d2 . }
         UNION { ?ca2 tmr4i:involves ?c2 . ?d2 drugbank:drugCategory ?c2 .} .
@@ -222,7 +223,7 @@ def inference():
     
         }
         """
-    results = sparql(query)
+    #results = sparql(query)
     print results
 
     # Including insert query to derive owl:sameAs for cumulative interactions
@@ -234,8 +235,12 @@ def inference():
             ?i1 tmr4i:relates ?r3 .
             ?i2 tmr4i:relates ?r1 .}
         WHERE
-        {   ?i1    a    tmr4i:AlternativeDueToSimilarTransition, owl:NamedIndividual .
-            ?i2    a    tmr4i:AlternativeDueToSimilarTransition, owl:NamedIndividual .
+        {   ?i1    a    owl:NamedIndividual .
+            ?i2    a    owl:NamedIndividual .
+            {  { ?i1 a tmr4i:RepetitionDueToSameAction . ?i2 a tmr4i:RepetitionDueToSameAction .}
+              UNION
+              { ?i1 a tmr4i:AlternativeDueToSimilarTransition . ?i2 a tmr4i:AlternativeDueToSimilarTransition .} 
+            }
             ?g    a    tmr4i:Guideline, owl:NamedIndividual .
             ?r1    a    tmr4i:Recommendation, owl:NamedIndividual .
             ?r2    a    tmr4i:Recommendation, owl:NamedIndividual .
@@ -254,32 +259,6 @@ def inference():
     results = sparql(query)
     print results
     
-    query = PREFIXES + """
-        INSERT
-        {   ?i1 owl:sameAs ?i2 .
-            ?i1 tmr4i:relates ?r3 .
-            ?i2 tmr4i:relates ?r1 .}
-        WHERE
-        {   ?i1    a    tmr4i:RepetitionDueToSameAction, owl:NamedIndividual .
-            ?i2    a    tmr4i:RepetitionDueToSameAction, owl:NamedIndividual .
-            ?g    a    tmr4i:Guideline, owl:NamedIndividual .
-            ?r1    a    tmr4i:Recommendation, owl:NamedIndividual .
-            ?r2    a    tmr4i:Recommendation, owl:NamedIndividual .
-            ?r3    a    tmr4i:Recommendation, owl:NamedIndividual .
-            ?r1    tmr4i:partOf     ?g .
-            ?r2    tmr4i:partOf     ?g .
-            ?r3    tmr4i:partOf     ?g .
-            ?i1    tmr4i:relates     ?r1 .
-            ?i1    tmr4i:relates     ?r2 .
-            ?i2    tmr4i:relates     ?r2 .
-            ?i2    tmr4i:relates     ?r3 .
-            FILTER (?r1	!= ?r2 && ?r1 != ?r3 && ?r2 != ?r3 && ?i1 != ?i2)
-        }
-        """
-
-    results = sparql(query)
-    print results
-
     return jsonify({'status': 'Done'})
 
 
