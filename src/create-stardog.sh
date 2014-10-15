@@ -1,5 +1,5 @@
 #!/bin/sh
-
+echo "Creating Stardog database 'guidelines'"
 stardog-admin db create -n guidelines data/TMR4I.ttl data/TMR4I-rules.ttl data/TMR4I-drugs.ttl
 
 echo "Setting tag:stardog:api:context:all as TBox graph"
@@ -12,4 +12,4 @@ echo "Loading data"
 stardog data add guidelines data/TMR4I-data0.ttl data/TMR4I-dataMerge1.ttl data/TMR4I-dataMerge2.ttl
 
 echo "Loading drugBank data"
-./load-drugbank.sh
+stardog data add guidelines data/drugbank_small.nt

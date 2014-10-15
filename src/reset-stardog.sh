@@ -1,9 +1,8 @@
 #!/bin/sh
 
-echo "Removing data from stardog"
+echo "Dropping database 'guidelins'"
 stardog data remove --all guidelines
 
-echo "Loading TMR and TMR4I into stardog"
-# stardog data add --named-graph http://guidelines.data2semantics.org/vocab guidelines data/TMR.owl
-stardog data add guidelines data/TMR4I.ttl data/TMR4I-rules.ttl data/TMR4I-drugs.ttl
+./create-stardog.sh
+
 
