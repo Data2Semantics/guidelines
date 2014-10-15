@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "Dropping database 'guidelines'"
-stardog data remove --all guidelines
+stardog-admin db drop guidelines
 
 ./create-stardog.sh
 

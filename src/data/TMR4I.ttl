@@ -24,6 +24,15 @@
 tmr4i:derivesFrom rdf:type owl:ObjectProperty .
 
 
+###  http://guidelines.data2semantics.org/vocab/drug
+
+tmr4i:drug rdf:type owl:ObjectProperty .
+
+###  http://guidelines.data2semantics.org/vocab/action
+
+tmr4i:action rdf:type owl:ObjectProperty .
+
+
 
 ###  http://guidelines.data2semantics.org/vocab/hasExpectedPostSituation
 

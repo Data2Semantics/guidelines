@@ -3,6 +3,7 @@ $( document ).ready(function() {
     $('#rec_list_row').hide();
     
     $('#inferenceButton').on('click',function(){
+        $('#inferenceButton').text("Working...");
         $.get('/getinference',function(data){
             console.log(data);
             

@@ -5,6 +5,7 @@ import requests
 import json
 from app import app
 import uuid
+import pprint
 
 ENDPOINT_URL = 'http://localhost:5820/guidelines/query'
 UPDATE_URL = 'http://localhost:5820/guidelines/update'
@@ -73,32 +74,103 @@ def recommendations():
     guideline_uri = request.args.get('uri', '')
     guideline_label = request.args.get('label','')
     
+    
+    
+
     query = PREFIXES + """
-    SELECT DISTINCT ?rec ?rec_label ?crec ?irec ?erec WHERE 
+    SELECT DISTINCT ?rec ?rec_label WHERE 
     { 
         ?rec tmr4i:partOf <""" + guideline_uri + """>  . 
         ?rec rdfs:label ?rec_label .
         ?rec a owl:NamedIndividual .
-        OPTIONAL {
-            ?rec tmr4i:interactsInternallyWith ?crec .
-            ?crec a owl:NamedIndividual .
-        }
-        OPTIONAL {
-            ?rec a tmr4i:InternallyInteractingRecommendation .
-            BIND(tmr4i:InternallyInteractingRecommendation AS ?irec)
-        }
-        OPTIONAL {
-            ?rec a tmr4i:ExternallyInteractingRecommendation .
-            BIND(tmr4i:ExternallyInteractingRecommendation AS ?erec)
-        }
     }"""
     
+    recommendations_menu = sparql(query, strip=True)
     
-    recommendations = sparql(query, strip=True)
     
-    log.debug(recommendations)
+    ## initialize the rest of the results with the stuff for the recommendations menu
+    all_results = []
+    all_results.extend(recommendations_menu)
     
-    return render_template('recommendations_list.html', recommendations = recommendations, guideline_label = guideline_label)
+    query = PREFIXES + """
+    SELECT DISTINCT * WHERE 
+    { 
+        ?rec tmr4i:partOf <""" + guideline_uri + """>  . 
+        ?rec rdfs:label ?rec_label .
+        ?rec a owl:NamedIndividual .
+        ?rec tmr4i:interactsInternallyWith ?internal_rec .
+        ?internal_rec rdfs:label ?internal_rec_label .
+        ?internal_rec a tmr4i:Recommendation .
+        ?internal_rec a owl:NamedIndividual .
+        BIND(tmr4i:InternallyInteractingRecommendation AS ?irec)
+    }"""
+    
+    all_results.extend(sparql(query, strip=True))
+    
+    query = PREFIXES + """
+        SELECT DISTINCT * WHERE 
+        { 
+            ?rec tmr4i:partOf <""" + guideline_uri + """>  . 
+            ?rec rdfs:label ?rec_label .
+            ?rec a owl:NamedIndividual .
+            ?rec tmr4i:interactsExternallyWith ?external_rec .
+            ?external_rec rdfs:label ?external_rec_label .
+            ?external_rec a tmr4i:Recommendation .
+            ?external_rec a owl:NamedIndividual .
+            ?i tmr4i:relates ?rec .
+            ?i tmr4i:relates ?external_rec .
+            ?i tmr4i:drug ?drug1 .
+            ?drug1 rdfs:label ?drug1_label .
+            ?i tmr4i:drug ?drug2 .
+            ?drug2 rdfs:label ?drug2_label .
+            FILTER(?drug1 != ?drug2)
+            BIND(tmr4i:ExternallyInteractingRecommendation AS ?erec)
+        }
+    """
+    
+    all_results.extend(sparql(query, strip=True))
+    
+    query = PREFIXES + """
+        SELECT DISTINCT * WHERE 
+        { 
+            ?rec tmr4i:partOf <""" + guideline_uri + """>  . 
+            ?rec rdfs:label ?rec_label .
+            ?rec a owl:NamedIndividual .
+            ?i tmr4i:relates ?rec .
+            ?i tmr4i:action ?care_action .
+            ?care_action rdfs:label ?care_action_label .
+            ?i tmr4i:drug ?drug1 .
+            ?drug1 rdfs:label ?drug1_label .
+            ?i tmr4i:alternative_drug ?drug2 .
+            ?drug2 rdfs:label ?drug2_label .
+            BIND(tmr4i:ExternallyInteractingRecommendation AS ?erec)
+        }
+    """
+    all_results.extend(sparql(query, strip=True))
+    
+    log.debug(all_results)
+    
+    recommendations = []
+    double_drugs = set()
+    print len(all_results)
+    for r in all_results :
+        if 'drug1_label' and 'drug2_label' in r:
+            d1 = r['drug1_label']['value']
+            d2 = r['drug2_label']['value']
+            
+            if (d2,d1) in double_drugs:
+                log.debug("Drug couple already found")
+            else :
+                double_drugs.add((d1,d2))
+                recommendations.append(r)
+        else :
+            recommendations.append(r)
+            
+    print len(recommendations)
+    
+    pprint.pprint(recommendations)
+    
+    return render_template('recommendations_list.html', recommendations_menu = recommendations_menu, recommendations = recommendations, guideline_label = guideline_label)
 
 @app.route('/gettransitions', methods=['GET'])
 def transitions():
@@ -111,7 +183,11 @@ def transitions():
         ?transformable_situation rdfs:label ?transformable_situation_label .
       	?transition tmr4i:hasExpectedPostSituation ?post_situation .
         ?post_situation rdfs:label ?post_situation_label .
+        ?transition tmr4i:promotedBy ?care_action .
+        ?care_action rdfs:label ?care_action_label .
+        ?care_action a owl:NamedIndividual .
         ?transition a owl:NamedIndividual .
+
         ?transformable_situation a owl:NamedIndividual .
         ?post_situation a owl:NamedIndividual .
         OPTIONAL {
@@ -122,11 +198,13 @@ def transitions():
             ?transition tmr4i:inverseToTransition ?inverse_transition .
             ?inverse_transition a owl:NamedIndividual .
             ?irec tmr4i:recommends ?inverse_transition .
+            ?irec rdfs:label ?irec_label .
         }
         OPTIONAL {
             ?transition tmr4i:similarToTransition ?similar_transition .
             ?similar_transition a owl:NamedIndividual .
             ?srec tmr4i:recommends ?similar_transition .
+            ?srec rdfs:label ?srec_label .
         }
         
         
@@ -141,6 +219,9 @@ def transitions():
         ?transformable_situation rdfs:label ?transformable_situation_label .
       	?transition tmr4i:hasExpectedPostSituation ?post_situation .
         ?post_situation rdfs:label ?post_situation_label .
+        ?transition tmr4i:promotedBy ?care_action .
+        ?care_action rdfs:label ?care_action_label .
+        ?care_action a owl:NamedIndividual .
         ?transition a owl:NamedIndividual .
         ?transformable_situation a owl:NamedIndividual .
         ?post_situation a owl:NamedIndividual .
@@ -151,10 +232,14 @@ def transitions():
         OPTIONAL {
             ?transition tmr4i:inverseToTransition ?inverse_transition .
             ?inverse_transition a owl:NamedIndividual .
+            ?irec tmr4i:recommends ?inverse_transition .
+            ?irec rdfs:label ?irec_label .
         }
         OPTIONAL {
             ?transition tmr4i:similarToTransition ?similar_transition .
             ?similar_transition a owl:NamedIndividual .
+            ?srec tmr4i:recommends ?similar_transition .
+            ?srec rdfs:label ?srec_label .
         }
         BIND(IF (bound(?f_condition), ?f_condition, "none") as ?filter_condition)
 
@@ -206,13 +291,18 @@ def sparql(query, strip=False, endpoint_url = ENDPOINT_URL):
                 if v['type'] == 'uri' and not k+'_label' in r.keys():
                     new_result[k+'_label'] = {}
                     new_result[k+'_label']['type'] = 'literal'
-                    
                     new_result[k+'_label']['value'] = v['value'][v['value'].rfind('/')+1:]
+                    
                 elif not k+'_label' in r.keys():
                     new_result[k+'_label'] = {}
                     new_result[k+'_label']['type'] = 'literal'
                     new_result[k+'_label']['value'] = v['value']
                     
+                new_result[k+'_stripped'] = {}
+                new_result[k+'_stripped']['type'] = 'literal'
+                new_result[k+'_stripped']['value'] = v['value'][v['value'].rfind('/')+1:]
+                
+                
                 new_result[k] = v
                     
             new_results.append(new_result)
@@ -279,7 +369,7 @@ def internal_recommendation_interaction():
         else :
             print "result already found", (two,one)        
  
-    log.debug(len(deduped_results), "interactions found.")
+    log.debug("{} interactions found.".format(len(deduped_results)))
  
     update_template = PREFIXES + """
     INSERT DATA
@@ -351,7 +441,7 @@ def incompatible_drugs_external_interaction():
         else :
             print "result already found", (RTwo,ROne,DTwo,DOne)
 
-    log.debug(len(deduped_results) + " external interactions found.")
+    log.debug("{} external interactions found.".format(len(deduped_results)))
     
     update_template = PREFIXES + """
             INSERT DATA
@@ -359,8 +449,8 @@ def incompatible_drugs_external_interaction():
             tmr4i:{0}   a  tmr4i:IncompatibleDrugExternalInteraction, owl:NamedIndividual .
             tmr4i:{0}   tmr4i:relates <{1}> .
             tmr4i:{0}   tmr4i:relates <{2}> .
-            tmr4i:{0}   tmr4i:relates <{3}> .
-            tmr4i:{0}   tmr4i:relates <{4}> .
+            tmr4i:{0}   tmr4i:drug <{3}> .
+            tmr4i:{0}   tmr4i:drug <{4}> .
             <{1}> tmr4i:interactsExternallyWith <{2}> .
             <{2}> tmr4i:interactsExternallyWith <{1}> .
             }}
@@ -416,8 +506,8 @@ def alternative_drugs_external_interaction():
         ?iir   a tmr4i:AlternativeDrugExternalInteraction .
         ?iir   tmr4i:relates ?rec .
         ?iir   tmr4i:relates ?ca .
-        ?iir   tmr4i:relates ?d .
-        ?iir   tmr4i:relates ?dALT .
+        ?iir   tmr4i:drug ?d .
+        ?iir   tmr4i:alternative_drug ?dALT .
         }
     
         }
@@ -439,16 +529,16 @@ def alternative_drugs_external_interaction():
         else :
             print "result already found", (rec,ca,DTwo,DOne)
 
-    log.debug(len(deduped_results) + " external interactions found.")
+    log.debug("{} external alternative interactions found.".format(len(deduped_results)))
     
     update_template = PREFIXES + """
             INSERT DATA
             {{
             tmr4i:{0}   a  tmr4i:AlternativeDrugExternalInteraction, owl:NamedIndividual .
             tmr4i:{0}   tmr4i:relates <{1}> .
-            tmr4i:{0}   tmr4i:relates <{2}> .
-            tmr4i:{0}   tmr4i:relates <{3}> .
-            tmr4i:{0}   tmr4i:relates <{4}> .
+            tmr4i:{0}   tmr4i:action <{2}> .
+            tmr4i:{0}   tmr4i:drug <{3}> .
+            tmr4i:{0}   tmr4i:alternative_drug <{4}> .
             }}
             """
     
