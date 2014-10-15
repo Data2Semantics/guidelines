@@ -7,7 +7,7 @@
             {% for e in list %}
                 {% if loop.first %}
                     <a href="#" class="list-group-item" uri='{{e.rec.value }}'>
-                        <span class="list-group-item-heading">{{ grouper.value }}</span>
+                        <span class="list-group-item-heading">{{ grouper.value }} <span class="badge alert-info">{{ e.rec_stripped.value }}</span></span>
                 {% endif %}
                 {% if loop.last %}
                     </a>
@@ -22,17 +22,33 @@
             {% if loop.first %}
                     {% set uri = e.rec.value %}
                     <div class="transition" style="display: none;" transition_container_for='{{e.rec.value}}'>
-                        <h3>{{ grouper.value }}</h3>
-                    {%if 'irec_label' in e %}
-                        <span class="badge alert-info" target="{{ e.irec.value }}">{{ e.irec_label.value }}</span>
+                        <h3>{{ grouper.value }}  <small>({{e.rec_stripped.value }})</small></h3>
+                    {% if 'irec_label' in e or 'erec_label' in e %}
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr><th class='col-md-3'>Type</th><td>
+                        {% if 'irec_label' in e %}
+                                    <span class="badge alert-warning" target="{{ e.irec.value }}">{{ e.irec_label.value }}</span>
+                        {% endif %}
+                        {% if 'erec_label' in e %}
+                                    <span class="badge alert-error" target="{{ e.erec.value }}">{{ e.erec_label.value }}</span>
+                        {% endif %}
+                                </td></tr>
+                            <tr><th>Interactions</th><td>
                     {% endif %}
             {% endif %}
-            {% if 'crec_label' in e %}
-                    <span class="badge alert-warning" target="{{ e.crec.value }}">{{ e.crec_label.value }}</span>
+            {% if 'internal_rec_label' in e and e.internal_rec.value != e.rec.value %}
+                    <span class="badge alert-warning" target="{{ e.internal_rec.value }}">{{ e.internal_rec_label.value }}</span>
+            {% endif %}
+            {% if 'external_rec_label' in e and e.external_rec.value != e.rec.value %}
+                    <span class="badge alert-error" target="{{ e.external_rec.value }}">{{ e.external_rec_label.value }}</span>
             {% endif %}
             {% if loop.last %}
-                    
-                        
+                    {%if 'irec_label' in e %}
+                                </td>
+                            </tbody>
+                        </table>
+                    {% endif %}
                         <div transitions_for='{{ uri }}'>
                         </div>
                     </div>

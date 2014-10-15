@@ -1,69 +1,60 @@
 {% if pos_transitions|length %}
-<h4>Transitions to Pursue</h4>
-<div class="list-group">
+<div class="panel panel-info">
+    <div class="panel-heading">Transitions to Pursue</div>
+    <div class="panel-body">
 {% for grouper, list in pos_transitions|groupby('transition_label') %}
     {% for e in list %}
         {% if loop.first %}
-        <a href="#" class="list-group-item" uri='{{e.transition.value }}'>
-            <h4 class="list-group-item-heading">{{ e.transition_label.value }}</h4>
-            <p class="list-group-item-text">
+        <div uri='{{e.transition.value }}'>
+            <h4>Transition from <strong>{{ e.transformable_situation_label.value }}</strong> to <strong>{{ e.post_situation_label.value  }}</strong>{% if e.filter_condition_label.value != 'none' %} given a filter condition of <strong>{{ e.filter_condition_label.value }}</strong>{% endif %}. <span class="badge">{{ e.transition_label.value }}</span>
+            </h4>
+
                 <table class="table table-striped">
-                    <thead>
-                        <tr><th class='col-sm-2'>Condition</th><th>Situation</th></tr>
-                    </thead>
                     <tbody>
-                        <tr><th>Transformable situation</th><td>{{ e.transformable_situation_label.value }}</td></tr>
-                        <tr><th>Filter condition</th><td>{{ e.filter_condition_label.value }}</td></tr>
-                        <tr><th>Post situation</th><td>{{ e.post_situation_label.value }}</td></tr>
+                        <tr><th class="col-md-3">Care action</th><td>{{ e.care_action_label.value }}</td></tr>
         {% endif %}
         {% if e.inverse_transition %}
-                        <tr><th>Inverse transition</th><td>{{ e.irec_label.value }} <span class='badge alert-danger'>{{ e.inverse_transition_label.value }}</span></td></tr>
+                        <tr><th class="col-md-3">Inverse transition</th><td><span class='badge alert-danger'>{{ e.inverse_transition_label.value }}</span>  <span class="badge">{{ e.irec_stripped.value }}</span> <small>({{ e.irec_label.value }})</small></td></tr>
         {% endif %}
         {% if e.similar_transition %}
-                        <tr><th>Similar transition</th><td>{{ e.srec_label.value }} <span class='badge alert-warning'>{{ e.similar_transition_label.value }}</span></td></tr>
+                        <tr><th class="col-md-3">Similar transition</th><td><span class='badge alert-warning'>{{ e.similar_transition_label.value }}</span>  <span class="badge">{{ e.srec_stripped.value }}</span> <small>({{ e.srec_label.value }})</small></td></tr>
         {% endif %}
         {% if loop.last %}
                     </tbody>
                 </table>
             
-            </p>
-        </a>
+
+        </div>
         {% endif %}
     {% endfor %}
 {% endfor %}
-</div>
+
 {% endif %}
 
 {% if neg_transitions|length %}
-<h4>Transitions to Avoid</h4>
-<div class="list-group">
+<div class="panel panel-warning">
+    <div class="panel-heading">Transitions to Avoid</div>
+    <div class="panel-body">
 {% for grouper, list in neg_transitions|groupby('transition_label') %}
     {% for e in list %}
         {% if loop.first %}
-        <a href="#" class="list-group-item" uri='{{e.transition.value }}'>
-            <h4 class="list-group-item-heading">{{ e.transition_label.value }}</h4>
-            <p class="list-group-item-text">
+        <div uri='{{e.transition.value }}'>
+            <h4>Transition from <strong>{{ e.transformable_situation_label.value }}</strong> to <strong>{{ e.post_situation_label.value  }}</strong>{% if e.filter_condition_label.value != 'none' %} given a filter condition of <strong>{{ e.filter_condition_label.value }}</strong>{% endif %}. <span class="badge">{{ e.transition_label.value }}</span>
+            </h4>
                 <table class="table table-striped">
-                    <thead>
-                        <tr><th class='col-sm-2'>Condition</th><th>Situation</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><th>Transformable situation</th><td>{{ e.transformable_situation_label.value }}</td></tr>
-                        <tr><th>Filter condition</th><td>{{ e.filter_condition_label.value }}</td></tr>
-                        <tr><th>Post situation</th><td>{{ e.post_situation_label.value }}</td></tr>
+                        <tr><th class="col-md-3">Care action</th><td>{{ e.care_action_label.value }}</td></tr>
         {% endif %}
         {% if e.inverse_transition %}
-                        <tr><th>Inverse transition</th><td><span class='badge alert-danger'>{{ e.inverse_transition_label.value }}</span></td></tr>
+                        <tr><th class="col-md-3">Inverse transition</th><td><span class='badge alert-danger'>{{ e.inverse_transition_label.value }}</span> <span class="badge">{{ e.irec_stripped.value }}</span> <small>({{ e.irec_label.value }})</small></td></tr>
         {% endif %}
         {% if e.similar_transition %}
-                        <tr><th>Similar transition</th><td><span class='badge alert-warning'>{{ e.similar_transition_label.value }}</span></td></tr>
+                        <tr><th class="col-md-3">Similar transition</th><td><span class='badge alert-warning'>{{ e.similar_transition_label.value }}</span> <span class="badge">{{ e.srec_stripped.value }}</span>  <small>({{ e.srec_label.value }})</small></td></tr>
         {% endif %}
         {% if loop.last %}
                     </tbody>
                 </table>
             
-            </p>
-        </a>
+        </div>
         {% endif %}
     {% endfor %}
 {% endfor %}
