@@ -14,10 +14,19 @@
                         <tr><th class="col-md-3">Care action</th><td>{{ e.care_action_label.value }}</td></tr>
         {% endif %}
         {% if e.inverse_transition %}
-                        <tr><th class="col-md-3">Inverse transition</th><td><span class='badge alert-danger'>{{ e.inverse_transition_label.value }}</span>  <span class="badge">{{ e.irec_stripped.value }}</span> <small>({{ e.irec_label.value }})</small></td></tr>
+                        <tr><th class="col-md-3">
+                            {% if not itheader %}
+                                {% set itheader = True %}
+                                Inverse transition
+                            {% endif %}
+                        </th><td><span class='badge alert-danger'>{{ e.inverse_transition_label.value }}</span> from the recommendation to <strong>{{ e.irec_label.value|lower }}</strong> <span class="badge">{{ e.irec_stripped.value }}</span></td></tr>
         {% endif %}
         {% if e.similar_transition %}
-                        <tr><th class="col-md-3">Similar transition</th><td><span class='badge alert-warning'>{{ e.similar_transition_label.value }}</span>  <span class="badge">{{ e.srec_stripped.value }}</span> <small>({{ e.srec_label.value }})</small></td></tr>
+                        <tr><th class="col-md-3">
+                            {% if not stheader %}
+                                {% set stheader = True %}
+                                Similar transition
+                            {% endif %}</th><td><span class='badge alert-warning'>{{ e.similar_transition_label.value }}</span> from the recommendation to <strong>{{ e.srec_label.value|lower }}</strong> <span class="badge">{{ e.srec_stripped.value }}</span></td></tr>
         {% endif %}
         {% if loop.last %}
                     </tbody>
