@@ -2,20 +2,20 @@ $( document ).ready(function() {
     $('#gl_list_row').hide();
     $('#rec_list_row').hide();
     
-    $('#inferenceButton').on('click',function(){
-        $('#inferenceButton').text("Working...");
-        $.get('/getinference',function(data){
-            console.log(data);
-            
-            if (data['status'] == 'true') {
-                $('#inferenceButton').text('Success');
-            } else {
-                $('#inferenceButton').text('Something went wrong');
-            }
-            
-            $('#inferenceButton').text(data['status']);
-        });
-    });
+    // $('#inferenceButton').on('click',function(){
+    //     $('#inferenceButton').text("Working...");
+    //     $.get('/getinference',function(data){
+    //         console.log(data);
+    //
+    //         if (data['status'] == 'true') {
+    //             $('#inferenceButton').text('Success');
+    //         } else {
+    //             $('#inferenceButton').text('Something went wrong');
+    //         }
+    //
+    //         $('#inferenceButton').text(data['status']);
+    //     });
+    // });
     
     $('#startButton').on('click',function(){
         $.get('/getguidelines',function(data){
