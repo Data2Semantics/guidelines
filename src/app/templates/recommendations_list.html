@@ -3,19 +3,12 @@
         <h3>{{ guideline_label }}</h3>
         <h4>Recommendations</h4>
         <div class="list-group">
-        {% for grouper, list in recommendations_menu|groupby('rec_label') %}
-            {% for e in list %}
-                {% if loop.first %}
+        {% for e in recommendations_menu|sort(attribute='rec_label') %}
                         <a href="#" class="list-group-item" uri='{{e.rec.value }}'>
-                            <span class="list-group-item-heading">{{ e.rec_label.value }}<br/><small> 
-                {% endif %}
-                            <span class="badge alert-info">{{ e.rec_stripped.value }}</span>
-                {% if loop.last %}
-                                </small>
+                            <span class="list-group-item-heading">{{ e.rec_label.value }}<br/>
+                                <small><span class="badge alert-info">{{ e.rec_stripped.value }}</span></small>
                             </span>
                         </a>
-                {% endif %}
-            {% endfor %}
         {% endfor %}
         </div>
     </div>
@@ -35,18 +28,36 @@
                     {% set caheader = False %}
             {% endif %}
             {% if 'internal_rec_label' in e and e.internal_rec.value != uri %}
-                        {% if not iiheader %}
-                                <h4>Internal Interactions</h4>
-                                {% set iiheader = True %}
-                        {% endif %}
-                        <div class="list-group-item">This recommendation interacts with the recommendation to <strong>{{ e.internal_rec_label.value }}</strong> <span class="badge alert-warning" target="{{ e.internal_rec.value }}">{{ e.internal_rec_stripped.value }}</span></div>
+
+                            {% if not iiheader %}
+                                    <h4>Internal Interactions</h4>
+                                    {% set iiheader = True %}
+                            {% endif %}
+                            {% if e.itype_stripped.value == 'ContradictionDueToSameAction' %}
+                            <div class="list-group-item">This recommendation <strong>contradicts</strong> with the recommendation to <strong>{{ e.internal_rec_label.value|lower }}</strong> <span class="badge alert-warning" target="{{ e.internal_rec.value }}">{{ e.internal_rec_stripped.value }}</span> with respect to the care action to <strong>{{ e.ca_label.value|lower }}</strong>.</div>
+                            {% endif %}
+                            {% if e.itype_stripped.value == 'RepetitionDueToSameAction' %}
+                            <div class="list-group-item">This recommendation is a <strong>repetition</strong> of the recommendation to <strong>{{ e.internal_rec_label.value|lower }}</strong> <span class="badge alert-warning" target="{{ e.internal_rec.value }}">{{ e.internal_rec_stripped.value }}</span> because they agree with respect to the care action to <strong>{{ e.ca_label.value|lower }}</strong>.</div>
+                            {% endif %}
+                            {% if e.itype_stripped.value == 'ContradictionDueToInverseTransition' %}
+                            <div class="list-group-item">This recommendation <strong>contradicts</strong> with the recommendation to <strong>{{ e.internal_rec_label.value|lower }}</strong> <span class="badge alert-warning" target="{{ e.internal_rec.value }}">{{ e.internal_rec_stripped.value }}</span> because of <strong>inverse transitions</strong>.</div>
+                            {% endif %}
+                            {% if e.itype_stripped.value == 'AlternativeDueToInverseTransition' %}
+                            <div class="list-group-item">This recommendation is an <strong>alternative</strong> to the recommendation to <strong>{{ e.internal_rec_label.value|lower }}</strong> <span class="badge alert-warning" target="{{ e.internal_rec.value }}">{{ e.internal_rec_stripped.value }}</span> because of <strong>inverse transitions</strong>.</div>
+                            {% endif %}
+                            {% if e.itype_stripped.value == 'ContradictionDueToSimilarTransition' %}
+                            <div class="list-group-item">This recommendation <strong>contradicts</strong> with the recommendation to <strong>{{ e.internal_rec_label.value|lower }}</strong> <span class="badge alert-warning" target="{{ e.internal_rec.value }}">{{ e.internal_rec_stripped.value }}</span> because they disagree on a <strong>similar transition</strong>.</div>
+                            {% endif %}
+                            {% if e.itype_stripped.value == 'AlternativeDueToSimilarTransition' %}
+                            <div class="list-group-item">This recommendation is an <strong>alternative</strong> to the recommendation to <strong>{{ e.internal_rec_label.value|lower }}</strong> <span class="badge alert-warning" target="{{ e.internal_rec.value }}">{{ e.internal_rec_stripped.value }}</span> because of <strong>similar transitions</strong>.</div>
+                            {% endif %}
             {% endif %}
             {% if 'external_rec_label' in e and e.external_rec.value != e.rec.value %}
                         {% if not eiheader %}
                                 <h4>External Interactions</h4>
                                 {% set eiheader = True %}
                         {% endif %}
-                                <div class="list-group-item">This recommendation interacts with the recommendation to <strong>{{ e.external_rec_label.value }}</strong>
+                                <div class="list-group-item">This recommendation interacts with the recommendation to <strong>{{ e.external_rec_label.value|lower }}</strong>
                                     <span class="badge alert-error" target="{{ e.external_rec.value }}">{{ e.external_rec_stripped.value }}</span>
                                     because <strong>{{ e.drug1_label.value}}</strong> interacts with <strong>{{ e.drug2_label.value }}</strong>.
                                 </div>

@@ -100,12 +100,58 @@ def recommendations():
         ?rec a owl:NamedIndividual .
         ?rec tmr4i:interactsInternallyWith ?internal_rec .
         ?internal_rec rdfs:label ?internal_rec_label .
-        ?internal_rec a tmr4i:Recommendation .
-        ?internal_rec a owl:NamedIndividual .
+        ?i tmr4i:relates ?rec .
+        ?i tmr4i:relates ?internal_rec .
+        FILTER NOT EXISTS {
+           ?rec owl:sameAs ?internal_rec .
+        }
+        {
+            ?i a tmr4i:ContradictionDueToSameAction .
+            ?i tmr4i:action ?ca .
+            ?ca rdfs:label ?ca_label .
+            BIND(tmr4i:ContradictionDueToSameAction AS ?itype)
+        } UNION {
+            ?i a tmr4i:RepetitionDueToSameAction .
+            ?i tmr4i:action ?ca .
+            ?ca rdfs:label ?ca_label .
+            BIND(tmr4i:RepetitionDueToSameAction AS ?itype)
+        } UNION {
+            ?i a tmr4i:ContradictionDueToInverseTransition .
+            BIND(tmr4i:ContradictionDueToInverseTransition AS ?itype)
+        } UNION {
+            ?i a tmr4i:AlternativeDueToSimilarTransition .
+            BIND(tmr4i:AlternativeDueToSimilarTransition AS ?itype)
+        } UNION {
+            ?i a tmr4i:AlternativeDueToInverseTransition .
+            BIND(tmr4i:AlternativeDueToInverseTransition AS ?itype)
+        } UNION {
+            ?i a tmr4i:ContradictionDueToSimilarTransition .
+            BIND(tmr4i:ContradictionDueToSimilarTransition AS ?itype)
+        }
         BIND(tmr4i:InternallyInteractingRecommendation AS ?irec)
     }"""
     
-    all_results.extend(sparql(query, strip=True))
+    internal_interactions = sparql(query, strip=True)
+    
+    deduped_internal_interactions = []
+    double_interactions = set()
+    print len(internal_interactions)
+    for r in internal_interactions :
+        if 'rec' and 'internal_rec' in r:
+            r1 = r['rec']['value']
+            r2 = r['internal_rec']['value']
+            
+            if (r2,r1) in double_interactions or (r1,r2) in double_interactions:
+                log.debug("Interaction couple already found")
+            else :
+                double_interactions.add((r1,r2))
+                deduped_internal_interactions.append(r)
+        else :
+            deduped_internal_interactions.append(r)
+
+    print len(deduped_internal_interactions)
+    
+    all_results.extend(deduped_internal_interactions)
     
     query = PREFIXES + """
         SELECT DISTINCT * WHERE 
