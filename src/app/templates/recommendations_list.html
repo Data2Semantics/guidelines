@@ -17,12 +17,12 @@
     
     
     <div class="col-md-8">
-    {% for grouper, list in recommendations|groupby('rec_label') %}
+    {% for grouper, list in recommendations|groupby('rec') %}
         {% for e in list %}
             {% if loop.first %}
                     {% set uri = e.rec.value %}
                     <div class="transition" style="display: none;" transition_container_for='{{e.rec.value}}'>
-                        <h3>{{ grouper.value }}  <small>({{e.rec_stripped.value }})</small></h3>
+                        <h3>{{ e.rec_label.value }}  <small>({{e.rec_stripped.value }})</small></h3>
                     {% set iiheader = False %}
                     {% set eiheader = False %}
                     {% set caheader = False %}
