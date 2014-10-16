@@ -13,3 +13,6 @@ stardog data add guidelines data/TMR4I-data0.ttl data/TMR4I-dataMerge1.ttl data/
 
 echo "Loading drugBank data"
 stardog data add guidelines data/drugbank_small.nt
+
+echo "Running custom inferences"
+curl http://localhost:5000/getinference
