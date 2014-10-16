@@ -114,6 +114,7 @@
             ?i    tmr4i:relates     ?r2 .
         } THEN {
             ?i    a    tmr4i:ContradictionDueToSameAction, owl:NamedIndividual .
+            ?i  tmr4i:action ?ca .
         }""".
 
 # Rule 4
@@ -178,6 +179,7 @@
             FILTER( ?t1 != ?t2 )
         } THEN {
             ?i    a    tmr4i:RepetitionDueToSameAction, owl:NamedIndividual .
+            ?i  tmr4i:action ?ca .
         }""".
 
 # Rule 7
