@@ -1,0 +1,63 @@
+@prefix : <http://guidelines.data2semantics.org/data/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tmr: <http://guidelines.data2semantics.org/vocab/tmr/> .
+@base <http://guidelines.data2semantics.org/data/> .
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+:CIG-DM rdf:type tmr:Guideline, owl:NamedIndividual ;
+            rdfs:label "CIG for Diabetes Mellitus"@en .
+
+
+:RecDM-AntiThrombotic1 rdf:type tmr:Recommendation, owl:NamedIndividual ;
+                        tmr:hasValue "positive"^^xsd:string ;
+                        rdfs:label "Avoid thrombi"@en ;
+                        tmr:partOf :CIG-DM ;
+                        tmr:aboutExecutionof :ActAdministerNSAID;
+                        tmr:basedOn :CBNSAIDCoagulation .
+
+:RecDM-AntiThrombotic2 rdf:type tmr:Recommendation, owl:NamedIndividual ;
+                        tmr:hasValue "positive"^^xsd:string ;
+                        rdfs:label "Avoid thrombi"@en ;
+                        tmr:partOf :CIG-DM ;
+                        tmr:aboutExecutionof :ActAdministerTramadol;
+                        tmr:basedOn :CBTramadolCoagulation .
+
+
+:RecDM-ReduceLBS rdf:type tmr:Recommendation ,
+                                  owl:NamedIndividual ;
+                        tmr:hasValue "positive"^^xsd:string ;
+                        rdfs:label "Reduce blood sugar level"@en ;
+                        tmr:partOf :CIG-DM ;
+                        tmr:aboutExecutionof :ActAdministerInsulin;
+                        tmr:basedOn :CBInsulinLBS .
+
+#:RecDM-AvoidHighLBS rdf:type tmr:Recommendation ,
+#                                  owl:NamedIndividual ;
+#                        tmr:hasValue "negative"^^xsd:string ;
+#                        rdfs:label "Avoid high blood sugar level"@en ;
+#                        tmr:partOf :CIG-DM ;
+#                        tmr:aboutExecutionof :ActAdministerThiazide;
+#                        tmr:basedOn :CBThiazideLBS .
+
+
+#################################################################
+#
+#    General axioms
+#
+#################################################################
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :RecDM-AntiThrombotic1
+                        :RecDM-AntiThrombotic2
+                        :RecDM-ReduceLBS
+                      )
+] .
+

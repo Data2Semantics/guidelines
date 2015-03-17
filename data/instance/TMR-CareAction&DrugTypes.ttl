@@ -1,0 +1,180 @@
+@prefix : <http://guidelines.data2semantics.org/data/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
+@prefix tmr: <http://guidelines.data2semantics.org/vocab/tmr/> .
+@base <http://guidelines.data2semantics.org/data/> .
+
+#################################################################
+#
+#    Action Types
+#
+#################################################################
+
+
+:ActAdministerAspirin  rdf:type tmr:DrugAdministrationType, owl:NamedIndividual ;
+                            rdfs:label "Administer Aspirin"@en ;
+                            tmr:administrationOf :DrugTAspirin .
+
+
+:ActAdministerClopidogrel rdf:type tmr:DrugAdministrationType, owl:NamedIndividual ;
+                            rdfs:label "Administer Clopidogrel"@en ;
+                            tmr:administrationOf :DrugTClopidogrel .
+
+:ActAdministerDipyridamole rdf:type tmr:DrugAdministrationType, owl:NamedIndividual ;
+                            rdfs:label "Administer Dipyridamole"@en ;
+                            tmr:administrationOf :DrugTDipyridamole .
+
+
+:ActAdministerThiazide rdf:type tmr:DrugAdministrationType, owl:NamedIndividual ;
+                            rdfs:label "Administer Thiazide"@en ;
+                            tmr:administrationOf :DrugCatThiazide .
+
+
+:ActAdministerTramadol rdf:type tmr:DrugAdministrationType, owl:NamedIndividual ;
+                            rdfs:label "Administer Tramadol"@en ;
+                            tmr:administrationOf :DrugTTramadol .
+
+
+:ActAdministerInsulin rdf:type tmr:DrugAdministrationType, owl:NamedIndividual ;
+                        rdfs:label "Administer Insulin"@en ;
+                        tmr:administrationOf :DrugTInsulin .
+
+
+:ActAdministerPPI rdf:type tmr:DrugAdministrationType, owl:NamedIndividual ;
+                    rdfs:label "Administer PPI"@en ;
+                    tmr:administrationOf :DrugCatPPI .
+
+
+:ActAdministerIbuprofen rdf:type tmr:DrugAdministrationType, owl:NamedIndividual ;
+                        rdfs:label "Administer Ibuprofen"@en ;
+                        tmr:administrationOf :DrugTIbuprofen .
+
+
+:ActEradicationTherapy rdf:type tmr:DrugAdministrationType, owl:NamedIndividual ;
+                        rdfs:label "Bacteria Eradication Therapy"@en ;
+                        tmr:administrationOf :DrugCatAntiBacterialAgent .
+
+:ActAdministerNSAID rdf:type tmr:DrugAdministrationType, owl:NamedIndividual ;
+                    rdfs:label "Administer NSAID"@en ;
+                    tmr:administrationOf :DrugCatNSAID .
+
+
+#################################################################
+#
+#    Drug Types
+#
+#################################################################
+
+:DrugTAspirin rdf:type tmr:DrugType, owl:NamedIndividual ;
+                rdfs:label "Aspirin"@en .
+
+:DrugTIbuprofen rdf:type tmr:DrugType, owl:NamedIndividual ;
+                rdfs:label "Ibuprofen"@en .
+
+:DrugTClopidogrel rdf:type tmr:DrugType, owl:NamedIndividual ;
+                rdfs:label "Clopidogrel"@en .
+
+:DrugTTramadol rdf:type tmr:DrugType, owl:NamedIndividual ;
+                rdfs:label "Tramadol"@en .
+
+:DrugTDipyridamole rdf:type tmr:DrugType, owl:NamedIndividual ;
+                    rdfs:label "Dipyridamole"@en .
+
+:DrugTInsulin rdf:type tmr:DrugType, owl:NamedIndividual ;
+              rdfs:label "Insulin"@en .
+
+### Drug Categories
+
+:DrugCatNSAID rdf:type tmr:DrugType, owl:NamedIndividual ;
+                rdfs:label "NSAID"@en ;
+                tmr:subsumes :DrugTAspirin ,
+                            :DrugTIbuprofen .
+#                tmr:hasGroupingCriteria :TrAntinflammatory .
+
+:DrugCatAntiInflammatory rdf:type tmr:DrugType, owl:NamedIndividual ;
+                rdfs:label "Anti-inflammantory"@en ;
+                tmr:subsumes :DrugCatNSAID ;
+                tmr:hasGroupingCriteria :TrAntinflammatory .
+
+:DrugCatPPI rdf:type tmr:DrugType, owl:NamedIndividual ;
+                rdfs:label "PPI"@en .
+#                tmr:subsumes ...
+#                tmr:hasGroupingCriteria ...
+
+:DrugCatThiazide rdf:type tmr:DrugType, owl:NamedIndividual ;
+                rdfs:label "Thiazide"@en .
+#                tmr:subsumes ...
+#                tmr:hasGroupingCriteria ????
+
+## check it
+:DrugCatDiuretic rdf:type tmr:DrugType, owl:NamedIndividual ;
+                 rdfs:label "Diuretic"@en ;
+                 tmr:subsumes :DrugCatThiazide .
+#                tmr:hasGroupingCriteria ...
+
+:DrugCatAntiBacterialAgent rdf:type tmr:DrugType, owl:NamedIndividual ;
+        rdfs:label "Anti-bacterial Agent"@en .
+#        tmr:subsumes ...
+#        tmr:hasGroupingCriteria ...
+
+:DrugCatPlateletAggregationInhibitor rdf:type tmr:DrugType, owl:NamedIndividual ;
+                                    rdfs:label "Platelet Aggregation Inhibitor"@en .
+#                                   tmr:subssumes ...
+#                                   tmr:hasGroupingCriteria ...
+
+:DrugCatAnalgesic rdf:type tmr:DrugType, owl:NamedIndividual;
+        rdfs:label "Analgesic"@en ;
+#                tmr:subsumes ...
+        tmr:hasGroupingCriteria :TrPainkiller.
+
+#check it
+:DrugCatAntiHypertensiveAgent rdf:type tmr:DrugType, owl:NamedIndividual ;
+        rdfs:label "Anti Hypertensive"@en ;
+        #                tmr:subsumes ...
+        tmr:hasGroupingCriteria :TrDecreaseBP. ## ??
+
+
+#################################################################
+#
+#    General axioms
+#
+#################################################################
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :ActAdministerAspirin
+                        :ActAdministerClopidogrel
+                        :ActAdministerDipyridamole
+                        :ActAdministerThiazide
+                        :ActAdministerTramadol
+                        :ActAdministerPPI
+                        :ActAdministerIbuprofen
+                        :ActAdministerInsulin
+                        :ActAdministerNSAID
+                        :ActEradicationTherapy
+                      )
+] .
+[ rdf:type owl:AllDifferent ;
+owl:distinctMembers ( :DrugTAspirin
+                      :DrugTClopidogrel
+                      :DrugTDipyridamole
+                      :DrugCatThiazide
+                      :DrugTTramadol
+                      :DrugCatPPI
+                      :DrugCatNSAID
+                      :DrugTIbuprofen
+                      :DrugTnsulin
+                      :DrugCatDiuretic
+                      :DrugCatAntiBacterialAgent
+                      :DrugCatPlateletAggregationInhibitor
+                      :DrugCatAnalgesic
+                      :DrugCatAntiHypertensiveAgent
+)
+] .
+
+

@@ -1,0 +1,63 @@
+@prefix : <http://guidelines.data2semantics.org/data/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tmr: <http://guidelines.data2semantics.org/vocab/tmr/> .
+@base <http://guidelines.data2semantics.org/data/> .
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+:CIG-OA rdf:type tmr:Guideline ,
+                      owl:NamedIndividual ;
+                      rdfs:label "CIG for Osteoarthritis"@en .
+
+
+:RecOA-AvoidGIB rdf:type tmr:Recommendation, owl:NamedIndividual ;
+                    tmr:hasValue "negative"^^xsd:string ;
+                    rdfs:label "Avoid gastrointestinal bleeding"@en ;
+                    tmr:partOf :CIG-OA ;
+                    tmr:aboutExecutionof :ActAdministerAspirin;
+                    tmr:basedOn :CBAspirinGIB .
+
+
+:RecOA-Painkiller rdf:type tmr:Recommendation, owl:NamedIndividual ;
+                    tmr:hasValue "positive"^^xsd:string ;
+                    rdfs:label "Reduce pain"@en ;
+                    tmr:partOf :CIG-OA ;
+                    tmr:aboutExecutionof :ActAdministerIbuprofen;
+                    tmr:basedOn :CBIbuprofenPain .
+
+
+:RecOA-SideEffect-BC rdf:type tmr:Recommendation, owl:NamedIndividual ;
+                    tmr:hasValue "none"^^xsd:string ;
+                    rdfs:label "Reduce pain"@en ;
+                    tmr:partOf :RecOA-Painkiller ;
+                    tmr:aboutExecutionof :ActAdministerIbuprofen;
+                    tmr:basedOn :CBIbuprofenCoagulation .
+
+
+:RecOA-SideEffect-BP rdf:type tmr:Recommendation, owl:NamedIndividual ;
+                    tmr:hasValue "none"^^xsd:string ;
+                    rdfs:label "Increase Blood Pressure"@en ;
+                    tmr:partOf :RecOA-Painkiller ;
+                    tmr:aboutExecutionof :ActAdministerIbuprofen;
+                    tmr:basedOn :CBIbuprofenBP .
+
+
+#################################################################
+#
+#    General axioms
+#
+#################################################################
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :RecOA-AvoidGIB
+                        :RecOA-Painkiller
+                      )
+] .
