@@ -36,14 +36,8 @@
 
 
 
-process_request(Request):-
-  memberchk(request_uri(Uri), Request),
-  uri_components(Uri, uri_components(_,_,_,QueryString,_)),
-  uri_query_components(QueryString, Query),
-  memberchk(guideline=Guideline, Query),
-  interactingRecommendationsList(List, Guideline),
-  reply_json_dict(json{recommendations: List}).
-
+/* *********************************** */
+% Initialization/Loading functions
 init:-
   http_server(http_dispatch, [port(3030)]),
   load_data,
@@ -70,10 +64,43 @@ show_graphs:-
   ).
 
 
+/* *********************************** */
+% API functions
+
+process_request(Request) :-
+  memberchk(request_uri(Uri), Request),
+  uri_components(Uri, uri_components(_,_,_,QueryString,_)),
+  uri_query_components(QueryString, Query),
+  memberchk(type=Type, Query),
+  (
+    Type = 'getGuidelines'
+    ->
+    setof(CIG, guideline(CIG), CIGsList),
+    reply_json_dict(json{guidelines: CIGsList})
+    ;
+    Type = 'getRecommendations'
+    ->
+    memberchk(guideline=Guideline, Query),
+    setof(Rec, rec(Rec, Guideline), RecList),
+    reply_json_dict(json{recommendations: RecList})
+    ;
+    Type = 'getInteractions'
+    ->
+    %run the rules just for the requered guidelines? (instead of running on initialization?)
+    memberchk(guideline=Guideline, Query),
+    setof(InteractionDict, interactingRecommendations(InteractionDict, Guideline), IntRecList),
+    reply_json_dict(json{interactions: IntRecList})
+    %;
+    %Type = 'mergeGuidelines'
+    %->
+    %memberchk(listCIGs=ListCIGs, Query),
+    %mergeCGs(ListCIGs, newCIGURI),
+    %reply_json_dict(json{mergedCIG: newCIGURI})
+  ).
+
 
 
 /* *********************************** */
-% guideline(G)
 % ** check if a resource is a Guideline
 % ** retrieves all guidelines
 guideline(G) :-
@@ -82,20 +109,20 @@ guideline(G) :-
 
 
 /* *********************************** */
-% recommendation(R, Guideline, Value, Belief)
-% ** check if ...
 % ** given a guideline, retrieves its recommendations and features
+recommendation(Rec, Guideline, Value, Belief) :-
+    rdf(Rec, rdf:type, tmr:'Recommendation'),
+    rdf(Rec, tmr:'partOf', Guideline),
+    rdf(Rec, tmr:'hasValue', literal(type(xsd:string, Value))),
+    rdf(Rec, tmr:'basedOn', Belief).
+
 % ** retrieves guidelines and their recommendations
-recommendation(R, Guideline, Value, Belief) :-
-    rdf(R, rdf:type, tmr:'Recommendation'),
-    rdf(R, tmr:'partOf', Guideline),
-    rdf(R, tmr:'hasValue', literal(type(xsd:string, Value))),
-    rdf(R, tmr:'basedOn', Belief).
+rec(Rec, Guideline) :-
+    rdf(Rec, rdf:type, tmr:'Recommendation'),
+    rdf(Rec, tmr:'partOf', Guideline).
 
 
 /* *********************************** */
-% causationBelief(B, Value, Cause, Effect)
-% ** check if ...
 % ** given a belief retrieves its features
 % ** retrieves all belief and its features
 causationBelief(B, Value, Cause, Effect) :-
@@ -106,13 +133,11 @@ causationBelief(B, Value, Cause, Effect) :-
 
 
 /* *********************************** */
-% careActionT(A)
 % ** check if a resource is a Action Type
 % ** retrieves all Action Types
 careActionT(A) :-
     rdf(A, rdf:type, Type),
     rdf_reachable(Type, rdfs:subClassOf, tmr:'CareActionType').
-    %, !. ???
 
 subsumesActionT(ActionSuperT, ActionT) :-
     (   subsumes(ActionSuperT, ActionT) ->   true
@@ -133,16 +158,9 @@ relatedActionTs(ActionT1, ActionT2) :-
 subsumes(ST, T) :-
     ST \= T,
     rdf_reachable(ST, tmr:'subsumes', T).
-%   (
-%       rdf(ST, tmr:'subsumes', T) ->   true
-%    ;
-%       rdf(ST, tmr:'subsumes', T1),
-%        subsumes(T1, T)
-%    ).
 
 
 /* *********************************** */
-% transitionT(A)
 % ** check if a resource is a Transition Type
 % ** retrieves all Transition Types
 transitionT(T) :-
@@ -152,7 +170,6 @@ transitionT(T) :-
 
 
 /* *********************************** */
-% inverseTransition(T1, T2)
 % ** check if two resources are inverse transitions
 % ** given a transition, retrives the inverse ones
 % ** retrieves all pairs of inverse transitions
@@ -172,7 +189,6 @@ relatedTransitionTs(TransitionT1, TransitionT2) :-
     ).
 
 /* *********************************** */
-% interaction(IntType, Rec1, Rec2, Interaction)
 % ** check if there is an interaction of a certain type for recommendations
 % ** given an Interaction Type, retrieves the interactions
 % ** retrieves all interactions and related pair of recommendations
@@ -185,29 +201,13 @@ interaction2(IntType, Rec1, Rec2, Interaction) :-
 
 
 /* *********************************** */
-interactionsList(IntList) :-
-    setof([IntType,List], sameInteractions(IntType, List), IntList).
-
-sameInteractions(IntType, ListSameInt) :-
-    rdf_reachable(IntTypeURI, rdfs:subClassOf, tmr4i:'InternalRecommendationInteraction'),
-    rdf(I1, rdf:type, IntTypeURI),
-    rdf_global_id(tmr4i:IntType, IntTypeURI),
-    setof(I2, (rdf_reachable(I1, owl:sameAs, I2); rdf_reachable(I2, owl:sameAs, I1))
-            , ListSameInt).
-
-/* *********************************** */
-% interactingRecommendationsList(Interaction, IntType, List)
-%    'Contradiction',   [a,b]
-%    'Contradiction',   [a,c]
-%    'Alternative',     [a,d,e]
-interactingRecommendationsList(IntRecList, Guideline) :-
-    setof([IntType,List], interactingRecommendations(IntType, List, Guideline), IntRecList).
-
-interactingRecommendations(IntType, List, Guideline) :-
+% retrieves a dictionary interacting recommendations and the type
+interactingRecommendations(InteractionDict, Guideline) :-
     rdf_reachable(IntTypeURI, rdfs:subClassOf, tmr4i:'InternalRecommendationInteraction'),
     rdf(Interaction, rdf:type, IntTypeURI),
     rdf_global_id(tmr4i:IntType, IntTypeURI),
-    setof(Rec, interactionRecommendation(Interaction, Rec, Guideline), List).
+    setof(Rec, interactionRecommendation(Interaction, Rec, Guideline), List),
+    InteractionDict = interaction{type:IntType, recList:List}.
 
 interactionRecommendation(Interaction, Recommendation, Guideline) :-
     (rdf_reachable(Interaction, owl:sameAs, I2)
@@ -220,7 +220,6 @@ interactionRecommendation(Interaction, Recommendation, Guideline) :-
 
 
 /* *********************************** */
-% existsInteraction(IntType, Rec1, Rec2)
 % ** Assert an interaction of a certain type between the two recommendations
 existsInteraction(IntType, Rec1, Rec2) :-
     (   rdf_global_id(tmr4i:IntType, IntTypeURI),
@@ -245,7 +244,6 @@ existsInteraction(IntType, Rec1, Rec2) :-
 
 
 /* *********************************** */
-% inferInternalInteractions(G)
 % ** infer the internal interactions for all the recommendations in a guideline
 inferInternalInteractions :-
     % check Opposed Beliefs
@@ -394,7 +392,6 @@ inferInternalInteractions :-
 
 
 /* *********************************** */
-% inferExternalInteractions(G)
 % ** infer external interactions for all the recommendations in a guideline
 inferExternalInteractions(G) :-
     guideline(G),
@@ -402,21 +399,10 @@ inferExternalInteractions(G) :-
     %forall(   )...
 
 /* *********************************** */
-% loadExternalBeliefs(G)
 % ** Load external causation beliefs relevants to a guideline
 loadExternalBeliefs(G) :-
     guideline(G).
     %load relevant data from drugbank & sider
-
-
-
-/* *********************************** */
-    % >>>> Logical programing: given NameSpace and Resource
-    % it returns the NameRes
-    % atom_concat(NameSpace, NameRes, Resource)
-    % Non determinism: it can return multiple answers
-    % atom_concat(X, Y, abc).
-
 
 /* *********************************** */
 % different(Resource1, Resource2) {CWA - Negation as failure}
@@ -459,5 +445,6 @@ same(Resource1, Resource2) :-
  8) rdfs:subClassOf => subsumption
 * 9) How would I use it in python ?
 % https://github.com/SWI-Prolog/swish/blob/master/client/sin-table.html
+
 
 */
