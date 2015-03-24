@@ -1,0 +1,201 @@
+@prefix : <http://guidelines.data2semantics.org/data/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tmr: <http://guidelines.data2semantics.org/vocab/tmr/> .
+@base <http://guidelines.data2semantics.org/data/> .
+
+#################################################################
+#
+#    Situtation Types
+#
+#################################################################
+
+
+:SitDUHealed rdf:type tmr:SituationType, owl:NamedIndividual ;
+             rdfs:label     "Ulcer is healed"@en ;
+             tmr:umlsCode   "C1265810"^^xsd:string ; #  Healed ulcer
+             tmr:umlsCode   "C0400814"^^xsd:string . #  Healed gastric ulcer ???
+
+:SitDUUnhealed rdf:type tmr:SituationType, owl:NamedIndividual ;
+                rdfs:label "Ulcer is unhealed"@en ;
+                tmr:umlsCode   "C0041582"^^xsd:string ; #  Ulcer (sider)
+                tmr:umlsCode   "C0013295"^^xsd:string ; #  Duodenal Ulcer (sider)
+                tmr:umlsCode   "C0038358"^^xsd:string . #  Gastric ulcer (sider)
+
+:SitHPyloriNegative rdf:type tmr:SituationType, owl:NamedIndividual ;
+                    rdfs:label "H. Pylori exam is negative"@en .
+
+
+:SitHPyloriPositive rdf:type tmr:SituationType, owl:NamedIndividual ;
+                    rdfs:label      "H. Pylori exam is positive"@en ;
+                    tmr:umlsCode   "C0079488"^^xsd:string . # Helicobacter pylori
+
+:SitHighBP rdf:type tmr:SituationType, owl:NamedIndividual;
+            rdfs:label "Blood Pressure is High"@en ;
+            tmr:umlsCode   "C0020538"^^xsd:string ; #  Hypertensive disease (sider)
+            tmr:umlsCode   "C3843080"^^xsd:string . #  Hypertension or high blood pressure
+
+:SitNormalBP rdf:type tmr:SituationType, owl:NamedIndividual ;
+            rdfs:label "Blood Pressure is Normal"@en .
+
+
+:SitHighLBS rdf:type tmr:SituationType, owl:NamedIndividual;
+                    rdfs:label "Level of Blood Sugar is High"@en ;
+                    tmr:umlsCode   "C0020456"^^xsd:string ; #  Hyperglycemia (sider)
+                    tmr:umlsCode   "C3843079"^^xsd:string . #  Diabetes or high blood sugar
+
+:SitNormalLBS rdf:type tmr:SituationType, owl:NamedIndividual ;
+                rdfs:label "Level of Blood Sugar is Normal"@en .
+
+
+
+:SitHighRiskGIB rdf:type tmr:SituationType, owl:NamedIndividual ;
+                rdfs:label "Risk of Gastrointestinal Bleeding is High"@en ;
+                tmr:umlsCode   "C0017181"^^xsd:string . #  Gastrointestinal Hemorrhage (sider)
+
+:SitLowRiskGIB rdf:type tmr:SituationType, owl:NamedIndividual ;
+                rdfs:label "Risk of Gastrointestinal Bleeding is Low"@en .
+
+
+:SitHighRiskThrombus rdf:type tmr:SituationType, owl:NamedIndividual ;
+                    rdfs:label "Risk of Thrombus is High"@en ;
+                    tmr:umlsCode   "C0034155"^^xsd:string ; #  Purpura, Thrombotic Thrombocytopenic (sider)
+                    tmr:umlsCode   "C0155749"^^xsd:string . #  Arterial embolus and thrombosis
+
+
+:SitLowRiskThrombus rdf:type tmr:SituationType, owl:NamedIndividual ;
+                    rdfs:label "Risk of Thrombus is Low"@en .
+
+:SitMediumRiskThrombus rdf:type tmr:SituationType, owl:NamedIndividual ;
+                        rdfs:label "Risk of Thrombus is Medium"@en ;
+                        tmr:umlsCode   "C0034155"^^xsd:string ; #  Purpura, Thrombotic Thrombocytopenic (sider)
+                        tmr:umlsCode   "C0155749"^^xsd:string . #  Arterial embolus and thrombosis
+
+
+:SitNormalBC rdf:type tmr:SituationType, owl:NamedIndividual ;
+             rdfs:label "Blood Coagulation is Normal"@en .
+             #tmr:umlsCode   "C0005779"^^xsd:string . #  Blood Coagulation Disorders (Coagulopathy) ?? (sider)
+
+:SitLowBC rdf:type tmr:SituationType, owl:NamedIndividual ;
+             rdfs:label "Blood Coagulation is Low"@en ;
+             tmr:umlsCode   "C0005779"^^xsd:string . #  Blood Coagulation Disorders (Coagulopathy) ?? (sider)
+
+
+:SitPatientHasNoPain rdf:type tmr:SituationType, owl:NamedIndividual ;
+                    rdfs:label "Patient has no Pain"@en .
+
+
+:SitPatientHasPain rdf:type tmr:SituationType, owl:NamedIndividual ;
+                    rdfs:label "Patient has Pain"@en ;
+                    tmr:umlsCode   "C0030193"^^xsd:string . #  Pain (sider)
+
+
+
+#################################################################
+#
+#    Transition Types
+#
+#################################################################
+
+
+:TrIncreaseRiskGIB rdf:type tmr:TransitionType, owl:NamedIndividual ;
+                    tmr:hasTransformableSituation :SitLowRiskGIB ;
+                    tmr:hasExpectedPostSituation :SitHighRiskGIB .
+
+
+:TrDecreaseRiskGIB rdf:type tmr:TransitionType, owl:NamedIndividual ;
+                    tmr:hasTransformableSituation :SitHighRiskGIB ;
+                    tmr:hasExpectedPostSituation :SitLowRiskGIB .
+
+:TrDecreaseBC rdf:type tmr:TransitionType, owl:NamedIndividual ;
+                    tmr:hasTransformableSituation :SitNormalBC ;
+                    tmr:hasExpectedPostSituation :SitLowBC .
+
+
+:TrDecreaseBP rdf:type tmr:TransitionType, owl:NamedIndividual ;
+                tmr:hasTransformableSituation :SitHighBP ;
+                tmr:hasExpectedPostSituation :SitNormalBP .
+
+
+:TrIncreaseBP rdf:type tmr:TransitionType, owl:NamedIndividual ;
+                tmr:hasTransformableSituation :SitNormalBP ;
+                tmr:hasExpectedPostSituation :SitHighBP .
+
+
+:TrIncreaseLBS rdf:type tmr:TransitionType, owl:NamedIndividual ;
+                tmr:hasTransformableSituation :SitNormalLBS ;
+                tmr:hasExpectedPostSituation :SitHighLBS .
+
+
+:TrDecreaseLBS rdf:type tmr:TransitionType, owl:NamedIndividual ;
+                tmr:hasTransformableSituation :SitHighLBS ;
+                tmr:hasExpectedPostSituation :SitNormalLBS .
+
+
+:TrPainkiller rdf:type tmr:TransitionType, owl:NamedIndividual ;
+                tmr:hasTransformableSituation :SitPatientHasPain ;
+                tmr:hasExpectedPostSituation :SitPatientHasNoPain .
+
+
+:TrDecreaseRiskThrombus rdf:type tmr:TransitionType, owl:NamedIndividual ;
+                        tmr:hasTransformableSituation :SitMediumRiskThrombus ;
+                        tmr:hasExpectedPostSituation :SitLowRiskThrombus .
+
+
+:TrIncreaseRiskThrombus rdf:type tmr:TransitionType, owl:NamedIndividual ;
+                        tmr:hasTransformableSituation :SitLowRiskThrombus ;
+                        tmr:hasExpectedPostSituation :SitMediumRiskThrombus .
+
+
+:TrHealingUlcer rdf:type tmr:TransitionType, owl:NamedIndividual ;
+                tmr:hasTransformableSituation :SitDUUnhealed ;
+                tmr:hasExpectedPostSituation :SitDUHealed .
+
+
+#################################################################
+#
+#    General axioms
+#
+#################################################################
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :TrIncreaseRiskGIB
+                        :TrDecreaseRiskGIB
+                        :TrIncreaseBP
+                        :TrDecreaseBP
+                        :TrIncreaseLBS
+                        :TrDecreaseLBS
+                        :TrPainkiller
+                        :TrDecreaseRiskThrombus
+                        :TrIncreaseRiskThrombus
+                        :TrHealingUlcer
+                        :TrDecreaseBC
+                      )
+] .
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :SitDUHealed
+                        :SitDUUnhealed
+                        :SitHPyloriNegative
+                        :SitHPyloriPositive
+                        :SitHighBP
+                        :SitHighLBS
+                        :SitHighRiskGIB
+                        :SitHighRiskThrombus
+                        :SitLowRiskGIB
+                        :SitLowRiskThrombus
+                        :SitMediumRiskThrombus
+                        :SitNormalBP
+                        :SitNormalLBS
+                        :SitPatientHasNoPain
+                        :SitPatientHasPain
+                        :SitNormalBC
+                        :SitLowBC
+
+                      )
+] .
+
+
+

@@ -1,0 +1,90 @@
+@prefix : <http://guidelines.data2semantics.org/data/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tmr: <http://guidelines.data2semantics.org/vocab/tmr/> .
+@base <http://guidelines.data2semantics.org/data/> .
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+:CIG-DM-HT-OA rdf:type tmr:Guideline, owl:NamedIndividual ;
+            rdfs:label "CIG for Diabetes, Hypertension, Osteoarthritis"@en .
+
+
+:RecDM-HT-OA-Ht-OA-AntiThrombotic1 rdf:type tmr:Recommendation, owl:NamedIndividual ;
+                        tmr:hasValue "positive"^^xsd:string ;
+                        rdfs:label "Avoid thrombi"@en ;
+                        tmr:partOf :CIG-DM-HT-OA ;
+                        tmr:aboutExecutionof :ActAdministerNSAID;
+                        tmr:basedOn :CBNSAIDCoagulation .
+
+:RecDM-HT-OA-AntiThrombotic2 rdf:type tmr:Recommendation, owl:NamedIndividual ;
+                        tmr:hasValue "positive"^^xsd:string ;
+                        rdfs:label "Avoid thrombi"@en ;
+                        tmr:partOf :CIG-DM-HT-OA ;
+                        tmr:aboutExecutionof :ActAdministerTramadol;
+                        tmr:basedOn :CBTramadolCoagulation .
+
+
+:RecDM-HT-OA-ReduceLBS rdf:type tmr:Recommendation ,
+                                  owl:NamedIndividual ;
+                        tmr:hasValue "positive"^^xsd:string ;
+                        rdfs:label "Reduce blood sugar level"@en ;
+                        tmr:partOf :CIG-DM-HT-OA ;
+                        tmr:aboutExecutionof :ActAdministerInsulin;
+                        tmr:basedOn :CBInsulinLBS .
+
+
+:RecDM-HT-OA-Diuretic rdf:type tmr:Recommendation, owl:NamedIndividual ;
+                    tmr:hasValue "positive"^^xsd:string ;
+                    rdfs:label "Reduce blood pressure"@en ;
+                    tmr:partOf :CIG-DM-HT-OA ;
+                    tmr:aboutExecutionof :ActAdministerThiazide;
+                    tmr:basedOn :CBThiazideBP .
+
+
+:RecDM-HT-OA-SideEff-BS rdf:type tmr:Recommendation, owl:NamedIndividual ;
+                    tmr:hasValue "none"^^xsd:string ;
+                    rdfs:label "Increase Blood Sugar Level"@en ;
+                    tmr:partOf :RecDM-HT-OA-Diuretic ;
+                    tmr:aboutExecutionof :ActAdministerThiazide;
+                    tmr:basedOn :CBThiazideLBS .
+
+
+:RecDM-HT-OA-AvoidGIB rdf:type tmr:Recommendation, owl:NamedIndividual ;
+                    tmr:hasValue "negative"^^xsd:string ;
+                    rdfs:label "Avoid gastrointestinal bleeding"@en ;
+                    tmr:partOf :CIG-DM-HT-OA ;
+                    tmr:aboutExecutionof :ActAdministerAspirin;
+                    tmr:basedOn :CBAspirinGIB .
+
+
+:RecDM-HT-OA-Painkiller rdf:type tmr:Recommendation, owl:NamedIndividual ;
+                    tmr:hasValue "positive"^^xsd:string ;
+                    rdfs:label "Reduce pain"@en ;
+                    tmr:partOf :CIG-DM-HT-OA ;
+                    tmr:aboutExecutionof :ActAdministerIbuprofen;
+                    tmr:basedOn :CBIbuprofenPain .
+
+
+:RecDM-HT-OA-SideEffect-BC rdf:type tmr:Recommendation, owl:NamedIndividual ;
+                    tmr:hasValue "none"^^xsd:string ;
+                    rdfs:label "Reduce pain"@en ;
+                    tmr:partOf :RecDM-HT-OA-Painkiller ;
+                    tmr:aboutExecutionof :ActAdministerIbuprofen;
+                    tmr:basedOn :CBIbuprofenCoagulation .
+
+
+:RecDM-HT-OA-SideEffect-BP rdf:type tmr:Recommendation, owl:NamedIndividual ;
+                    tmr:hasValue "none"^^xsd:string ;
+                    rdfs:label "Increase Blood Pressure"@en ;
+                    tmr:partOf :RecDM-HT-OA-Painkiller ;
+                    tmr:aboutExecutionof :ActAdministerIbuprofen;
+                    tmr:basedOn :CBIbuprofenBP .
+
+

@@ -1,0 +1,53 @@
+@prefix : <http://guidelines.data2semantics.org/data/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
+@prefix tmr: <http://guidelines.data2semantics.org/vocab/tmr/> .
+@base <http://guidelines.data2semantics.org/data/> .
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+
+:RecDU-TestGIB rdf:type tmr:Recommendation, owl:NamedIndividual ;
+                tmr:hasValue "positive"^^xsd:string ;
+                rdfs:label "Test gastrointestinal bleeding"@en ;
+                tmr:partOf :CIG-DU ;
+                tmr:aboutExecutionof :ActAdministerAspirin;
+                tmr:basedOn :CBAspirinGIB .
+
+:RecDU-TestDU rdf:type tmr:Recommendation, owl:NamedIndividual ;
+                tmr:hasValue "negative"^^xsd:string ;
+                rdfs:label "Test duodenal ulcer"@en ;
+                tmr:partOf :CIG-DU ;
+                tmr:aboutExecutionof :ActAdministerPPI;
+                tmr:basedOn :CBPPIUlcer .
+
+:RecDU-Test2DU rdf:type tmr:Recommendation, owl:NamedIndividual ;
+                tmr:hasValue "positive"^^xsd:string ;
+                rdfs:label "Test2 duodenal ulcer"@en ;
+                tmr:partOf :CIG-DU ;
+                tmr:aboutExecutionof :ActAdministerPPI;
+                tmr:basedOn :CBPPIUlcer .
+
+:RecDU-TestGIB rdf:type tmr:Recommendation, owl:NamedIndividual ;
+                tmr:hasValue "positive"^^xsd:string ;
+                rdfs:label "Test GIB"@en ;
+                tmr:partOf :CIG-DU ;
+                tmr:aboutExecutionof :ActAdministerAspirin;
+                tmr:basedOn :CBAspirinGIBTest .
+
+
+:CBAspirinGIBTest rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+tmr:hasValue  "positive"^^xsd:string ;
+tmr:hasCause :ActAdministerAspirin ;
+tmr:hasEffect :TrDecreaseRiskGIB .
+

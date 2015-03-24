@@ -1,0 +1,242 @@
+@prefix : <http://guidelines.data2semantics.org/vocab/tmr/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tmr: <http://guidelines.data2semantics.org/vocab/tmr/> .
+@base <http://guidelines.data2semantics.org/vocab/tmr/> .
+
+<http://guidelines.data2semantics.org/vocab/tmr> rdf:type owl:Ontology .
+
+#################################################################
+#
+#    Classes of TMR 2.0
+#
+#################################################################
+
+###  http://guidelines.data2semantics.org/vocab/tmr/SituationType
+
+tmr:SituationType rdf:type owl:Class .
+
+
+###  http://guidelines.data2semantics.org/vocab/tmr/EventType
+
+tmr:EventType rdf:type owl:Class .
+
+
+###  http://guidelines.data2semantics.org/vocab/tmr/TransitionType
+
+tmr:TransitionType rdf:type owl:Class ;
+                    rdfs:subClassOf tmr:EventType .
+
+
+###  http://guidelines.data2semantics.org/vocab/tmr/CareActionType
+
+tmr:CareActionType rdf:type owl:Class ;
+                    rdfs:subClassOf tmr:EventType .
+
+
+###  http://guidelines.data2semantics.org/vocab/tmr/DrugAdministrationType
+
+tmr:DrugAdministrationType rdf:type owl:Class ;
+                            rdfs:subClassOf tmr:CareActionType .
+
+
+###  http://guidelines.data2semantics.org/vocab/tmr/DrugType
+
+tmr:DrugType rdf:type owl:Class .
+
+###  http://guidelines.data2semantics.org/vocab/tmr/DrugCategory
+
+tmr:DrugCategory rdf:type owl:Class ;
+                rdfs:subClassOf tmr:DrugType .
+#;
+#                owl:equivalentClass [ rdf:type owl:Class ;
+#                                        owl:intersectionOf ( tmr:DrugType
+#                                        [ rdf:type owl:Restriction ;
+#                                            owl:onProperty  tmr:subssumes ;
+#                                            owl:someValuesFrom tmr:DrugType
+#                                            ]
+#                                           )
+#                                    ] ;
+
+
+###  http://guidelines.data2semantics.org/vocab/tmr/DrugEffectCategory
+
+tmr:DrugEffectCategory rdf:type owl:Class ;
+                        rdfs:subClassOf tmr:DrugCategory .
+#;
+#                        owl:equivalentClass [ rdf:type owl:Class ;
+#                                            owl:intersectionOf ( tmr:DrugType
+#                                                [ rdf:type owl:Restriction ;
+#                                                    owl:onProperty  tmr:hasGroupingCriteria ;
+#                                                    owl:someValuesFrom tmr:TransitionType
+#                                                ]
+#                                                )
+#                                            ] ;
+
+###  http://guidelines.data2semantics.org/vocab/tmr/CausationBelief
+
+tmr:CausationBelief rdf:type owl:Class .
+
+
+###  http://guidelines.data2semantics.org/vocab/tmr/Guideline
+
+tmr:Guideline rdf:type owl:Class .
+
+
+###  http://guidelines.data2semantics.org/vocab/tmr/SingleDiseaseGuideline
+
+tmr:SingleDiseaseGuideline rdf:type owl:Class ;
+
+rdfs:subClassOf tmr:Guideline .
+
+###  http://guidelines.data2semantics.org/vocab/tmr/ComposedGuideline
+
+tmr:ComposedGuideline rdf:type owl:Class ;
+
+rdfs:subClassOf tmr:Guideline .
+
+
+###  http://guidelines.data2semantics.org/vocab/tmr/Recommendation
+
+tmr:Recommendation rdf:type owl:Class .
+
+
+#################################################################
+#
+#    Object Properties of TMR 2.0
+#
+#################################################################
+
+
+###  http://guidelines.data2semantics.org/vocab/tmr/hasPreSituation
+
+tmr:hasPreSituation rdf:type owl:ObjectProperty ;
+                      rdfs:range tmr:SituationType ;
+                      rdfs:domain tmr:TransitionType .
+
+
+###  http://guidelines.data2semantics.org/vocab/tmr/hasFilterCondition
+
+tmr:hasFilterCondition rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf tmr:hasPreSituation .
+
+
+###  http://guidelines.data2semantics.org/vocab/tmr/hasTransformableSituation
+
+tmr:hasTransformableSituation rdf:type owl:ObjectProperty ;
+                                rdfs:subPropertyOf tmr:hasPreSituation .
+
+
+###  http://guidelines.data2semantics.org/vocab/tmr/hasExpectedPostSituation
+
+tmr:hasExpectedPostSituation rdf:type owl:ObjectProperty ;
+                            rdfs:range tmr:SituationType ;
+                            rdfs:domain tmr:TransitionType .
+
+###  http://guidelines.data2semantics.org/vocab/tmr/relatedToTranstion
+
+tmr:relatedToTranstion rdf:type owl:ObjectProperty ;
+                        rdfs:range tmr:TransitionType ;
+                        rdfs:domain tmr:TransitionType .
+
+###  http://guidelines.data2semantics.org/vocab/tmr/similarToTransition
+
+tmr:similarToTransition rdf:type owl:ObjectProperty ,
+                                owl:SymmetricProperty,
+                                owl:IrreflexiveProperty ;
+                        rdfs:subPropertyOf tmr:relatedToTranstion .
+
+
+###  http://guidelines.data2semantics.org/vocab/tmr/inverseToTransition
+
+tmr:inverseToTransition rdf:type owl:ObjectProperty ,
+                                   owl:SymmetricProperty ;
+                          rdfs:subPropertyOf tmr:relatedToTranstion .
+
+
+###  http://guidelines.data2semantics.org/vocab/tmr/hasCause
+
+tmr:hasCause rdf:type owl:ObjectProperty ;
+                rdfs:range tmr:CausationBelief ;
+                rdfs:domain tmr:EventType .
+
+###  http://guidelines.data2semantics.org/vocab/tmr/hasEffect
+
+tmr:hasEffect rdf:type owl:ObjectProperty ;
+            rdfs:range tmr:CausationBelief ;
+            rdfs:domain tmr:TransitionType .
+
+
+###  http://guidelines.data2semantics.org/vocab/tmr/derivesFrom
+
+tmr:derivesFrom rdf:type owl:ObjectProperty .
+
+###  http://guidelines.data2semantics.org/vocab/tmr/partOf
+
+tmr:partOf rdf:type owl:FunctionalProperty ,
+                    owl:ObjectProperty ;
+            rdfs:range tmr:Guideline ;
+            rdfs:domain tmr:Recommendation .
+
+###  http://guidelines.data2semantics.org/vocab/tmr/aboutTheExecutionOf
+
+tmr:aboutTheExecutionOf rdf:type owl:ObjectProperty ;
+                 rdfs:domain tmr:Recommendation ;
+                 rdfs:range tmr:CareActionType .
+
+
+###  http://guidelines.data2semantics.org/vocab/tmr/subsumes
+
+tmr:subsumes a owl:ObjectProperty ,
+                    owl:IrreflexiveProperty ,
+                    owl:AsymmetricProperty,
+                    owl:TransitiveProperty.
+
+
+###  http://guidelines.data2semantics.org/vocab/tmr/hasGroupingCriteria
+
+tmr:hasGroupingCriteria a owl:ObjectProperty.
+
+
+###  http://guidelines.data2semantics.org/vocab/tmr/administrationOf
+
+tmr:administrationOf a owl:ObjectProperty ;
+                        rdfs:domain tmr:DrugAdministrationType;
+                        rdfs:range tmr:DrugType.
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://www.w3.org/2002/07/owl#hasValue
+
+tmr:hasValue rdf:type owl:DatatypeProperty .
+
+
+
+#################################################################
+#
+#    General axioms
+#
+#################################################################
+
+
+[ rdf:type owl:AllDisjointClasses ;
+owl:members ( tmr:CareActionType
+tmr:Guideline
+tmr:Recommendation
+tmr:SituationType
+tmr:TransitionType
+tmr:CausationBelief
+)
+] .
+
+
+

@@ -1,0 +1,131 @@
+@prefix : <http://guidelines.data2semantics.org/data/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tmr: <http://guidelines.data2semantics.org/vocab/tmr/> .
+@base <http://guidelines.data2semantics.org/data/> .
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+
+:CBAspiringThrombus rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+                    tmr:hasValue  "positive"^^xsd:string ;
+                    tmr:hasCause :ActAdministerAspirin ;
+                    tmr:hasEffect :TrDecreaseRiskThrombus .
+
+
+:CBAspiringPain rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+                tmr:hasValue  "positive"^^xsd:string ;
+                tmr:hasCause :ActAdministerAspirin ;
+                tmr:hasEffect :TrPainkiller .
+
+
+:CBNSAIDPain rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+                tmr:hasValue  "positive"^^xsd:string ;
+                tmr:hasCause :ActAdministerNSAID ;
+                tmr:hasEffect :TrPainkiller .
+
+
+:CBNSAIDCoagulation rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+                tmr:hasValue  "positive"^^xsd:string ;
+                tmr:hasCause :ActAdministerNSAID ;
+                tmr:hasEffect :TrDecreaseBC .
+
+:CBIbuprofenCoagulation rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+                tmr:hasValue  "positive"^^xsd:string ;
+                tmr:hasCause :ActAdministerIbuprofen ;
+                tmr:hasEffect :TrDecreaseBC .
+
+:CBTramadolCoagulation rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+                tmr:hasValue  "positive"^^xsd:string ;
+                tmr:hasCause :ActAdministerTramadol ;
+                tmr:hasEffect :TrDecreaseBC .
+
+:CBIbuprofenPain rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+            tmr:hasValue  "positive"^^xsd:string ;
+            tmr:hasCause :ActAdministerIbuprofen ;
+            tmr:hasEffect :TrPainkiller .
+
+
+:CBClopidogrelThrombus rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+            tmr:hasValue  "positive"^^xsd:string ;
+            tmr:hasCause :ActAdministerClopidogrel ;
+            tmr:hasEffect :TrDecreaseRiskThrombus .
+
+
+:CBPPIGIB rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+            tmr:hasValue  "positive"^^xsd:string ;
+            tmr:hasCause :ActAdministerPPI ;
+            tmr:hasEffect :TrDecreaseRiskGIB .
+
+:CBAspirinGIB rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+            tmr:hasValue  "positive"^^xsd:string ;
+            tmr:hasCause :ActAdministerAspirin ;
+            tmr:hasEffect :TrIncreaseRiskGIB .
+
+
+:CBPPIUlcer rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+            tmr:hasValue  "positive"^^xsd:string ;
+            tmr:hasCause :ActAdministerPPI ;
+            tmr:hasEffect :TrHealUlcer .
+
+
+:CBEradicationTherapyUlcer rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+            tmr:hasValue  "positive"^^xsd:string ;
+            tmr:hasCause :ActEradicationTherapy ;
+            tmr:hasEffect :TrHealUlcer .
+
+
+:CBNSAIDThrombus rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+            tmr:hasValue  "positive"^^xsd:string ;
+            tmr:hasCause :ActAdministerNSAID ;
+            tmr:hasEffect :TrDecreaseRiskThrombus .
+
+
+:CBDipyridamoleThrombus rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+            tmr:hasValue  "positive"^^xsd:string ;
+            tmr:hasCause :ActAdministerDipyridamole ;
+            tmr:hasEffect :TrDecreaseRiskThrombus .
+
+
+:CBTramadolThrombus rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+            tmr:hasValue  "positive"^^xsd:string ;
+            tmr:hasCause :ActAdministerTramadol ;
+            tmr:hasEffect :TrDecreaseRiskThrombus .
+
+
+:CBTramadolPain rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+            tmr:hasValue  "positive"^^xsd:string ;
+            tmr:hasCause :ActAdministerTramadol ;
+            tmr:hasEffect :TrPainkiller .
+
+
+:CBThiazideLBS rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+            tmr:hasValue  "positive"^^xsd:string ;
+            tmr:hasCause :ActAdministerThiazide ;
+            tmr:hasEffect :TrIncreaseLBS .
+
+
+:CBInsulinLBS rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+            tmr:hasValue  "positive"^^xsd:string ;
+            tmr:hasCause :ActAdministerInsulin ;
+            tmr:hasEffect :TrDecreaseLBS .
+
+
+:CBThiazideBP rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+            tmr:hasValue  "positive"^^xsd:string ;
+            tmr:hasCause :ActAdministerThiazide ;
+            tmr:hasEffect :TrDecreaseBP .
+
+:CBIbuprofenBP rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+            tmr:hasValue  "positive"^^xsd:string ;
+            tmr:hasCause :ActAdministerIbuprofen ;
+            tmr:hasEffect :TrIncreaseBP .
+
+

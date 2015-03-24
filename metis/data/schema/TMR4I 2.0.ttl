@@ -1,0 +1,183 @@
+@prefix : <http://guidelines.data2semantics.org/vocab/tmr4i/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tmr: <http://guidelines.data2semantics.org/vocab/tmr/> .
+@prefix tmr4i: <http://guidelines.data2semantics.org/vocab/tmr4i/> .
+@base <http://guidelines.data2semantics.org/vocab/tmr4i/> .
+
+<http://guidelines.data2semantics.org/vocab/tmr4i/> rdf:type owl:Ontology .
+
+
+#################################################################
+#
+#    Interactions
+#
+#################################################################
+
+
+tmr4i:RecommendationInteraction rdf:type owl:Class ;
+        owl:equivalentClass [ rdf:type owl:Class ;
+                             owl:intersectionOf ( tmr4i:RecommendationInteraction
+                                             [ rdf:type owl:Restriction ;
+                                              owl:onProperty  tmr4i:relates ;
+                                              owl:someValuesFrom tmr:Recommendation
+                                              ]
+                                             )
+                         ] .
+
+
+tmr4i:InternalRecommendationInteraction rdf:type owl:Class ;
+        rdfs:subClassOf tmr4i:RecommendationInteraction .
+
+
+tmr4i:ExternalRecommendationInteraction rdf:type owl:Class ;
+        owl:equivalentClass [ rdf:type owl:Class ;
+                         owl:intersectionOf ( tmr4i:RecommendationInteraction
+                                             [ rdf:type owl:Restriction ;
+                                              owl:onProperty  tmr4i:relates ;
+                                              owl:someValuesFrom tmr4i:ExternalInformation
+                                              ]
+                                             )
+                         ] ;
+        rdfs:subClassOf tmr4i:RecommendationInteraction .
+
+
+###########
+# CompliantRecommendations
+###########
+tmr4i:CompliantRecommendations rdf:type owl:Class ;
+    rdfs:label "Compliant Recommendations"@en;
+    rdfs:subClassOf tmr4i:InternalRecommendationInteraction .
+
+tmr4i:ReparableTransition rdf:type owl:Class ;
+    rdfs:label "Reparable Transition"@en;
+    rdfs:subClassOf tmr4i:CompliantRecommendations .
+
+tmr4i:NeutralIntentions rdf:type owl:Class ;
+    rdfs:label "Neutral Transition"@en;
+    rdfs:subClassOf tmr4i:CompliantRecommendations .
+
+###########
+# RedundantRecommendations
+###########
+tmr4i:RedundantRecommendations rdf:type owl:Class ;
+    rdfs:label "Redundant Recommendations"@en;
+    rdfs:subClassOf tmr4i:InternalRecommendationInteraction .
+
+tmr4i:RedundantPositRecommendations rdf:type owl:Class ;
+    rdfs:label "Redundant Positive Recommendations"@en;
+    rdfs:subClassOf tmr4i:RedundantRecommendations .
+
+tmr4i:RedundantNegatRecommendations rdf:type owl:Class ;
+    rdfs:label "Redundant Negative Recommendations"@en;
+    rdfs:subClassOf tmr4i:RedundantRecommendations .
+
+tmr4i:RepeatedAction rdf:type owl:Class ;
+    rdfs:label "Repeated Action"@en;
+    rdfs:subClassOf tmr4i:RedundantPositRecommendations .
+
+tmr4i:AlternativeActions rdf:type owl:Class ;
+    rdfs:label "Alternative Actions"@en;
+    rdfs:subClassOf tmr4i:RedundantPositRecommendations .
+
+tmr4i:RepeatedSideEffect rdf:type owl:Class ;
+    rdfs:label "Repeated Side Effect"@en;
+    rdfs:subClassOf tmr4i:RedundantPositRecommendations .
+
+###########
+# ContradictoryRecommendations
+###########
+tmr4i:ContradictoryRecommendations rdf:type owl:Class ;
+    rdfs:label "Contradictory Recommendations"@en;
+    rdfs:subClassOf tmr4i:InternalRecommendationInteraction .
+
+tmr4i:Contradiction-Action rdf:type owl:Class ;
+    rdfs:label "Contradiction due to same Action"@en;
+    rdfs:subClassOf tmr4i:ContradictoryRecommendations .
+
+tmr4i:Contradiction-Transition rdf:type owl:Class ;
+    rdfs:label "Contradition due to Transition"@en;
+    rdfs:subClassOf tmr4i:ContradictoryRecommendations .
+
+
+###########
+# DoxasticInteraction
+###########
+tmr4i:DoxasticInteraction rdf:type owl:Class ;
+    rdfs:label "Doxastic Interaction"@en;
+    rdfs:subClassOf tmr4i:InternalRecommendationInteraction .
+
+tmr4i:RelyingOpposedBeliefs rdf:type owl:Class ;
+    rdfs:label "Relying on Opposed Beliefs"@en;
+    rdfs:subClassOf tmr4i:DoxasticInteraction .
+
+tmr4i:RelyingCompliantBeliefs rdf:type owl:Class ;
+    rdfs:label "Relying on Compliant Beliefs"@en;
+    rdfs:subClassOf tmr4i:DoxasticInteraction .
+
+tmr4i:RelyingSimilarBeliefs rdf:type owl:Class ;
+    rdfs:label "Relying on Similar Beliefs"@en;
+    rdfs:subClassOf tmr4i:DoxasticInteraction .
+
+
+###########
+# ExternalRecommendationInteraction
+###########
+tmr4i:DrugRelatedExtInteraction rdf:type owl:Class ;
+    rdfs:label "Drug-related External Interaction"@en;
+    rdfs:subClassOf tmr4i:ExternalRecommendationInteraction .
+
+tmr4i:AlternativeDrugs rdf:type owl:Class ;
+    rdfs:label "Alternative Drugs"@en;
+    rdfs:subClassOf tmr4i:DrugRelatedExtInteraction .
+
+tmr4i:IncompatibleDrugs rdf:type owl:Class ;
+    rdfs:label "Incompatible Drugs"@en;
+    rdfs:subClassOf tmr4i:DrugRelatedExtInteraction .
+
+tmr4i:IncompatibleDrugSideEffectInteraction rdf:type owl:Class ;
+    rdfs:label "Incompatible Side-Effect of Drug"@en;
+    rdfs:subClassOf tmr4i:DrugRelatedExtInteraction .
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+#
+#tmr4i:interactsInternallyWith a owl:ObjectProperty .
+#
+#tmr4i:interactsExternallyWith a owl:ObjectProperty .
+#
+#tmr4i:regardsExternalInf a owl:ObjectProperty .
+
+tmr4i:relates a owl:ObjectProperty ;
+    rdfs:domain tmr4i:Interaction.
+
+tmr4i:about a owl:ObjectProperty ;
+    rdfs:domain tmr4i:ExternalInteraction;
+    rdfs:range tmr4i:ExternalInformation.
+
+tmr4i:aboutDrug a owl:ObjectProperty ;
+    #    rdfs:subpropertyOf tmr4i:about
+    rdfs:domain tmr4i:ExternalInteraction.
+    #rdfs:range tmr4i:ExternalDrugType.
+
+tmr4i:aboutAlternativeDrug a owl:ObjectProperty ;
+    #    rdfs:subpropertyOf tmr4i:about
+    rdfs:domain tmr4i:ExternalInteraction.
+    #rdfs:range tmr4i:ExternalDrugType.
+
+tmr4i:aboutSideEffect a owl:ObjectProperty ;
+    #    rdfs:subpropertyOf tmr4i:about
+    rdfs:domain tmr4i:ExternalInteraction.
+    #rdfs:range tmr4i:ExternalEffectType.
+
+
+
+
