@@ -1,0 +1,36 @@
+:CBIbuprofenBP 
+  nanopub:hasProvenance :CBIbuprofenBPprovenance ;
+  nanopub:hasAssertion :CBIbuprofenBPassertion ;
+  nanopub:hasPublicationInfo :CBIbuprofenBPpubinfo .
+
+
+:CBIbuprofenBPpubinfo {
+  :CBIbuprofenBP prov:wasDerivedFrom :theguidelinewherethisevidencewasstated ;
+                  prov:wasGeneratedBy :manualAnnotationProcedure1 ;
+                  prov:wasAttributedTo :dblp:VeruskaCarrettaZamborlini .
+  :manualAnnotationProcedure1 a prov:Activity ;
+                prov:actor dblp:VeruskaCarrettaZamborlini .
+
+}
+
+:CBIbuprofenBPprovenance {
+  :CBIbuprofenBPprovenance a oa:Annotation .
+  :CBIbuprofenBPprovenance oa:hasBody :CBIbuprofenBPassertion .
+  :CBIbuprofenBPprovenance oa:hasTarget [ 
+                            oa:hasSource :theguidelinewherethisevidencewasstated ;
+                            oa:hasSelector [ oax:exact "Ibuprofen causes an increase in Blood Pressure" ]                           ] .
+  
+  :CBIbuprofenBPassertion prov:wasDerivedFrom :theguidelinewherethisevidencewasstated ;
+                          prov:wasGeneratedBy :LiteratureReview1 .
+                          prov:wasAttributedTo :Author1, :Author2 .
+  :LiteratureReview1      a prov:Activity ;
+                          prov:actor :Author1, :Author2 .
+  :CBIbuprofenBPassertion rdf:type tmr:CausationBelief, owl:NamedIndividual ;
+            tmr:strength  "positive"^^xsd:string ;
+}
+
+
+:CBIbuprofenBPassertion {
+  :ActAdministerIbuprofen tmr:causes :TrIncreaseBP .              
+}
+
