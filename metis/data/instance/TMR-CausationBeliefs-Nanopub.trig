@@ -1,0 +1,471 @@
+@prefix nanopub: <http://www.nanopub.org/nschema#> .
+@prefix oa: <http://www.w3.org/ns/oa#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tmr: <http://guidelines.data2semantics.org/vocab/tmr/> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<tmr:CBIbuprofenBP_assertion> = {
+    tmr:ActAdministerIbuprofen tmr:causes tmr:TrIncreaseBP .
+
+    tmr:CBIbuprofenBP_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBNSAIDPain_assertion> = {
+    tmr:ActAdministerNSAID tmr:causes tmr:TrPainkiller .
+
+    tmr:CBNSAIDPain_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBNSAIDCoagulation_publicationinfo> = {
+    tmr:CBNSAIDCoagulation_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBIbuprofenPain_assertion> = {
+    tmr:ActAdministerIbuprofen tmr:causes tmr:TrPainkiller .
+
+    tmr:CBIbuprofenPain_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBThiazideLBS_publicationinfo> = {
+    tmr:CBThiazideLBS_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBDipyridamoleThrombus_provenance> = {
+    tmr:CBDipyridamoleThrombus_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBDipyridamoleThrombus_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBDipyridamoleThrombus_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBPPIGIB_assertion> = {
+    tmr:ActAdministerPPI tmr:causes tmr:TrDecreaseRiskGIB .
+
+    tmr:CBPPIGIB_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBInsulinLBS_assertion> = {
+    tmr:ActAdministerInsulin tmr:causes tmr:TrDecreaseLBS .
+
+    tmr:CBInsulinLBS_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBTramadolThrombus_publicationinfo> = {
+    tmr:CBTramadolThrombus_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBIbuprofenPain_provenance> = {
+    tmr:CBIbuprofenPain_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBIbuprofenPain_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBIbuprofenPain_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBThiazideBP_publicationinfo> = {
+    tmr:CBThiazideBP_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBEradicationTherapyUlcer_provenance> = {
+    tmr:CBEradicationTherapyUlcer_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBEradicationTherapyUlcer_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBEradicationTherapyUlcer_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBThiazideBP_provenance> = {
+    tmr:CBThiazideBP_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBThiazideBP_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBThiazideBP_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBPPIGIB_publicationinfo> = {
+    tmr:CBPPIGIB_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBInsulinLBS_publicationinfo> = {
+    tmr:CBInsulinLBS_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBTramadolThrombus_provenance> = {
+    tmr:CBTramadolThrombus_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBTramadolThrombus_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBTramadolThrombus_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBInsulinLBS_provenance> = {
+    tmr:CBInsulinLBS_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBInsulinLBS_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBInsulinLBS_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBDipyridamoleThrombus_assertion> = {
+    tmr:ActAdministerDipyridamole tmr:causes tmr:TrDecreaseRiskThrombus .
+
+    tmr:CBDipyridamoleThrombus_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBNSAIDCoagulation_provenance> = {
+    tmr:CBNSAIDCoagulation_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBNSAIDCoagulation_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBNSAIDCoagulation_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBNSAIDThrombus_publicationinfo> = {
+    tmr:CBNSAIDThrombus_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBAspiringThrombus_publicationinfo> = {
+    tmr:CBAspiringThrombus_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBClopidogrelThrombus_publicationinfo> = {
+    tmr:CBClopidogrelThrombus_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBPPIUlcer_provenance> = {
+    tmr:CBPPIUlcer_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBPPIUlcer_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBPPIUlcer_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBIbuprofenPain_publicationinfo> = {
+    tmr:CBIbuprofenPain_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBIbuprofenCoagulation_assertion> = {
+    tmr:ActAdministerIbuprofen tmr:causes tmr:TrDecreaseBC .
+
+    tmr:CBIbuprofenCoagulation_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBTramadolCoagulation_publicationinfo> = {
+    tmr:CBTramadolCoagulation_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBThiazideBP_assertion> = {
+    tmr:ActAdministerThiazide tmr:causes tmr:TrDecreaseBP .
+
+    tmr:CBThiazideBP_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBClopidogrelThrombus_assertion> = {
+    tmr:ActAdministerClopidogrel tmr:causes tmr:TrDecreaseRiskThrombus .
+
+    tmr:CBClopidogrelThrombus_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBAspiringPain_publicationinfo> = {
+    tmr:CBAspiringPain_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBPPIUlcer_assertion> = {
+    tmr:ActAdministerPPI tmr:causes tmr:TrHealUlcer .
+
+    tmr:CBPPIUlcer_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBIbuprofenBP_provenance> = {
+    tmr:CBIbuprofenBP_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBIbuprofenBP_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBIbuprofenBP_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBTramadolCoagulation_assertion> = {
+    tmr:ActAdministerTramadol tmr:causes tmr:TrDecreaseBC .
+
+    tmr:CBTramadolCoagulation_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBAspiringPain_assertion> = {
+    tmr:ActAdministerAspirin tmr:causes tmr:TrPainkiller .
+
+    tmr:CBAspiringPain_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBThiazideLBS_assertion> = {
+    tmr:ActAdministerThiazide tmr:causes tmr:TrIncreaseLBS .
+
+    tmr:CBThiazideLBS_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBNSAIDCoagulation_assertion> = {
+    tmr:ActAdministerNSAID tmr:causes tmr:TrDecreaseBC .
+
+    tmr:CBNSAIDCoagulation_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBAspirinGIB_provenance> = {
+    tmr:CBAspirinGIB_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBAspirinGIB_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBAspirinGIB_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBNSAIDPain_publicationinfo> = {
+    tmr:CBNSAIDPain_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBAspirinGIB_assertion> = {
+    tmr:ActAdministerAspirin tmr:causes tmr:TrIncreaseRiskGIB .
+
+    tmr:CBAspirinGIB_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBPPIGIB_provenance> = {
+    tmr:CBPPIGIB_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBPPIGIB_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBPPIGIB_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBIbuprofenBP_publicationinfo> = {
+    tmr:CBIbuprofenBP_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBTramadolPain_assertion> = {
+    tmr:ActAdministerTramadol tmr:causes tmr:TrPainkiller .
+
+    tmr:CBTramadolPain_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBAspirinGIB_publicationinfo> = {
+    tmr:CBAspirinGIB_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBTramadolPain_publicationinfo> = {
+    tmr:CBTramadolPain_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<None> = {
+    tmr:CBAspirinGIB_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBAspirinGIB_assertion ;
+        nanopub:hasProvenance tmr:CBAspirinGIB_provenance .
+
+    tmr:CBAspiringPain_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBAspiringPain_assertion ;
+        nanopub:hasProvenance tmr:CBAspiringPain_provenance .
+
+    tmr:CBAspiringThrombus_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBAspiringThrombus_assertion ;
+        nanopub:hasProvenance tmr:CBAspiringThrombus_provenance .
+
+    tmr:CBClopidogrelThrombus_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBClopidogrelThrombus_assertion ;
+        nanopub:hasProvenance tmr:CBClopidogrelThrombus_provenance .
+
+    tmr:CBDipyridamoleThrombus_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBDipyridamoleThrombus_assertion ;
+        nanopub:hasProvenance tmr:CBDipyridamoleThrombus_provenance .
+
+    tmr:CBEradicationTherapyUlcer_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBEradicationTherapyUlcer_assertion ;
+        nanopub:hasProvenance tmr:CBEradicationTherapyUlcer_provenance .
+
+    tmr:CBIbuprofenBP_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBIbuprofenBP_assertion ;
+        nanopub:hasProvenance tmr:CBIbuprofenBP_provenance .
+
+    tmr:CBIbuprofenCoagulation_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBIbuprofenCoagulation_assertion ;
+        nanopub:hasProvenance tmr:CBIbuprofenCoagulation_provenance .
+
+    tmr:CBIbuprofenPain_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBIbuprofenPain_assertion ;
+        nanopub:hasProvenance tmr:CBIbuprofenPain_provenance .
+
+    tmr:CBInsulinLBS_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBInsulinLBS_assertion ;
+        nanopub:hasProvenance tmr:CBInsulinLBS_provenance .
+
+    tmr:CBNSAIDCoagulation_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBNSAIDCoagulation_assertion ;
+        nanopub:hasProvenance tmr:CBNSAIDCoagulation_provenance .
+
+    tmr:CBNSAIDPain_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBNSAIDPain_assertion ;
+        nanopub:hasProvenance tmr:CBNSAIDPain_provenance .
+
+    tmr:CBNSAIDThrombus_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBNSAIDThrombus_assertion ;
+        nanopub:hasProvenance tmr:CBNSAIDThrombus_provenance .
+
+    tmr:CBPPIGIB_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBPPIGIB_assertion ;
+        nanopub:hasProvenance tmr:CBPPIGIB_provenance .
+
+    tmr:CBPPIUlcer_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBPPIUlcer_assertion ;
+        nanopub:hasProvenance tmr:CBPPIUlcer_provenance .
+
+    tmr:CBThiazideBP_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBThiazideBP_assertion ;
+        nanopub:hasProvenance tmr:CBThiazideBP_provenance .
+
+    tmr:CBThiazideLBS_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBThiazideLBS_assertion ;
+        nanopub:hasProvenance tmr:CBThiazideLBS_provenance .
+
+    tmr:CBTramadolCoagulation_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBTramadolCoagulation_assertion ;
+        nanopub:hasProvenance tmr:CBTramadolCoagulation_provenance .
+
+    tmr:CBTramadolPain_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBTramadolPain_assertion ;
+        nanopub:hasProvenance tmr:CBTramadolPain_provenance .
+
+    tmr:CBTramadolThrombus_nanopub a nanopub:Nanopublication ;
+        nanopub:hasAssertion tmr:CBTramadolThrombus_assertion ;
+        nanopub:hasProvenance tmr:CBTramadolThrombus_provenance .
+}
+
+<tmr:CBPPIUlcer_publicationinfo> = {
+    tmr:CBPPIUlcer_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBTramadolPain_provenance> = {
+    tmr:CBTramadolPain_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBTramadolPain_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBTramadolPain_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBEradicationTherapyUlcer_publicationinfo> = {
+    tmr:CBEradicationTherapyUlcer_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBTramadolCoagulation_provenance> = {
+    tmr:CBTramadolCoagulation_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBTramadolCoagulation_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBTramadolCoagulation_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBEradicationTherapyUlcer_assertion> = {
+    tmr:ActEradicationTherapy tmr:causes tmr:TrHealUlcer .
+
+    tmr:CBEradicationTherapyUlcer_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBNSAIDThrombus_provenance> = {
+    tmr:CBNSAIDThrombus_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBNSAIDThrombus_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBNSAIDThrombus_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBThiazideLBS_provenance> = {
+    tmr:CBThiazideLBS_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBThiazideLBS_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBThiazideLBS_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBAspiringPain_provenance> = {
+    tmr:CBAspiringPain_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBAspiringPain_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBAspiringPain_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBAspiringThrombus_assertion> = {
+    tmr:ActAdministerAspirin tmr:causes tmr:TrDecreaseRiskThrombus .
+
+    tmr:CBAspiringThrombus_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBTramadolThrombus_assertion> = {
+    tmr:ActAdministerTramadol tmr:causes tmr:TrDecreaseRiskThrombus .
+
+    tmr:CBTramadolThrombus_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBNSAIDPain_provenance> = {
+    tmr:CBNSAIDPain_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBNSAIDPain_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBNSAIDPain_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBIbuprofenCoagulation_provenance> = {
+    tmr:CBIbuprofenCoagulation_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBIbuprofenCoagulation_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBIbuprofenCoagulation_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBNSAIDThrombus_assertion> = {
+    tmr:ActAdministerNSAID tmr:causes tmr:TrDecreaseRiskThrombus .
+
+    tmr:CBNSAIDThrombus_assertion tmr:strength "positive"^^xsd:string .
+}
+
+<tmr:CBClopidogrelThrombus_provenance> = {
+    tmr:CBClopidogrelThrombus_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBClopidogrelThrombus_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBClopidogrelThrombus_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBAspiringThrombus_provenance> = {
+    tmr:CBAspiringThrombus_provenance a oa:Annotation ;
+        oa:hasBody tmr:CBAspiringThrombus_assertion ;
+        oa:hasTarget [ oa:hasSource <http://hdl.handle.net/10222/43703> ] .
+
+    tmr:CBAspiringThrombus_assertion a tmr:CausationBelief ;
+        prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBIbuprofenCoagulation_publicationinfo> = {
+    tmr:CBIbuprofenCoagulation_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
+<tmr:CBDipyridamoleThrombus_publicationinfo> = {
+    tmr:CBDipyridamoleThrombus_nanopub prov:wasDerivedFrom <http://hdl.handle.net/10222/43703> .
+}
+
