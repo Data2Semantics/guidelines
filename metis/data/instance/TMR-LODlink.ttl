@@ -8,6 +8,7 @@
 @prefix drugcategory: <http://www4.wiwiss.fu-berlin.de/drugbank/resource/drugcategory/>.
 @prefix drugbank: <http://wifo5-04.informatik.uni-mannheim.de/drugbank/resource/drugbank/> .
 @prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix tmr: <http://guidelines.data2semantics.org/vocab/tmr/> .
 
 ##########
 # Linking drugbank drugs and categories with tmr drug types
@@ -44,9 +45,12 @@
                     tmr:pubchemCID       "3672"^^xsd:string ;
                     tmr:umlsCode      "C0020740"^^xsd:string .
 
-:DrugCatThiazide    owl:sameAs           drugcategory:diuretics,Thiazide ;
+# According to Turtle 1.1 grammar, comma's are not allowed to occur
+# in PL_LOCAL productions.
+# I have added a backslash escape sequence here. (Wouter)
+:DrugCatThiazide    owl:sameAs           drugcategory:diuretics\,Thiazide ;
                     owl:sameAs           dbpedia:Thiazide ;
-                    tmr:UMLSCode         "C0541746"^^xsd:string .
+                    tmr:UMLSCode         "C0541746"^^xsd:string ;
                     tmr:umlsCode        "99222756"^^xsd:string .
 
 :DrugCatPPI         owl:sameAs           drugcategory:proton-pumpInhibitors ;
@@ -75,7 +79,7 @@
                             tmr:pubchemSID   "131269065"^^xsd:string .
 
 
-:DrugCatAntiHypertensiveAgent owl:sameAs     drugcategory:antihypertensiveAgents .
+:DrugCatAntiHypertensiveAgent owl:sameAs     drugcategory:antihypertensiveAgents ;
                             owl:sameAs      dbpedia:Antihypertensive_drug ;
                             tmr:umlsCode    "C0003364"^^xsd:string ;
                             tmr:pubchemSID   "81065608"^^xsd:string .
