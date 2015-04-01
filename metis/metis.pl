@@ -1,6 +1,8 @@
 :- module(
   metis,
   [
+    close_under_identity/0,
+    close_under_identity/1, % +Iri:atom
     show_graphs/0
   ]
 ).
@@ -12,12 +14,14 @@
 @version 2015/03
 */
 
+:- use_module(library(aggregate)).
 :- use_module(library(apply)).
 :- use_module(library(filesex)).
 :- use_module(library(http/http_dispatch)).
 :- use_module(library(http/http_json)).
 :- use_module(library(http/thread_httpd)).
 :- use_module(library(semweb/rdf_db)).
+:- use_module(library(semweb/rdf_http_plugin)).
 :- use_module(library(semweb/rdf_turtle)).
 
 :- rdf_register_prefix(data, 'http://guidelines.data2semantics.org/data/').
@@ -33,6 +37,31 @@
 :- http_handler(/, process_request, []).
 
 :- initialization(init).
+
+
+
+%! close_under_identity is det.
+
+close_under_identity:-
+  aggregate_all(
+    set(Link),
+    (
+      rdf_has(X, owl:sameAs, Link),
+      rdf_global_id(data:_, X),
+      rdf_global_id(drug:_, Link)
+    ),
+    Links
+  ),
+  maplist(close_under_identity, Links).
+
+%! close_under_identity(+Iri:atom) is det.
+% Closes the given resource-denoting IRI under identity,
+% using the local `owl:sameAs` statements as seeds.
+
+close_under_identity(Iri):-
+  rdf_graph(Iri), !.
+close_under_identity(Iri):-
+  rdf_load(Iri, [graph(Iri)]).
 
 
 
@@ -55,7 +84,7 @@ load_schema:-
 rdf_load0(File):-
   directory_file_path(_, LocalName, File),
   file_name_extension(Graph, _, LocalName),
-  rdf_load(File, [format(turtle),graph(Graph)]).
+  rdf_load(File, [format(turtle),graph(Graph),register_namespaces(true)]).
 
 show_graphs:-
   forall(
