@@ -1,0 +1,91 @@
+@prefix : <http://guidelines.data2semantics.org/data/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://guidelines.data2semantics.org/data/> .
+@prefix drug: <http://wifo5-04.informatik.uni-mannheim.de/drugbank/resource/drugs/> .
+@prefix drugcategory: <http://www4.wiwiss.fu-berlin.de/drugbank/resource/drugcategory/>.
+@prefix drugbank: <http://wifo5-04.informatik.uni-mannheim.de/drugbank/resource/drugbank/> .
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+
+##########
+# Linking drugbank drugs and categories with tmr drug types
+##########
+
+:DrugTAspirin       owl:sameAs           drug:DB00945 ;
+                    owl:sameAs           dbpedia:Aspirin;
+                    tmr:pubchemCID       "2244"^^xsd:string ;
+                    #tmr:pubchemURL      <http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=2244>
+                    tmr:umlsCode         "C0004057"^^xsd:string .
+                    #tmr:hasATCCode      "B01AC04"^^xsd:string ; ????????
+
+
+:DrugTClopidogrel   owl:sameAs           drug:DB00758 ;
+                    owl:sameAs           dbpedia:Clopidogrel;
+                    tmr:pubchemCID       "60606"^^xsd:string ;
+                    #tmr:pubchemURL      <http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=60606>
+                    tmr:umlsCode      "C0070166"^^xsd:string .
+                    #tmr:hasATCCode      "B01AC04"^^xsd:string .
+
+:DrugTDipyridamole  owl:sameAs           drug:DB00975 ;
+                    owl:sameAs           dbpedia:Dipyridamole ;
+                    tmr:pubchemCID       "3108"^^xsd:string ;
+                    #tmr:pubchemURL      <http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=3108>
+                    tmr:umlsCode      "C0012582"^^xsd:string .
+
+:DrugTTramadol      owl:sameAs           drug:DB00193 ;
+                    owl:sameAs           dbpedia:Tramadol ;
+                    tmr:pubchemCID       "33741"^^xsd:string ;
+                    tmr:umlsCode      "C0040610"^^xsd:string .
+
+:DrugTIbuprofen     owl:sameAs           drug:DB01050 ;
+                    owl:sameAs           dbpedia:Ibuprofen ;
+                    tmr:pubchemCID       "3672"^^xsd:string ;
+                    tmr:umlsCode      "C0020740"^^xsd:string .
+
+:DrugCatThiazide    owl:sameAs           drugcategory:diuretics,Thiazide ;
+                    owl:sameAs           dbpedia:Thiazide ;
+                    tmr:UMLSCode         "C0541746"^^xsd:string .
+                    tmr:umlsCode        "99222756"^^xsd:string .
+
+:DrugCatPPI         owl:sameAs           drugcategory:proton-pumpInhibitors ;
+                    owl:sameAs           dbpedia:Proton-pump_inhibitor ;
+                    tmr:umlsCode         "C0358591"^^xsd:string .
+                    #tmr:pubchemSID        "???"^^xsd:string .
+                    #tmr:atcCode          "A02BC"^^xsd:string ;
+                    #tmr:meshCode         "D054328"^^xsd:string .
+
+
+:DrugCatAntiBacterialAgent  owl:sameAs     drugcategory:anti-bacterialAgents ;
+                            owl:sameAs     dbpedia:Bactericide ;
+                            tmr:umlsCode         "C0004635"^^xsd:string ;
+                            tmr:pubchemSID        "81065603"^^xsd:string .
+
+
+:DrugCatPlateletAggregationInhibitor  owl:sameAs     drugcategory:PlateletAggregationInhibitors ;
+                            owl:sameAs           dbpedia:Antiplatelet_drug ;
+                            tmr:umlsCode         "C0032177"^^xsd:string ;
+                            tmr:pubchemSID        "134222865"^^xsd:string .
+
+
+:DrugCatAnalgesic           owl:sameAs      drugcategory:analgesics ;
+                            owl:sameAs      dbpedia:Analgesic ;
+                            tmr:umlsCode    "C0002771"^^xsd:string ;
+                            tmr:pubchemSID   "131269065"^^xsd:string .
+
+
+:DrugCatAntiHypertensiveAgent owl:sameAs     drugcategory:antihypertensiveAgents .
+                            owl:sameAs      dbpedia:Antihypertensive_drug ;
+                            tmr:umlsCode    "C0003364"^^xsd:string ;
+                            tmr:pubchemSID   "81065608"^^xsd:string .
+
+#####
+#check the availability of such data in drubank file
+#####
+
+drug:DB01240 drugbank:drugCategory drugcategory:PlateletAggregationInhibitors .
+
+# Fake, for test    
+drug:DB01241 drugbank:drugCategory drugcategory:PlateletAggregationInhibitors .
+
