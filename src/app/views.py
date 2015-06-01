@@ -130,33 +130,40 @@ def recommendations():
         }
         BIND(tmr4i:InternallyInteractingRecommendation AS ?irec)
     }"""
-    
+
     internal_interactions = sparql(query, strip=True)
-    
+
     deduped_internal_interactions = []
     double_interactions = set()
     print len(internal_interactions)
+
+    # Go through all detected internal interactions, and remove the duplicates (but retain directedness).
     for r in internal_interactions :
         if 'rec' and 'internal_rec' in r:
             r1 = r['rec']['value']
             r2 = r['internal_rec']['value']
-            
-            if (r2,r1) in double_interactions or (r1,r2) in double_interactions:
+
+            if (r1,r2) in double_interactions :
                 log.debug("Interaction couple already found")
+            elif (r2, r1) in double_interactions :
+                log.debug("Interaction couple found in other direction, still adding")
+                double_interactions.add((r1,r2))
+                deduped_internal_interactions.append(r)
             else :
+                log.debug("Interaction couple is fresh! Yum.")
                 double_interactions.add((r1,r2))
                 deduped_internal_interactions.append(r)
         else :
             deduped_internal_interactions.append(r)
 
     print len(deduped_internal_interactions)
-    
+
     all_results.extend(deduped_internal_interactions)
-    
+
     query = PREFIXES + """
-        SELECT DISTINCT * WHERE 
-        { 
-            ?rec tmr4i:partOf <""" + guideline_uri + """>  . 
+        SELECT DISTINCT * WHERE
+        {
+            ?rec tmr4i:partOf <""" + guideline_uri + """>  .
             ?rec rdfs:label ?rec_label .
             ?rec a owl:NamedIndividual .
             ?rec tmr4i:interactsExternallyWith ?external_rec .
